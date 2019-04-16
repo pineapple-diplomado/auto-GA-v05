@@ -1,5 +1,5 @@
-# Login feature review the behavior in thie feature
-Feature: Login
+# Test cases to user stories operations
+Feature: UserStory
 
   Scenario: Backlog page is displayed after loged in
     Given 'Backlog' page is loaded

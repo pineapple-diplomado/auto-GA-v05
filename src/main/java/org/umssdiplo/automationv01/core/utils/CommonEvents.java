@@ -1,10 +1,9 @@
 package org.umssdiplo.automationv01.core.utils;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.umssdiplo.automationv01.core.customwebdriver.ManageDriver;
 
 import java.util.List;
@@ -21,6 +20,45 @@ public class CommonEvents {
         ManageDriver.getInstance().getWebDriverWait().until(ExpectedConditions.visibilityOf(webElement));
         webElement.clear();
         webElement.sendKeys(content);
+    }
+
+    public static void selectValue(WebElement webElement, String content) {
+        WebDriverWait waitDriver = ManageDriver.getInstance().getWebDriverWait();
+        WebDriver webDriver = ManageDriver.getInstance().getWebDriver();
+
+        waitDriver.until(ExpectedConditions.visibilityOf(webElement));
+        webElement.click();
+
+        WebElement selectItem = webDriver.findElement(By.xpath(
+               "//span[@class='mat-option-text'] [contains(text(),'" + content +"')]"));
+        waitDriver.until(ExpectedConditions.visibilityOf(selectItem));
+        selectItem.click();
+    }
+
+    public static void clickElement(By by) {
+        WebDriver webDriver = ManageDriver.getInstance().getWebDriver();
+        WebDriverWait waitDriver = ManageDriver.getInstance().getWebDriverWait();
+
+        WebElement element =  webDriver.findElement(by);
+        waitDriver.until(ExpectedConditions.visibilityOf(element));
+        element.click();
+    }
+
+    public static WebElement getElement(By by){
+        WebDriver webDriver = ManageDriver.getInstance().getWebDriver();
+        WebDriverWait waitDriver = ManageDriver.getInstance().getWebDriverWait();
+
+        WebElement element = webDriver.findElement(by);
+        //return waitDriver.until(ExpectedConditions.elementToBeClickable(by));
+        return element;
+    }
+
+    public static void isVisible(By by) {
+        ManageDriver.getInstance().getWebDriverWait().until(ExpectedConditions.visibilityOfElementLocated(by));
+    }
+
+    public static void isNotVisible(By by) {
+        ManageDriver.getInstance().getWebDriverWait().until(ExpectedConditions.invisibilityOfElementLocated(by));
     }
 
     /**

@@ -8,6 +8,7 @@ import java.util.Properties;
 public class PropertyAccessor {
     private static final String BROWSER = "browser";
     private static final String BASE_URL = "baseurl";
+    private static final String BASE_JIRA_URL = "baseurljira";
 
     private static final String PROJECT_URL = "projecturl";
     private static final String JIRA_URL = "basejiraurl";
@@ -67,6 +68,10 @@ public class PropertyAccessor {
 
     public String getJiraUrl() {
         return getDataProperty(JIRA_URL);
+    }
+
+    public String getBaseJiraUrl() {
+        return getDataProperty(BASE_JIRA_URL);
     }
 
     public String getUser() {

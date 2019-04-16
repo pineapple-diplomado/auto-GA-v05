@@ -18,7 +18,7 @@ public class ProjectManagement extends BasePage {
     @FindBy(id = "GuardarAccidente")
     private WebElement guardarAccidente;
 
-    @FindBy(id = "GuardarAccidente")
+    @FindBy(xpath = "//*[@class=\"sc-EHOje dCmFoj\"]")
     private WebElement createProject;
 
     @FindBy(id = "EditarAccidente")
@@ -55,7 +55,7 @@ public class ProjectManagement extends BasePage {
     }
 
     public void clickCreateProject() {
-        CommonEvents.clickButton(this.guardarAccidente);
+        CommonEvents.clickButton(this.createProject);
     }
 
     public void clickGuardarAccidente() {

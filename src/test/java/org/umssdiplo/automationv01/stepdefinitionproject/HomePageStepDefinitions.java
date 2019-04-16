@@ -24,7 +24,7 @@ public class HomePageStepDefinitions {
 
     @And("^click 'Create project' dropdown in 'Body'$")
     public void clickOnAccidentes() throws Throwable {
-        //this.projectManagement = this.projectManagement.clickCreateProject();
+        this.projectManagement.clickCreateProject();
     }
 
     @And("^fill \"([^\"]*)\" in Nombre field in 'Accident' form$")

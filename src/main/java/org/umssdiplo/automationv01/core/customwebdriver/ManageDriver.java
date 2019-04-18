@@ -14,6 +14,7 @@ public class ManageDriver {
     private static ManageDriver instance;
     private WebDriver webDriver;
     private WebDriverWait webDriverWait;
+    private String m = "";
 
     private ManageDriver() {
         BrowserType driverType = BrowserType.valueOf(PropertyAccessor.getInstance().getBrowser());

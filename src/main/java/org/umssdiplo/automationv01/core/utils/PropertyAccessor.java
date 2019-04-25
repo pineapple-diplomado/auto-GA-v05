@@ -9,12 +9,13 @@ public class PropertyAccessor {
     private static final String BROWSER = "browser";
     private static final String BASE_URL = "baseurl";
     private static final String BASE_JIRA_URL = "baseurljira";
+    private static final String USER = "user";
+    private static final String PASSWORD = "password";
 
     private static final String PROJECT_URL = "projecturl";
     private static final String JIRA_URL = "basejiraurl";
 
     private static final String USERNAME = "username";
-    private static final String PASSWORD = "password";
 
     private static PropertyAccessor PropertyAccessor;
     private Properties properties;

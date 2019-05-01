@@ -1,9 +1,6 @@
 package org.umssdiplo.automationv01.core.utils;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.umssdiplo.automationv01.core.customwebdriver.ManageDriver;
 
@@ -116,4 +113,10 @@ public class CommonEvents {
         webElement.sendKeys(Keys.ENTER);
     }
 
+    //  xaby
+
+    public static void clickButton(By by) {
+        WebElement element = ManageDriver.getInstance().getWebDriver().findElement(by);
+        clickButton(element);
+    }
 }

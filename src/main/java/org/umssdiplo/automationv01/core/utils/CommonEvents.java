@@ -126,4 +126,19 @@ public class CommonEvents {
         WebElement element = ManageDriver.getInstance().getWebDriver().findElement(by);
         clickButton(element);
     }
+
+    public static String getTextContent(By by) {
+        WebElement element = ManageDriver.getInstance().getWebDriver().findElement(by);
+        return getTextContent(element);
+    }
+
+    public static void setInputField(By by, String content) {
+        WebElement element = ManageDriver.getInstance().getWebDriver().findElement(by);
+        setInputField(element, content);
+    }
+
+    public static void pressEnterKey(By by) {
+        WebElement element = ManageDriver.getInstance().getWebDriver().findElement(by);
+        pressEnterKey(element);
+    }
 }

@@ -20,12 +20,10 @@ public class MyAccountDialog extends BasePage {
     public String getMail() {
         String mailText = CommonEvents.getTextContent(email);
         return mailText;
-
     }
 
     public String getName() {
-        String mailText = CommonEvents.getTextContent(name);
-        return mailText;
-
+        String nameText = CommonEvents.getTextContent(name);
+        return nameText;
     }
 }

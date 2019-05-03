@@ -31,6 +31,29 @@ public class Login extends BasePage {
     private WebElement spanElement;
 
 
+    /*
+        Segunda parte
+    */
+
+    @FindBy(xpath = "//span[@class='sc-eNQAEJ llDNh']")
+    private WebElement spanIconElement;
+
+
+    @FindBy(xpath = "//*[@id=\"resetPassword\"]/span")
+    private WebElement cantLogInLink;
+
+
+    @FindBy(xpath = "//*[@id=\"root\"]/div/div/div/div[2]/div/header/h1")
+    private WebElement cantLogInTitle;
+
+    @FindBy(id = "google-signin-button")
+    private WebElement logInWithGoogleBtn;
+
+
+    @FindBy(xpath = "//div[@id='login-error']/span")
+    private WebElement msgPassError;
+
+
     public void clickLoginBtnMainPage() {
         CommonEvents.clickButton(loginBtnMainPage);
     }
@@ -70,7 +93,43 @@ public class Login extends BasePage {
         CommonEvents.setInputField(usernameInputField, usernamenotexist);
     }
 
-    public boolean validateSpamIsDisplayed() {
+    public boolean validateSpanIsDisplayed() {
         return CommonEvents.isVisible(spanElement);
     }
+
+    /*
+        Segunda parte
+    */
+
+
+    public boolean validateSpanIconIsDisplayed() throws InterruptedException {
+        return CommonEvents.isVisible(spanIconElement);
+    }
+
+
+    public void clickCantLogIn() {
+        CommonEvents.clickButton(cantLogInLink);
+    }
+
+    public String getTittleCantLogIn() {
+        return CommonEvents.getTextContent(cantLogInTitle);
+    }
+
+    public void clickLogInWithGoogleBtn() {
+        CommonEvents.clickButton(logInWithGoogleBtn);
+    }
+
+
+    public void setIncorrectPasswordCredential() {
+        String incorrectPassword = PropertyAccessor.getInstance().getIncorrectPassword();
+        CommonEvents.setInputField(passwordInputField, incorrectPassword);
+    }
+
+    public String getMsgPassError() {
+        String msgError = (CommonEvents.getTextContent(msgPassError)).substring(0, 42);
+//        msgError.substring(0,10);
+        System.out.print("MENSAJE ERROR: " + msgError);
+        return msgError;
+    }
+
 }

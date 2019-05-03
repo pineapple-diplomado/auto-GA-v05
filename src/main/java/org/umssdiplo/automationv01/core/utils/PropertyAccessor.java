@@ -15,6 +15,11 @@ public class PropertyAccessor {
 
     private static final String USER_NAME_NOT_EXIST = "usernamenotexist";
 
+    private static final String INCORRECT_PASSWORD = "incorrectpassword";
+
+    private static final String USER_NAME_GOOGLE = "usernamegoogle";
+    private static final String PASSWORD_GOOGLE = "passwordgoogle";
+
     private static PropertyAccessor PropertyAccessor;
     private Properties properties;
 
@@ -75,5 +80,18 @@ public class PropertyAccessor {
 
     public String getUserNotExist() {
         return getDataProperty(USER_NAME_NOT_EXIST);
+    }
+
+
+    public String getIncorrectPassword() {
+        return getDataProperty(INCORRECT_PASSWORD);
+    }
+
+    public String getUserGoogle() {
+        return getDataProperty(USER_NAME_GOOGLE);
+    }
+
+    public String getPassGoogle() {
+        return getDataProperty(PASSWORD_GOOGLE);
     }
 }

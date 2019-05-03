@@ -13,7 +13,7 @@ Feature: Verifications in Task
 #      And Click 'Create' button on CreationTaskDialog dialog
 #      Then Check "Nuevo Task" in List on BackLog page
 #
-
+#
 ##testcase5
 #    Scenario: Verification of changing status into InProgress
 #      Given 'JiraLoginPage' page is loaded
@@ -44,8 +44,8 @@ Feature: Verifications in Task
 #    And Insert "Nuevo subtask creado" field subTask on PanelConfigurationTask page
 #    And Click 'Crear' button on PanelConfigurationTask page
 #    Then Check "Nuevo subtask creado" field subTask on PanelConfigurationTask page
-
-
+#
+#
 ##testcase17
 #  Scenario: Verification of closing configuration panel
 #    Given 'JiraLoginPage' page is loaded
@@ -53,11 +53,20 @@ Feature: Verifications in Task
 #    And Click "ProyectoEjemplo" proyecto on HomePage page
 #    And Select "Nuevo Task2" task on BackLog page
 #    Then Click 'Close' icon on PanelConfigurationTask page
+#
+#
+##testcase18
+#  Scenario: Verification of displaying issues per user
+#    Given 'JiraLoginPage' page is loaded
+#    And set my credentials on 'JiraLoginPage' page
+#    And Click "ProyectoEjemplo" proyecto on HomePage page
+#    Then Click 'Only my issues' button with user "Javier Zapata" on BackLog page
 
 
-#testcase18
-  Scenario: Verification of displaying issues per user
+#testcase23
+  Scenario: Verification of deleting a comment
     Given 'JiraLoginPage' page is loaded
     And set my credentials on 'JiraLoginPage' page
     And Click "ProyectoEjemplo" proyecto on HomePage page
-    And Click 'Only my issues' button with user "Javier Zapata" on BackLog page
+    And Select "Nuevo Task1" task on BackLog page
+    Then Click "Mi nuevo comentario V2" on comment on PanelConfigurationTask page

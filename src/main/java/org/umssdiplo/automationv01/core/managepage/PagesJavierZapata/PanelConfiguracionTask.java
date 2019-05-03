@@ -2,8 +2,13 @@ package org.umssdiplo.automationv01.core.managepage.PagesJavierZapata;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.internal.Coordinates;
+import org.openqa.selenium.interactions.internal.Locatable;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.umssdiplo.automationv01.core.managepage.BasePage;
@@ -18,7 +23,8 @@ public class PanelConfiguracionTask extends BasePage {
     private WebElement fieldComentario;
 
     //@FindBy(xpath = "//*[@id=\"ghx-detail-view\"]/div/div[2]/div/div/div/div[3]/div/div[1]/div[1]/div/div/div/div/div[3]/div[2]/div/div/div/div[1]/div/div/button")
-    @FindBy(xpath = "//*[@id=\"ghx-detail-view\"]/div/div[2]/div/div/div/div[3]/div/div[1]/div[1]/div/div/div/div/div[3]/div[2]/div/div/div/div[1]/div/div/button/span")   ////span[contains(text(), 'Por hacer')]
+    @FindBy(xpath = "//*[@id=\"ghx-detail-view\"]/div/div[2]/div/div/div/div[3]/div/div[1]/div[1]/div/div/div/div/" +
+            "div[3]/div[2]/div/div/div/div[1]/div/div/button/span")   ////span[contains(text(), 'Por hacer')]
     private WebElement selectedItems;
 
     @FindBy(xpath ="//span[contains(text(), 'In Progress')]")
@@ -34,7 +40,8 @@ public class PanelConfiguracionTask extends BasePage {
     private WebElement fieldInsertarSubTask;
 
     //@FindBy(xpath ="//button[contains(@class='sc-EHOje dCmFoj')]//span[contains(text(), 'Crear')]")
-    @FindBy(xpath ="//*[@id=\"ghx-detail-view\"]/div/div[2]/div/div/div/div[3]/div/div[1]/div[1]/div/div/div/div/div[4]/div[3]/div[2]/div[2]/button[1]/span/span")
+    @FindBy(xpath ="//*[@id=\"ghx-detail-view\"]/div/div[2]/div/div/div/div[3]/div/div[1]/div[1]/div/div/div/div/" +
+            "div[4]/div[3]/div[2]/div[2]/button[1]/span/span")
     private WebElement botonCrearSBT;  //Boton crear de subtask
 
     @FindBy(xpath ="//div[.//text()='%s']")
@@ -43,6 +50,11 @@ public class PanelConfiguracionTask extends BasePage {
     @FindBy(xpath ="//span[@aria-label='Cerrar']")
     private WebElement botonCerrarPanel;  //boton icono inicial de subtask
 
+    @FindBy(xpath ="//div[@id='ghx-detail-view']//span[.//text()='Borrar']")
+    private WebElement botonDeleteComment;
+
+    @FindBy(xpath ="//div[@class='Modal__Dialog-sc-1jmnqyd-3 ggbguk']")
+    private WebElement contenedorDialogoDelete;
 
     public void setSelectInProgress() {
         CommonEvents.clickButton(selectedItems);
@@ -82,5 +94,18 @@ public class PanelConfiguracionTask extends BasePage {
 
     public void cerrarPanelConfiguration() {
         CommonEvents.clickButton(botonCerrarPanel);
+    }
+
+    public void borrarComentario(String comentario) {
+        EventFiringWebDriver eventFiringWebDriver = new EventFiringWebDriver(webDriver);
+        //eventFiringWebDriver.executeScript("document.querySelector('#ghx-detail-view').scrollTop = 2500");
+        WebElement element = webDriver.findElement(By.xpath("//*[@id=\"ghx-detail-view\"]/div/div[2]/div/div/div/" +
+                "div[2]/div/div[1]/div[1]/div/div/div/div/span/span/div/div/div[2]/div/div[3]/div[2]/span/button"));
+        eventFiringWebDriver.executeScript("arguments[0].scrollIntoView()", element);
+        CommonEvents.clickButton(element);
+        WebElement aceptar = webDriver.findElement(By.xpath("//*[@id=\"jira\"]/div[12]/div[4]/div/div[3]/div[2]/div/" +
+                "div/div[3]/div/div/div/button"));
+        //CommonEvents.isPresent(contenedorDialogoDelete);
+        CommonEvents.clickButton(aceptar);
     }
 }

@@ -28,7 +28,8 @@ public class HomePage extends BasePage {
 
     public static final String RUTA_PROYECTO2 = "//a[contains(@href, '/browse/PROYEC') and contains(text(), '%s')]";
 
-    public BackLogPage seleccionarProyecto(String nombreProyecto){
+    public BackLogPage seleccionarProyecto(String nombreProyecto) throws InterruptedException {
+        Thread.sleep(5000);
         By ruta_proyecto = By.xpath(String.format(RUTA_PROYECTO, nombreProyecto));
         CommonEvents.clickButton(ruta_proyecto);
         return new BackLogPage();

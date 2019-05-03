@@ -125,4 +125,9 @@ public class StepsDefinitionJavierZapata {
         int numeroEnOnlyMyIssues = backLogPage.checkIssuesNumberUserOnlyMyIssues(user);
         Assert.assertEquals(numeroEnBackLog,numeroEnOnlyMyIssues);  //tiene q ser el mismo numero
     }
+
+    @And("^Click \"([^\"]*)\" on comment on PanelConfigurationTask page$")
+    public void selectCommentOnPanelConfigurationTaskPage(String comentario) throws Throwable {
+        panelConfiguracionTask.borrarComentario(comentario);
+    }
 }

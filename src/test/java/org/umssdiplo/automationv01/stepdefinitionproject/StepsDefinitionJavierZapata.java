@@ -97,4 +97,19 @@ public class StepsDefinitionJavierZapata {
     public void checkSubtareasLabelDisplayedOnPanelConfigurationTaskPage() {
         panelConfiguracionTask.checkSubTareasDisplayedFormulario();
     }
+
+    @And("^Insert \"([^\"]*)\" field subTask on PanelConfigurationTask page$")
+    public void insertFieldSubTaskOnPanelConfigurationTaskPage(String nombreSubTask) {
+        panelConfiguracionTask.insertarSubTask(nombreSubTask);
+    }
+
+    @And("^Click 'Crear' button on PanelConfigurationTask page$")
+    public void clickCrearButtonOnPanelConfigurationTaskPage() {
+        panelConfiguracionTask.clickBotonCrearSubTask();
+    }
+
+    @Then("^Check \"([^\"]*)\" field subTask on PanelConfigurationTask page$")
+    public void checkFieldSubTaskOnPanelConfigurationTaskPage(String subTask){
+        panelConfiguracionTask.checkSubTareaSaved(subTask);
+    }
 }

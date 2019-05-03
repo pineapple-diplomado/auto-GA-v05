@@ -88,8 +88,13 @@ public class StepsDefinitionJavierZapata {
         Assert.assertEquals(status,"In Progress");
     }
 
-    @And("^Select 'Medium' prioridad item on PanelConfigurationTask page$")
-    public void selectMediumPrioridadItemOnPanelConfigurationTaskPage() throws InterruptedException {
-        panelConfiguracionTask.setPrioridadToLow("Low");
+    @And("^Click 'Create sub task' icon on PanelConfigurationTask page$")
+    public void clickCreateSubTaskIconOnPanelConfigurationTaskPage() {
+        panelConfiguracionTask.clickCreacionSubTask();
+    }
+
+    @Then("^Check 'Subtareas' label displayed on PanelConfigurationTask page$")
+    public void checkSubtareasLabelDisplayedOnPanelConfigurationTaskPage() {
+        panelConfiguracionTask.checkSubTareasDisplayedFormulario();
     }
 }

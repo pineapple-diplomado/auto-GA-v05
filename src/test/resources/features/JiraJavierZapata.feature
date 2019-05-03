@@ -14,7 +14,6 @@ Feature: Verifications in Task
     Then Check "Nuevo Task" in List on BackLog page
 
 
-
 #testcase5
     Scenario: Verification of changing status into InProgress
       Given 'JiraLoginPage' page is loaded
@@ -24,11 +23,13 @@ Feature: Verifications in Task
       And Select 'InProgress' in status on PanelConfigurationTask page
       Then Check 'InProgrees' in status on PanelConfigurationTask page
 
+
 #testcase9
-    Scenario: Verification of changing status into InProgress
+    Scenario: Verification of opening dialog of SubTask
       Given 'JiraLoginPage' page is loaded
       And set my credentials on 'JiraLoginPage' page
       And Click "ProyectoEjemplo" proyecto on HomePage page
       And Select "Nuevo Task" task on BackLog page
-      And Select 'Medium' prioridad item on PanelConfigurationTask page
+      And Click 'Create sub task' icon on PanelConfigurationTask page
+      Then Check 'Subtareas' label displayed on PanelConfigurationTask page
 

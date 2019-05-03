@@ -22,9 +22,11 @@ public class PanelConfiguracionTask extends BasePage {
     @FindBy(xpath ="//span[contains(text(), 'In Progress')]")
     private WebElement selectInProgress;
 
-    //@FindBy(xpath ="div[(@id,'ghx-detail-view')]//span[(text()='Medium')]")
-    @FindBy(xpath = "//*[@id=\"ghx-detail-view\"]/div/div[2]/div/div/div/div[3]/div/div[1]/div[1]/div/div/div/div/div[5]/div/div[1]/div[7]/div[2]/div/div/div[2]/div/div/div/div/div/div/span")
-    private WebElement itemMedium;
+    @FindBy(xpath ="//span[@aria-label='Create subtask']")
+    private WebElement botonCreateSubTask;
+
+    @FindBy(xpath ="//h2[.//text()='Subtareas']")
+    private WebElement labelSubtareas;
 
     public void setSelectInProgress() {
         CommonEvents.clickButton(selectedItems);
@@ -36,14 +38,12 @@ public class PanelConfiguracionTask extends BasePage {
         return status;
     }
 
-    public void setPrioridadToLow(String low) throws InterruptedException {
-//        WebElement element = webDriver.findElement(By.xpath("//*[@id=\"ghx-detail-view\"]/div/div[2]/div/div/div/div[3]/div/div[1]/div[1]/div/div/div/div/div[5]/div/div[1]/div[7]/div[2]/div/div/div[2]/div/div/div/div/div/div/span"));
-//        ((JavascriptExecutor) webDriver).executeScript("arguments[0].scrollIntoView(true);", element);
-//        Thread.sleep(500);
-//        CommonEvents.clickButton(element);
 
-        JavascriptExecutor js = (JavascriptExecutor) webDriver;
-        js.executeScript("window.scrollBy(0,1000)");
+    public void clickCreacionSubTask() {
+        CommonEvents.clickButton(botonCreateSubTask);
+    }
 
+    public void checkSubTareasDisplayedFormulario() {
+        CommonEvents.isPresent(labelSubtareas);
     }
 }

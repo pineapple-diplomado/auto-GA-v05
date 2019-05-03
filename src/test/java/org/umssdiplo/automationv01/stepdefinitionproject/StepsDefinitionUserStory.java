@@ -9,8 +9,6 @@ import org.umssdiplo.automationv01.core.managepage.Login.Login;
 import org.umssdiplo.automationv01.core.managepage.page.*;
 import org.umssdiplo.automationv01.core.utils.LoadPage;
 
-import java.awt.*;
-
 public class StepsDefinitionUserStory {
     private Login login;
     private Backlog backlog;
@@ -55,8 +53,9 @@ public class StepsDefinitionUserStory {
     }
 
     @And("^rc Click on 'Create' button in 'Create' dialog$")
-    public void rcClickOnCreateButtonInCreateDialog() {
+    public void rcClickOnCreateButtonInCreateDialog() throws InterruptedException {
         dialogItemCreation.clickCreateDialogButton();
+        Thread.sleep(5000);
     }
 
     @Then("^rc Verify \"([^\"]*)\" is created in 'Backlog' page$")
@@ -117,14 +116,84 @@ public class StepsDefinitionUserStory {
     public void rcClickInCommentSaveInEditPanel() {
         panelItem.clickOnSaveComment();
     }
-/*
-    @And("^rc Click \"([^\"]*)\" in 'Edit' dialog$")
-    public void rcClickInEditDialog(String storyName) throws Throwable {
-        panelItem.clickOnTitle(storyName, "US23ddd");
+
+    @And("^rc Click in 'Show more' button in 'Edit' panel$")
+    public void rcClickInShowMoreButtonInEditPanel() throws InterruptedException {
+        panelItem.clickOnShowMore();
+        Thread.sleep(5000);
+        panelItem.clickOnShowMore();
+        Thread.sleep(5000);
     }
 
-    @And("^rc Fill \"([^\"]*)\" in 'Edit' dialog$")
-    public void rcFillInEditDialog(String storyName) throws Throwable {
-        panelItem.fillTitle(storyName);
-    }*/
+    @And("^rc Click in 'Time Tracking' field in 'Edit' panel$")
+    public void rcClickInTimeTrackingFieldInEditPanel() throws InterruptedException {
+        panelItem.clickOnTimeLogged();
+        Thread.sleep(5000);
+    }
+
+    @And("^rc Fill \"([^\"]*)\" in time logged field in 'Time Tracking' dialog$")
+    public void rcFillInTimeLoggedFieldInTimeTrackingDialog(String text) throws Throwable {
+        panelItem.fillTimeLogged(text);
+        Thread.sleep(5000);
+    }
+
+    @And("^rc Click 'Save' in 'Time Tracking' dialog$")
+    public void rcClickSaveInTimeTrackingDialog() {
+        panelItem.clickOnSaveTimeLogged();
+    }
+
+    @And("^rc Click in 'Link' button in 'Edit' panel$")
+    public void rcClickInLinkButtonInEditPanel() throws InterruptedException {
+        panelItem.clickOnLinkButton();
+        Thread.sleep(5000);
+    }
+
+    @And("^rc Click in 'Search for issues' field in 'Edit' panel$")
+    public void rcClickInSearchForIssuesFieldInEditPanel() throws InterruptedException {
+        panelItem.clickOnSearchIssues();
+        Thread.sleep(5000);
+    }
+
+    @And("^rc Click 'Link' button in 'Linked issues' panel$")
+    public void rcClickLinkButtonInLinkedIssuesPanel() {
+        panelItem.clickOnSaveLink();
+    }
+
+    @And("^rc Fill item \"([^\"]*)\" in active issues in 'Edit' dialog$")
+    public void rcFillItemInActiveIssuesInEditDialog(String item) throws Throwable {
+        String textItem = panelItem.getTextSelectedItem(item);
+        Thread.sleep(5000);
+        panelItem.fillLinkItem(textItem);
+        Thread.sleep(5000);
+    }
+
+    @And("^rc Click enter on item in active issues in 'Edit' dialog$")
+    public void rcClickEnterOnItemInActiveIssuesInEditDialog() throws InterruptedException {
+        panelItem.clickEnterLinkItem();
+        Thread.sleep(5000);
+    }
+
+    @And("^rc Click in 'Create subtask' button in 'Edit' panel$")
+    public void rcClickInCreateSubtaskButtonInEditPanel() throws InterruptedException {
+        panelItem.clickOnCreateSubTask();
+        Thread.sleep(5000);
+    }
+
+    @And("^rc Click in 'Subtasks' field in 'Edit' panel$")
+    public void rcClickInSubtasksFieldInEditPanel() throws InterruptedException {
+        panelItem.clickSubTaskField();
+        Thread.sleep(5000);
+    }
+
+    @And("^rc Fill item \"([^\"]*)\" in 'Subtasks' field in 'Edit' dialog$")
+    public void rcFillItemInSubtasksFieldInEditDialog(String subtask) throws Throwable {
+        panelItem.fillSubTaskField(subtask);
+        Thread.sleep(5000);
+    }
+
+    @And("^rc Click in 'Create' button in 'Subtasks' field in 'Edit' dialog$")
+    public void rcClickInCreateButtonInSubtasksFieldInEditDialog() throws InterruptedException {
+        panelItem.clickOnCreateSubTaskButton();
+        Thread.sleep(5000);
+    }
 }

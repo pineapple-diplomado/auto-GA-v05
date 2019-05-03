@@ -7,10 +7,7 @@ import cucumber.api.java.en.Then;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.umssdiplo.automationv01.core.managepage.Login.Login;
-import org.umssdiplo.automationv01.core.managepage.PagesJavierZapata.BackLogPage;
-import org.umssdiplo.automationv01.core.managepage.PagesJavierZapata.CreationTaskDialog;
-import org.umssdiplo.automationv01.core.managepage.PagesJavierZapata.HomePage;
-import org.umssdiplo.automationv01.core.managepage.PagesJavierZapata.JiraLoginPage;
+import org.umssdiplo.automationv01.core.managepage.PagesJavierZapata.*;
 import org.umssdiplo.automationv01.core.utils.LoadPageJavierZapata;
 
 import java.util.List;
@@ -21,6 +18,7 @@ public class StepsDefinitionJavierZapata {
     private HomePage homePage;
     private BackLogPage backLogPage;
     private CreationTaskDialog creationTaskDialog;
+    private PanelConfiguracionTask panelConfiguracionTask;
 
 
 
@@ -72,5 +70,26 @@ public class StepsDefinitionJavierZapata {
         boolean res = backLogPage.checkExistenciaDeUltimoTask(nombreTask);
         Assert.assertEquals(res,true);
 
+    }
+
+    @And("^Select \"([^\"]*)\" task on BackLog page$")
+    public void selectTaskOnBackLogPage(String tituloTask) {
+        panelConfiguracionTask = backLogPage.clickEnUnTask(tituloTask);
+    }
+
+    @And("^Select 'InProgress' in status on PanelConfigurationTask page$")
+    public void selectInProgressInStatusOnPanelConfigurationTaskPage() {
+        panelConfiguracionTask.setSelectInProgress();
+    }
+
+    @And("^Check 'InProgrees' in status on PanelConfigurationTask page$")
+    public void checkInProgreesInStatusOnPanelConfigurationTaskPage() {
+        String status = panelConfiguracionTask.verificandoInProgress();
+        Assert.assertEquals(status,"In Progress");
+    }
+
+    @And("^Select 'Medium' prioridad item on PanelConfigurationTask page$")
+    public void selectMediumPrioridadItemOnPanelConfigurationTaskPage() throws InterruptedException {
+        panelConfiguracionTask.setPrioridadToLow("Low");
     }
 }

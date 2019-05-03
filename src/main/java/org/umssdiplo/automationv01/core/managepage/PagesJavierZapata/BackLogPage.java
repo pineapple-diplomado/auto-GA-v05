@@ -19,6 +19,8 @@ public class BackLogPage extends BasePage {
     @FindBy(xpath = "/html/body/div[4]/div/div[2]/div[2]/div[2]/div[2]/div[2]/div/div[4]/div/div/div[2]/div[3]")
     private WebElement contenidoListas;
 
+    public static final String NUEVO_TASK = "//div[@data-tooltip='%s']";
+
     public BackLogPage(){
         createIssueButton = "//button[contains(text(), '%s')]";
         //iconBotonDialogIssue = "button[@title='Abrir el diálogo Crear']";  //Open create dialog
@@ -64,5 +66,11 @@ public class BackLogPage extends BasePage {
         String part2 = parts[1];
         auxiliar = Integer.parseInt(part2);
         return auxiliar;
+    }
+
+    public PanelConfiguracionTask clickEnUnTask(String tituloTask) {
+        By clickNuevoTask = By.xpath(String.format(NUEVO_TASK, tituloTask));
+        CommonEvents.clickButton(clickNuevoTask);
+        return new PanelConfiguracionTask();
     }
 }

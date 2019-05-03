@@ -1,8 +1,8 @@
 
 Feature: Verifications in Task
 
-
-  Scenario: HomePage is displayed once set credential in JiraLoginPage page
+#testcase2
+  Scenario: Verification of a created task displayed on BackLog page
     Given 'JiraLoginPage' page is loaded
     And set my credentials on 'JiraLoginPage' page
     And Click "ProyectoEjemplo" proyecto on HomePage page
@@ -13,4 +13,22 @@ Feature: Verifications in Task
     And Click 'Create' button on CreationTaskDialog dialog
     Then Check "Nuevo Task" in List on BackLog page
 
+
+
+#testcase5
+    Scenario: Verification of changing status into InProgress
+      Given 'JiraLoginPage' page is loaded
+      And set my credentials on 'JiraLoginPage' page
+      And Click "ProyectoEjemplo" proyecto on HomePage page
+      And Select "Nuevo Task" task on BackLog page
+      And Select 'InProgress' in status on PanelConfigurationTask page
+      Then Check 'InProgrees' in status on PanelConfigurationTask page
+
+#testcase9
+    Scenario: Verification of changing status into InProgress
+      Given 'JiraLoginPage' page is loaded
+      And set my credentials on 'JiraLoginPage' page
+      And Click "ProyectoEjemplo" proyecto on HomePage page
+      And Select "Nuevo Task" task on BackLog page
+      And Select 'Medium' prioridad item on PanelConfigurationTask page
 

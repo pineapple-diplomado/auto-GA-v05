@@ -112,4 +112,17 @@ public class StepsDefinitionJavierZapata {
     public void checkFieldSubTaskOnPanelConfigurationTaskPage(String subTask){
         panelConfiguracionTask.checkSubTareaSaved(subTask);
     }
+
+    @Then("^Click 'Close' icon on PanelConfigurationTask page$")
+    public void clickCloseIconOnPanelConfigurationTaskPage() {
+        panelConfiguracionTask.cerrarPanelConfiguration();
+    }
+
+
+    @And("^Click 'Only my issues' button with user \"([^\"]*)\" on BackLog page$")
+    public void clickOnlyMyIssuesButtonWithUserOnBackLogPage(String user) {
+        int numeroEnBackLog = backLogPage.checkIssuesNumberUser(user);  //verifica q issues en backlog de un user sean vistos en Only my issues
+        int numeroEnOnlyMyIssues = backLogPage.checkIssuesNumberUserOnlyMyIssues(user);
+        Assert.assertEquals(numeroEnBackLog,numeroEnOnlyMyIssues);  //tiene q ser el mismo numero
+    }
 }

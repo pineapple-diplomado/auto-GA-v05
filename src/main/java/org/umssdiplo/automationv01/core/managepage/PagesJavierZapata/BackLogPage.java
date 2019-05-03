@@ -21,6 +21,10 @@ public class BackLogPage extends BasePage {
 
     public static final String NUEVO_TASK = "//div[@data-tooltip='%s']";
 
+    //@FindBy(xpath ="//span[@aria-label='Solo Mis Incidencias']")
+    @FindBy(xpath = "//*[@id=\"ghx-quick-filters\"]/ul/li[3]/ul/li[1]/button")
+    private WebElement botonOnlyMyIssues;
+
     public BackLogPage(){
         createIssueButton = "//button[contains(text(), '%s')]";
         //iconBotonDialogIssue = "button[@title='Abrir el diálogo Crear']";  //Open create dialog
@@ -72,5 +76,22 @@ public class BackLogPage extends BasePage {
         By clickNuevoTask = By.xpath(String.format(NUEVO_TASK, tituloTask));
         CommonEvents.clickButton(clickNuevoTask);
         return new PanelConfiguracionTask();
+    }
+
+    public int checkIssuesNumberUser(String user) {
+        CommonEvents.isVisible(contenidoListas);
+        List<WebElement> elementsRoot = webDriver.findElements(By.xpath("//div[starts-with(@class,'js-issue')]//img[contains(@data-tooltip,'Responsable: ${user}')]"));
+        System.out.println("Numero de elementos backlog: "+elementsRoot.size());
+        return elementsRoot.size();
+    }
+
+
+    public int checkIssuesNumberUserOnlyMyIssues(String user) {
+        CommonEvents.isVisible(contenidoListas);
+        //CommonEvents.isPresent(botonOnlyMyIssues);
+        CommonEvents.clickButton(botonOnlyMyIssues);
+        List<WebElement> elementsRoot = webDriver.findElements(By.xpath("//div[starts-with(@class,'js-issue')]//img[contains(@data-tooltip,'Responsable: ${user}')]"));
+        System.out.println("Numero de elementos only my issues: "+elementsRoot.size());
+        return elementsRoot.size();
     }
 }

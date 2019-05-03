@@ -40,6 +40,10 @@ public class PanelConfiguracionTask extends BasePage {
     @FindBy(xpath ="//div[.//text()='%s']")
     private WebElement savedSubTask;
 
+    @FindBy(xpath ="//span[@aria-label='Cerrar']")
+    private WebElement botonCerrarPanel;  //boton icono inicial de subtask
+
+
     public void setSelectInProgress() {
         CommonEvents.clickButton(selectedItems);
         CommonEvents.clickButton(selectInProgress);
@@ -68,10 +72,15 @@ public class PanelConfiguracionTask extends BasePage {
 //        WebElement ele5 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(@class='sc-EHOje dCmFoj')]//span[contains(text(), 'Crear')]")));
 //        CommonEvents.clickButton(ele5);
         CommonEvents.clickButton(botonCrearSBT);
+
     }
 
 
     public void checkSubTareaSaved(String subTask) {
-        WebElement element = webDriver.findElement(By.xpath("//div[.//text()='Nuevo subtask creado4']")); //${subTask}
+        WebElement element = webDriver.findElement(By.xpath("//div[.//text()='Nuevo subtask creado']")); //${subTask}
+    }
+
+    public void cerrarPanelConfiguration() {
+        CommonEvents.clickButton(botonCerrarPanel);
     }
 }

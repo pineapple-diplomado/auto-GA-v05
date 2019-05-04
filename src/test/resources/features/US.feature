@@ -5,7 +5,7 @@ Feature: UserStory
     Given Main page "https://renecopaga.atlassian.net" is open
     And Set username "rene.copaga@gmail.com" in 'Login' page
     And Set password "Control123!" in 'Login' page
-    And Open Proyecto page
+    And rc Open Project page
 
   Scenario Outline: Create user story
     And rc Click on 'Create issue' button in 'Backlog' page
@@ -14,7 +14,7 @@ Feature: UserStory
     Then rc Verify "<StoryNameCreated>" is created in 'Backlog' page
     Examples:
       | StoryName | StoryNameCreated |
-      | US23    | US23 |
+      | US10    | US10 |
 
   Scenario Outline: Update status user story
     And rc Click on 'Create issue' button in 'Backlog' page
@@ -26,7 +26,7 @@ Feature: UserStory
     Then rc Verify "In Progress" status is set in 'Edit' page
     Examples:
       | StoryName |
-      | US56      |
+      | US11      |
 
   Scenario Outline: Add description to user story
     And rc Click on 'Create issue' button in 'Backlog' page
@@ -40,7 +40,7 @@ Feature: UserStory
     Then rc Verify "<DescriptionText>" is set in 'Edit' page
     Examples:
       | StoryName | DescriptionText |
-      | US57      | A description   |
+      | US12      | A description   |
 
   Scenario Outline: Add comment to user story
     And rc Click on 'Create issue' button in 'Backlog' page
@@ -54,7 +54,7 @@ Feature: UserStory
     Then rc Verify "<Comment>" field is set in 'Edit' page
     Examples:
       | StoryName | Comment   |
-      | US31      | A comment |
+      | US13      | A comment |
 
   Scenario Outline: Add time logged to user story
     And rc Click on 'Create issue' button in 'Backlog' page
@@ -69,7 +69,7 @@ Feature: UserStory
     Then rc Verify "<Time>" Time Tracking field is set in 'Edit' page
     Examples:
       | StoryName | Time |
-      | US39      | 1h   |
+      | US14      | 1h   |
 
   Scenario Outline: Add linked story to user story
     And rc Click on 'Create issue' button in 'Backlog' page
@@ -89,7 +89,7 @@ Feature: UserStory
 
     Examples:
       | StoryName1 | StoryName2 |
-      | US51      | US52        |
+      | US15      | US16        |
 
   Scenario Outline: Add subtask to user story
     And rc Click on 'Create issue' button in 'Backlog' page
@@ -103,4 +103,4 @@ Feature: UserStory
     Then rc Verify "<Subtask>" subtask field is set in 'Edit' page
     Examples:
       | StoryName1 | Subtask |
-      | US55      | Subtask1 |
+      | US17      | Subtask1 |

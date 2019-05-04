@@ -1,6 +1,5 @@
 package org.umssdiplo.automationv01.stepdefinitionproject;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -13,9 +12,9 @@ public class StepsDefinitionUserStory {
     private Login login;
     private Backlog backlog;
     private BrowseProjects browseProjects;
-    private StoryCreationMenu storyCreationMenu;
     DialogItemCreation dialogItemCreation;
     PanelItem panelItem;
+    String projectUrl = "https://renecopaga.atlassian.net/browse/PRJCT10";
 
     @Given("^Main page \"([^\"]*)\" is open$")
     public void mainPageIsOpen(String url) throws Throwable {
@@ -32,14 +31,26 @@ public class StepsDefinitionUserStory {
         browseProjects = login.setPassword(password);
     }
 
-    @And("^rc Click on \"([^\"]*)\" in 'Browse Projects' page$")
-    public void rcClickOnInBrowseProjectsPage(String project) throws Throwable {
-        backlog = browseProjects.clickProjectLink(project);
+    @And("^Create project \"([^\"]*)\" in 'Browse' page$")
+    public void createProjectInBrowsePage(String projectName) throws Throwable {
+        Thread.sleep(5000);
+        browseProjects.clickCreateProject();
+        Thread.sleep(8000);
+        browseProjects.selectClassicProject();
+        Thread.sleep(8000);
+        browseProjects.fillProjectName(projectName);
+        Thread.sleep(8000);
+        browseProjects.hoverCreateProjectButton();
+        Thread.sleep(5000);
+        browseProjects.clickCreateProjectButton();
+        Thread.sleep(10000);
+        projectUrl = browseProjects.getProjectUrl(projectName);
+        Thread.sleep(5000);
     }
 
-    @And("^Open Proyecto page$")
-    public void openProyectoPage() {
-        backlog = browseProjects.openBacklogProject1();
+    @And("^rc Open Project page$")
+    public void rcOpenProjectPage() {
+        backlog = browseProjects.openBacklogProject(projectUrl);
     }
 
     @And("^rc Click on 'Create issue' button in 'Backlog' page$")

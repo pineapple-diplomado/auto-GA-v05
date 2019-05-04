@@ -17,9 +17,9 @@ public final class LoadPage {
         return new Login();
     }
 
-    public static Backlog backlogPage() {
+    public static Backlog openBacklogProject(String projectUrl) {
         ManageDriver.getInstance().getWebDriver()
-                .navigate().to(PropertyAccessor.getInstance().getProjectUrl());
+                .navigate().to(PropertyAccessor.getInstance().getBaseUrl() + projectUrl);
         return new Backlog();
     }
 }

@@ -13,23 +13,48 @@ public class BrowseProjects extends BasePage {
     @FindBy(xpath = "//div[@id='page']")
     private WebElement container;
 
-    @FindBy(xpath = "//button[.//text()='Create project']")
-    private WebElement createProjectBtn;
-
-    private static final String PATH_CREATE_PROJECT = "//div[@role='menu']/span[@tabindex='0']";
+    private static final String PATH_CREATE_PROJECT_BUTTON = "//button[.//text()='Create project']";
+    private static final String PATH_CREATE_PROJECT_OPTION = "//div[@role='menu']/span[@tabindex='0']";
+    private static final String PATH_PROJECT_NAME = "//input[contains(@placeholder,'Enter a project name')]";
+    private static final String PATH_PROJECT_CREATE_BUTTON = "//button[.//span[contains(text(),'Create')]]";
+    private static final String PATH_PROJECT_LINK = "//a[.//span[contains(text(),'%s')]]";
 
     public BrowseProjects() {
         CommonEvents.waitElementVisible(container);
     }
 
-    public Backlog clickProjectLink(String project) {
-        By by = By.xpath(String.format(PATH_CREATE_PROJECT, project));
-        CommonEvents.clickButton(by);
+    public Backlog openBacklogProject(String projectUrl) {
+        LoadPage.openBacklogProject(projectUrl);
         return new Backlog();
     }
 
-    public Backlog openBacklogProject1() {
-        LoadPage.backlogPage();
-        return new Backlog();
+    public void clickCreateProject() {
+        By by = By.xpath(PATH_CREATE_PROJECT_BUTTON);
+        CommonEvents.clickButton(by);
+    }
+
+    public void selectClassicProject() {
+        By by = By.xpath(PATH_CREATE_PROJECT_OPTION);
+        CommonEvents.clickButton(by);
+    }
+
+    public void fillProjectName(String projectName) {
+        By by = By.xpath(PATH_PROJECT_NAME);
+        CommonEvents.setInputField(by, projectName);
+    }
+
+    public void hoverCreateProjectButton() {
+        By by = By.xpath(PATH_PROJECT_CREATE_BUTTON);
+        CommonEvents.hoverOn(by);
+    }
+
+    public void clickCreateProjectButton() {
+        By by = By.xpath(PATH_PROJECT_CREATE_BUTTON);
+        CommonEvents.clickButton(by);
+    }
+
+    public String getProjectUrl(String projectName) {
+        By by = By.xpath(String.format(PATH_PROJECT_LINK, projectName));
+        return CommonEvents.getAttribute("href", by);
     }
 }

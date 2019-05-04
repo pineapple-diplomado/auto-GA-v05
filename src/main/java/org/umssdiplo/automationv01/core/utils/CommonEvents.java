@@ -1,6 +1,7 @@
 package org.umssdiplo.automationv01.core.utils;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.umssdiplo.automationv01.core.customwebdriver.ManageDriver;
 
@@ -140,5 +141,25 @@ public class CommonEvents {
     public static void pressEnterKey(By by) {
         WebElement element = ManageDriver.getInstance().getWebDriver().findElement(by);
         pressEnterKey(element);
+    }
+
+    public static String getAttribute(String attribute, By by) {
+        WebElement element = ManageDriver.getInstance().getWebDriver().findElement(by);
+        return getAttribute(attribute, element);
+    }
+
+    public static String getAttribute(String attribute, WebElement webElement) {
+        ManageDriver.getInstance().getWebDriverWait().until(ExpectedConditions.visibilityOf(webElement));
+        return webElement.getAttribute(attribute);
+    }
+
+    public static void hoverOn(WebElement webElement) {
+        Actions action = new Actions(ManageDriver.getInstance().getWebDriver());
+        action.moveToElement(webElement).build().perform();;
+    }
+
+    public static void hoverOn(By by) {
+        WebElement element = ManageDriver.getInstance().getWebDriver().findElement(by);
+        hoverOn(element);
     }
 }

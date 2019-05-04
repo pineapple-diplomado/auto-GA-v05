@@ -9,6 +9,7 @@ public class PropertyAccessor {
     private static final String BROWSER = "browser";
     private static final String BASE_URL = "baseurl";
     private static final String PROJECT_URL = "projecturl";
+    private static final String JIRA_URL = "basejiraurl";
 
     private static PropertyAccessor PropertyAccessor;
     private Properties properties;
@@ -58,6 +59,10 @@ public class PropertyAccessor {
 
     public String getProjectUrl() {
         return getDataProperty(PROJECT_URL);
+    }
+
+    public String getJiraUrl() {
+        return getDataProperty(JIRA_URL);
     }
 
     public String getUser() {

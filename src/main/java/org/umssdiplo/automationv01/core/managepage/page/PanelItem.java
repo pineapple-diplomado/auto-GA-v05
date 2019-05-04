@@ -17,29 +17,36 @@ public class PanelItem extends BasePage {
 
     private static final String PATH_STATUS = "//button[.//span[contains(text(),'To Do')]]";
     private static final String PATH_STATUS_IN_PROGRESS = "//span[@role='menuitem'][1]";
+    private static final String PATH_STATUS_IN_PROGRESS_TEXT = "//button//span[contains(text(),'In Progress')]";
 
     private static final String PATH_DESCRIPTION = "//span[contains(text(),'Add a description...')]";
     private static final String PATH_DESCRIPTION_TEXT = "//div[contains(@contenteditable,'true')]";
     private static final String PATH_DESCRIPTION_SAVE = "//button[.//span[contains(text(),'Save')]]";
+    private static final String PATH_DESCRIPTION_VALUE = "//p[contains(text(),'%s')]";
 
     private static final String PATH_COMMENT = "//input[contains(@placeholder,'Add a comment')]";
     private static final String PATH_COMMENT_TEXT = "//div[contains(@contenteditable,'true')]";
     private static final String PATH_COMMENT_SAVE = "//button[.//span[contains(text(),'Save')]]";
+    private static final String PATH_COMMENT_VALUE = "//p[contains(text(),'%s')]";
 
     private static final String PATH_SHOW_MORE = "//button[.//span[contains(text(),'Show more')]]/..";
     private static final String PATH_TIME_LOGGED = "//span[contains(text(),'No time logged')]";
     private static final String PATH_TIME_LOGGED_TEXT = "//input[contains(@placeholder,'e.g. 3w 4d 12h')]";
     private static final String PATH_TIME_LOGGED_SAVE = "//button[.//span[contains(text(),'Save')]]";
+    private static final String PATH_TIME_LOGGED_VALUE = "//span[contains(text(),'%s')]";
 
     private static final String PATH_LINK_BUTTON = "//button[.//span[contains(@aria-label,'Link issue')]]";
     private static final String PATH_LINK_FIELD = "//input[contains(@placeholder,'Search for issues')]";
     private static final String PATH_LINK_TEXT = "//select[@multiple]/following-sibling::div//input";
     private static final String PATH_LINK_ITEM = "//span[@role='menuitem']//span[contains(text(),'%s')]";
     private static final String PATH_LINK_SAVE = "//button[.//span[contains(text(),'Link')]]";
+    private static final String PATH_LINK_VALUE = "//div[@tabindex]//div[contains(text(),'%s')]";
 
     private static final String PATH_SUBTASK_BUTTON = "//button[.//span[contains(@aria-label,'Create subtask')]]";
     private static final String PATH_SUBTASK_FIELD = "//input[contains(@placeholder,'What needs to be done?')]";
     private static final String PATH_SUBTASK_CREATE = "//button[.//span[contains(text(),'Create')]]";
+    private static final String PATH_SUBTASK_VALUE = "//div[@tabindex]//div[contains(text(),'%s')]";
+
 
     @FindBy(id = "summary")
     private WebElement titleText;
@@ -80,6 +87,11 @@ public class PanelItem extends BasePage {
         CommonEvents.clickButton(by);
     }
 
+    public String getStatusText() {
+        By by = By.xpath(PATH_STATUS_IN_PROGRESS_TEXT);
+        return CommonEvents.getTextContent(by);
+    }
+
     public void clickOnDescription() {
         By by = By.xpath(PATH_DESCRIPTION);
         CommonEvents.clickButton(by);
@@ -95,6 +107,11 @@ public class PanelItem extends BasePage {
         CommonEvents.clickButton(by);
     }
 
+    public String getDescriptionValue(String description) {
+        By by = By.xpath(String.format(PATH_DESCRIPTION_VALUE, description));
+        return CommonEvents.getTextContent(by);
+    }
+
     public void clickOnComment() {
         By by = By.xpath(PATH_COMMENT);
         CommonEvents.clickButton(by);
@@ -108,6 +125,11 @@ public class PanelItem extends BasePage {
     public void clickOnSaveComment() {
         By by = By.xpath(PATH_COMMENT_SAVE);
         CommonEvents.clickButton(by);
+    }
+
+    public String getCommentValue(String comment) {
+        By by = By.xpath(String.format(PATH_COMMENT_VALUE, comment));
+        return CommonEvents.getTextContent(by);
     }
 
     public void clickOnShowMore() {
@@ -132,6 +154,11 @@ public class PanelItem extends BasePage {
     public void clickOnSaveTimeLogged() {
         By by = By.xpath(PATH_TIME_LOGGED_SAVE);
         CommonEvents.clickButton(by);
+    }
+
+    public String getTimeLoggedValue(String timeLogged) {
+        By by = By.xpath(String.format(PATH_TIME_LOGGED_VALUE, timeLogged));
+        return CommonEvents.getTextContent(by);
     }
 
     public void clickOnLinkButton() {
@@ -164,6 +191,10 @@ public class PanelItem extends BasePage {
         CommonEvents.pressEnterKey(by);
     }
 
+    public String getLinkedValue(String linkedItem) {
+        By by = By.xpath(String.format(PATH_LINK_VALUE, linkedItem));
+        return CommonEvents.getTextContent(by);
+    }
 
     public void clickOnCreateSubTask() {
         By by = By.xpath(PATH_SUBTASK_BUTTON);
@@ -183,5 +214,10 @@ public class PanelItem extends BasePage {
     public void clickOnCreateSubTaskButton() {
         By by = By.xpath(PATH_SUBTASK_CREATE);
         CommonEvents.clickButton(by);
+    }
+
+    public String getSubTaskValue(String subtask) {
+        By by = By.xpath(String.format(PATH_SUBTASK_VALUE, subtask));
+        return CommonEvents.getTextContent(by);
     }
 }

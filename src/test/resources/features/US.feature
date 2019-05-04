@@ -23,11 +23,10 @@ Feature: UserStory
     And rc Click on "<StoryName>" in 'Backlog' page
     And rc Click in 'Status' in 'Edit' panel
     And rc Click in 'In Progress' in 'Edit' panel
-
-    Then rc Verify "<StoryNameCreated>" is created in 'Backlog' page
+    Then rc Verify "In Progress" status is set in 'Edit' page
     Examples:
-      | StoryName | StoryNameCreated |
-      | US29      | US29             |
+      | StoryName |
+      | US56      |
 
   Scenario Outline: Add description to user story
     And rc Click on 'Create issue' button in 'Backlog' page
@@ -35,13 +34,13 @@ Feature: UserStory
     And rc Click on 'Create' button in 'Create' dialog
     And rc Click on "<StoryName>" in 'Backlog' page
     And rc Click in 'Description' in 'Edit' panel
-    And rc Fill "A description" in description field in 'Edit' panel
+    And rc Fill "<DescriptionText>" in description field in 'Edit' panel
     And rc Click in 'Save' in 'Edit' panel
 
-    Then rc Verify "<StoryNameCreated>" is created in 'Backlog' page
+    Then rc Verify "<DescriptionText>" is set in 'Edit' page
     Examples:
-      | StoryName | StoryNameCreated |
-      | US30      | US30             |
+      | StoryName | DescriptionText |
+      | US57      | A description   |
 
   Scenario Outline: Add comment to user story
     And rc Click on 'Create issue' button in 'Backlog' page
@@ -49,13 +48,13 @@ Feature: UserStory
     And rc Click on 'Create' button in 'Create' dialog
     And rc Click on "<StoryName>" in 'Backlog' page
     And rc Click in 'Comment' in 'Edit' panel
-    And rc Fill "A comment" in comment field in 'Edit' panel
+    And rc Fill "<Comment>" in comment field in 'Edit' panel
     And rc Click in comment 'Save' in 'Edit' panel
 
-    Then rc Verify "<StoryNameCreated>" is created in 'Backlog' page
+    Then rc Verify "<Comment>" field is set in 'Edit' page
     Examples:
-      | StoryName | StoryNameCreated |
-      | US31      | US31             |
+      | StoryName | Comment   |
+      | US31      | A comment |
 
   Scenario Outline: Add time logged to user story
     And rc Click on 'Create issue' button in 'Backlog' page
@@ -64,13 +63,13 @@ Feature: UserStory
     And rc Click on "<StoryName>" in 'Backlog' page
     And rc Click in 'Show more' button in 'Edit' panel
     And rc Click in 'Time Tracking' field in 'Edit' panel
-    And rc Fill "1h" in time logged field in 'Time Tracking' dialog
+    And rc Fill "<Time>" in time logged field in 'Time Tracking' dialog
     And rc Click 'Save' in 'Time Tracking' dialog
 
-    Then rc Verify "<StoryNameCreated>" is created in 'Backlog' page
+    Then rc Verify "<Time>" Time Tracking field is set in 'Edit' page
     Examples:
-      | StoryName | StoryNameCreated |
-      | US39      | US39             |
+      | StoryName | Time |
+      | US39      | 1h   |
 
   Scenario Outline: Add linked story to user story
     And rc Click on 'Create issue' button in 'Backlog' page
@@ -86,6 +85,8 @@ Feature: UserStory
     And rc Click enter on item in active issues in 'Edit' dialog
     And rc Click 'Link' button in 'Linked issues' panel
 
+    Then rc Verify "<StoryName1>" linked field is set in 'Edit' page
+
     Examples:
       | StoryName1 | StoryName2 |
       | US51      | US52        |
@@ -99,7 +100,7 @@ Feature: UserStory
     And rc Click in 'Subtasks' field in 'Edit' panel
     And rc Fill item "<Subtask>" in 'Subtasks' field in 'Edit' dialog
     And rc Click in 'Create' button in 'Subtasks' field in 'Edit' dialog
-
+    Then rc Verify "<Subtask>" subtask field is set in 'Edit' page
     Examples:
       | StoryName1 | Subtask |
       | US55      | Subtask1 |

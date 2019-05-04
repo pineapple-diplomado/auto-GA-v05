@@ -79,8 +79,15 @@ public class StepsDefinitionUserStory {
     }
 
     @And("^rc Click in 'In Progress' in 'Edit' panel$")
-    public void rcClickInInProgressInEditPanel() {
+    public void rcClickInInProgressInEditPanel() throws InterruptedException {
         panelItem.clickOnStatusInProgress();
+        Thread.sleep(5000);
+    }
+
+    @Then("^rc Verify \"([^\"]*)\" status is set in 'Edit' page$")
+    public void rcVerifyStatusIsSetInEditPage(String expectedStatus) throws Throwable {
+        String actualStatus = panelItem.getStatusText();
+        Assert.assertEquals(actualStatus, expectedStatus);
     }
 
     @And("^rc Click in 'Description' in 'Edit' panel$")
@@ -96,8 +103,15 @@ public class StepsDefinitionUserStory {
     }
 
     @And("^rc Click in 'Save' in 'Edit' panel$")
-    public void rcClickInSaveInEditPanel() {
+    public void rcClickInSaveInEditPanel() throws InterruptedException {
         panelItem.clickOnSaveDescription();
+        Thread.sleep(5000);
+    }
+
+    @Then("^rc Verify \"([^\"]*)\" is set in 'Edit' page$")
+    public void rcVerifyIsSetInEditPage(String expectedDescription) throws Throwable {
+        String actualDescription = panelItem.getDescriptionValue(expectedDescription);
+        Assert.assertEquals(expectedDescription, actualDescription);
     }
 
     @And("^rc Click in 'Comment' in 'Edit' panel$")
@@ -113,8 +127,15 @@ public class StepsDefinitionUserStory {
     }
 
     @And("^rc Click in comment 'Save' in 'Edit' panel$")
-    public void rcClickInCommentSaveInEditPanel() {
+    public void rcClickInCommentSaveInEditPanel() throws InterruptedException {
         panelItem.clickOnSaveComment();
+        Thread.sleep(5000);
+    }
+
+    @Then("^rc Verify \"([^\"]*)\" field is set in 'Edit' page$")
+    public void rcVerifyFieldIsSetInEditPage(String expectedComment) throws Throwable {
+        String actualComment = panelItem.getCommentValue(expectedComment);
+        Assert.assertEquals(expectedComment, actualComment);
     }
 
     @And("^rc Click in 'Show more' button in 'Edit' panel$")
@@ -138,8 +159,15 @@ public class StepsDefinitionUserStory {
     }
 
     @And("^rc Click 'Save' in 'Time Tracking' dialog$")
-    public void rcClickSaveInTimeTrackingDialog() {
+    public void rcClickSaveInTimeTrackingDialog() throws InterruptedException {
         panelItem.clickOnSaveTimeLogged();
+        Thread.sleep(5000);
+    }
+
+    @Then("^rc Verify \"([^\"]*)\" Time Tracking field is set in 'Edit' page$")
+    public void rcVerifyTimeTrackingFieldIsSetInEditPage(String expectedTime) throws Throwable {
+        String actualTime = panelItem.getTimeLoggedValue(expectedTime);
+        Assert.assertEquals(expectedTime, actualTime);
     }
 
     @And("^rc Click in 'Link' button in 'Edit' panel$")
@@ -173,6 +201,12 @@ public class StepsDefinitionUserStory {
         Thread.sleep(5000);
     }
 
+    @Then("^rc Verify \"([^\"]*)\" linked field is set in 'Edit' page$")
+    public void rcVerifyLinkedFieldIsSetInEditPage(String expectedLinkedItem) throws Throwable {
+        String actualLinkedItem = panelItem.getLinkedValue(expectedLinkedItem);
+        Assert.assertEquals(expectedLinkedItem, actualLinkedItem);
+    }
+
     @And("^rc Click in 'Create subtask' button in 'Edit' panel$")
     public void rcClickInCreateSubtaskButtonInEditPanel() throws InterruptedException {
         panelItem.clickOnCreateSubTask();
@@ -195,5 +229,11 @@ public class StepsDefinitionUserStory {
     public void rcClickInCreateButtonInSubtasksFieldInEditDialog() throws InterruptedException {
         panelItem.clickOnCreateSubTaskButton();
         Thread.sleep(5000);
+    }
+
+    @Then("^rc Verify \"([^\"]*)\" subtask field is set in 'Edit' page$")
+    public void rcVerifySubtaskFieldIsSetInEditPage(String expectedSubtask) throws Throwable {
+        String actualSubtask = panelItem.getSubTaskValue(expectedSubtask);
+        Assert.assertEquals(expectedSubtask, actualSubtask);
     }
 }

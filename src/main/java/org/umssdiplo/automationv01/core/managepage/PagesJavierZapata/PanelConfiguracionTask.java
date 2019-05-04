@@ -56,6 +56,14 @@ public class PanelConfiguracionTask extends BasePage {
     @FindBy(xpath ="//div[@class='Modal__Dialog-sc-1jmnqyd-3 ggbguk']")
     private WebElement contenedorDialogoDelete;
 
+    //@FindBy(xpath ="//input[@placeholder='Añadir un comentario...']")
+    @FindBy(xpath = "//*[@id=\"ghx-detail-view\"]/div/div[2]/div/div/div/div[3]/div/div[1]/div[1]/div/div/div/div/span/span/span/div/div/div[2]/div/div/div/div/input")
+    private WebElement insertarComentario;
+
+    //*[@id="ghx-detail-view"]/div/div[2]/div/div/div/div[3]/div/div[1]/div[1]/div/div[1]/div/span/span/span/div/div/div[2]/div/div/div/div/div[2]/div[1]/div[2]/div/div[2]/p
+    @FindBy(xpath = "//*[@id=\"ghx-detail-view\"]/div/div[2]/div/div/div/div[3]/div/div[1]/div[1]/div/div[1]/div/span/span/span/div/div/div[2]/div/div/div/div/div[2]/div[1]/div[2]/div/div[2]/p")
+    private WebElement insertarComentario2;  //Este elemento se activa luego de hacer el primer click.
+
     public void setSelectInProgress() {
         CommonEvents.clickButton(selectedItems);
         CommonEvents.clickButton(selectInProgress);
@@ -102,10 +110,19 @@ public class PanelConfiguracionTask extends BasePage {
         WebElement element = webDriver.findElement(By.xpath("//*[@id=\"ghx-detail-view\"]/div/div[2]/div/div/div/" +
                 "div[2]/div/div[1]/div[1]/div/div/div/div/span/span/div/div/div[2]/div/div[3]/div[2]/span/button"));
         eventFiringWebDriver.executeScript("arguments[0].scrollIntoView()", element);
+
         CommonEvents.clickButton(element);
         WebElement aceptar = webDriver.findElement(By.xpath("//*[@id=\"jira\"]/div[12]/div[4]/div/div[3]/div[2]/div/" +
                 "div/div[3]/div/div/div/button"));
         //CommonEvents.isPresent(contenedorDialogoDelete);
         CommonEvents.clickButton(aceptar);
+    }
+
+    public void anadirNuevoComentario(String nuevoComentario) {
+        EventFiringWebDriver eventFiringWebDriver = new EventFiringWebDriver(webDriver);
+        //eventFiringWebDriver.executeScript("document.querySelector('#ghx-detail-view').scrollTop = 2500");
+        eventFiringWebDriver.executeScript("arguments[0].scrollIntoView()", insertarComentario);
+        CommonEvents.clickButton(insertarComentario);
+        CommonEvents.setInputField(insertarComentario2,nuevoComentario);
     }
 }

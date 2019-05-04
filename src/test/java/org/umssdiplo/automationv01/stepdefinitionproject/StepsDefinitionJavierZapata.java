@@ -130,4 +130,10 @@ public class StepsDefinitionJavierZapata {
     public void selectCommentOnPanelConfigurationTaskPage(String comentario) throws Throwable {
         panelConfiguracionTask.borrarComentario(comentario);
     }
+
+
+    @Then("^Add \"([^\"]*)\" in comment on PanelConfigurationTask page$")
+    public void addInCommentOnPanelConfigurationTaskPage(String nuevoComentario) throws Throwable {
+        panelConfiguracionTask.anadirNuevoComentario(nuevoComentario);
+    }
 }

@@ -61,12 +61,21 @@ Feature: Verifications in Task
 #    And set my credentials on 'JiraLoginPage' page
 #    And Click "ProyectoEjemplo" proyecto on HomePage page
 #    Then Click 'Only my issues' button with user "Javier Zapata" on BackLog page
+#
+#
+##testcase23
+#  Scenario: Verification of deleting a comment
+#    Given 'JiraLoginPage' page is loaded
+#    And set my credentials on 'JiraLoginPage' page
+#    And Click "ProyectoEjemplo" proyecto on HomePage page
+#    And Select "Nuevo Task1" task on BackLog page
+#    Then Click "Mi nuevo comentario V2" on comment on PanelConfigurationTask page
 
 
-#testcase23
-  Scenario: Verification of deleting a comment
+#testcase3
+  Scenario: Verification of creation a comment
     Given 'JiraLoginPage' page is loaded
     And set my credentials on 'JiraLoginPage' page
     And Click "ProyectoEjemplo" proyecto on HomePage page
-    And Select "Nuevo Task1" task on BackLog page
-    Then Click "Mi nuevo comentario V2" on comment on PanelConfigurationTask page
+    And Select "Mi segundo task X" task on BackLog page
+    Then Add "Mi nuevo comentario." in comment on PanelConfigurationTask page

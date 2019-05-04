@@ -18,8 +18,6 @@ public class CreationTaskDialog extends BasePage {
     @FindBy(xpath = "//a[@role='presentation' and contains(text(),'Tarea')]")   //CHANGE->Task
     private WebElement selectedTaskItem;
 
-    //@FindBy(id = "summary")
-    //@FindBy(xpath = "//*[@id=\"summary\"]")
     @FindBy(id = "summary")
     private WebElement summary;
 

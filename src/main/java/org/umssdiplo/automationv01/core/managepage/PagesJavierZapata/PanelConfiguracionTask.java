@@ -26,7 +26,7 @@ public class PanelConfiguracionTask extends BasePage {
     private static final String BOTON_SAVE_FIELD_COMENTARIO = "//button[.//span[contains(text(),'Save')]]";
 
 
-    //@FindBy(xpath = "//*[@id=\"ghx-detail-view\"]/div/div[2]/div/div/div/div[3]/div/div[1]/div[1]/div/div/div/div/div[3]/div[2]/div/div/div/div[1]/div/div/button")
+
     @FindBy(xpath = "//*[@id=\"ghx-detail-view\"]/div/div[2]/div/div/div/div[3]/div/div[1]/div[1]/div/div/div/div/" +
             "div[3]/div[2]/div/div/div/div[1]/div/div/button/span")   ////span[contains(text(), 'Por hacer')]
     private WebElement selectedItems;
@@ -43,7 +43,6 @@ public class PanelConfiguracionTask extends BasePage {
     @FindBy(xpath ="//input[@placeholder='¿Qué hay que hacer?']")
     private WebElement fieldInsertarSubTask;
 
-    //@FindBy(xpath ="//button[contains(@class='sc-EHOje dCmFoj')]//span[contains(text(), 'Crear')]")
     @FindBy(xpath ="//*[@id=\"ghx-detail-view\"]/div/div[2]/div/div/div/div[3]/div/div[1]/div[1]/div/div/div/div/" +
             "div[4]/div[3]/div[2]/div[2]/button[1]/span/span")
     private WebElement botonCrearSBT;  //Boton crear de subtask
@@ -61,11 +60,13 @@ public class PanelConfiguracionTask extends BasePage {
     private WebElement contenedorDialogoDelete;
 
     //@FindBy(xpath ="//input[@placeholder='Añadir un comentario...']")
-    @FindBy(xpath = "//*[@id=\"ghx-detail-view\"]/div/div[2]/div/div/div/div[3]/div/div[1]/div[1]/div/div/div/div/span/span/span/div/div/div[2]/div/div/div/div/input")
+    @FindBy(xpath = "//*[@id=\"ghx-detail-view\"]/div/div[2]/div/div/div/div[3]/div/div[1]/div[1]/div/div/div/div/" +
+            "span/span/span/div/div/div[2]/div/div/div/div/input")
     private WebElement insertarComentario;
 
-    //*[@id="ghx-detail-view"]/div/div[2]/div/div/div/div[3]/div/div[1]/div[1]/div/div[1]/div/span/span/span/div/div/div[2]/div/div/div/div/div[2]/div[1]/div[2]/div/div[2]/p
-    @FindBy(xpath = "//*[@id=\"ghx-detail-view\"]/div/div[2]/div/div/div/div[3]/div/div[1]/div[1]/div/div[1]/div/span/span/span/div/div/div[2]/div/div/div/div/div[2]/div[1]/div[2]/div/div[2]/p")
+
+    @FindBy(xpath = "//*[@id=\"ghx-detail-view\"]/div/div[2]/div/div/div/div[3]/div/div[1]/div[1]/div/div[1]/div/span/" +
+            "span/span/div/div/div[2]/div/div/div/div/div[2]/div[1]/div[2]/div/div[2]/p")
     private WebElement insertarComentario2;  //Este elemento se activa luego de hacer el primer click.
 
 
@@ -76,7 +77,7 @@ public class PanelConfiguracionTask extends BasePage {
     }
 
     public String verificandoInProgress() {
-        String status = selectedItems.getText();
+        String status = selectInProgress.getText();
         return status;
     }
 
@@ -93,10 +94,6 @@ public class PanelConfiguracionTask extends BasePage {
     }
 
     public void clickBotonCrearSubTask() {
-//        WebDriverWait wait = new WebDriverWait(webDriver, 30);
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[contains(@class='sc-EHOje dCmFoj')]//span[contains(text(), 'Crear')]")));
-//        WebElement ele5 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(@class='sc-EHOje dCmFoj')]//span[contains(text(), 'Crear')]")));
-//        CommonEvents.clickButton(ele5);
         CommonEvents.clickButton(botonCrearSBT);
 
     }
@@ -125,12 +122,6 @@ public class PanelConfiguracionTask extends BasePage {
     }
 
     public void anadirNuevoComentario(String nuevoComentario) {
-        /**
-        EventFiringWebDriver eventFiringWebDriver = new EventFiringWebDriver(webDriver);
-        eventFiringWebDriver.executeScript("arguments[0].scrollIntoView()", insertarComentario);
-        CommonEvents.clickButton(insertarComentario);
-         Funciona hasta el CLICK
-         */
 
         By primerField = By.xpath(FIELD_COMENTARIO);
         WebElement element = webDriver.findElement(primerField);

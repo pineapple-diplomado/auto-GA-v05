@@ -13,11 +13,19 @@ public class BackLogPage extends BasePage {
     public String createIssueButton;
     //public String iconBotonDialogIssue; //ICONO TRES PUNTOS
 
+    @FindBy(xpath = "//div[@id='page-body']")
+    private WebElement contenedor;
+
+    @FindBy(xpath = "//*[@id=\"breadcrumbs-container\"]/div/div/div[3]/a/span/span")
+    private WebElement gettingKeyProyecto;
+
     @FindBy(xpath = "//button[@original-title='Abrir el diálogo Crear']")
     private WebElement botonTresPuntos;
 
-    @FindBy(xpath = "/html/body/div[4]/div/div[2]/div[2]/div[2]/div[2]/div[2]/div/div[4]/div/div/div[2]/div[3]")
+    @FindBy(xpath = "/html/body/div[4]/div/div[2]/div[2]/div[2]/div[2]/" +
+            "div[2]/div/div[4]/div/div/div[2]/div[3]")
     private WebElement contenidoListas;
+
 
     public static final String NUEVO_TASK = "//div[@data-tooltip='%s']";
 
@@ -26,11 +34,12 @@ public class BackLogPage extends BasePage {
     private WebElement botonOnlyMyIssues;
 
     public BackLogPage(){
+        CommonEvents.waitElementVisible(contenedor);
         createIssueButton = "//button[contains(text(), '%s')]";
         //iconBotonDialogIssue = "button[@title='Abrir el diálogo Crear']";  //Open create dialog
     }
 
-    public void dialogoCrearTask(String nombreBoton) {
+    public void dialogoCrearTask(String nombreBoton) throws InterruptedException {
         By issueBy = By.xpath(String.format(createIssueButton, nombreBoton));
         CommonEvents.clickButton(issueBy);
     }
@@ -42,9 +51,15 @@ public class BackLogPage extends BasePage {
 
 
     public boolean checkExistenciaDeUltimoTask(String nombreTask) {
+        String elemento = gettingKeyProyecto.getText();
+        String[] parts = elemento.split(" ");
+        String key = parts[0];
+        key = key.trim();
+        System.out.println("key: "+key);
         CommonEvents.isVisible(contenidoListas);
         int maximo = 0; int auxiliar = 0;
-        List<WebElement> elementsRoot = webDriver.findElements(By.xpath("//div[starts-with(@class,'js-issue')]//a[contains(text(),'PROY')]"));
+        List<WebElement> elementsRoot = webDriver.findElements(By.xpath("//div[starts-with(@class,'js-issue')]//" +
+                "a[contains(text(), '"+key+"')]"));
         maximo = getmax(elementsRoot);
         auxiliar = getNumber(elementsRoot.get(elementsRoot.size() - 1));
         System.out.println("maximo: "+maximo+ "auxiliar: "+auxiliar);
@@ -53,7 +68,7 @@ public class BackLogPage extends BasePage {
 
     private int getmax(List<WebElement> elementsRoot) {
         int maximo = 0; int auxiliar = 0;
-        for(int i = 0; i < elementsRoot.size(); ++i) {
+        for(int i = 0; i < elementsRoot.size(); i++) {
             auxiliar = getNumber(elementsRoot.get(i));
             if(auxiliar>maximo){
                 maximo = auxiliar;
@@ -80,7 +95,8 @@ public class BackLogPage extends BasePage {
 
     public int checkIssuesNumberUser(String user) {
         CommonEvents.isVisible(contenidoListas);
-        List<WebElement> elementsRoot = webDriver.findElements(By.xpath("//div[starts-with(@class,'js-issue')]//img[contains(@data-tooltip,'Responsable: ${user}')]"));
+        List<WebElement> elementsRoot = webDriver.findElements(By.xpath("//div[starts-with(@class,'js-issue')]//" +
+                "img[contains(@data-tooltip,'Responsable: ${user}')]"));
         System.out.println("Numero de elementos backlog: "+elementsRoot.size());
         return elementsRoot.size();
     }
@@ -90,7 +106,8 @@ public class BackLogPage extends BasePage {
         CommonEvents.isVisible(contenidoListas);
         //CommonEvents.isPresent(botonOnlyMyIssues);
         CommonEvents.clickButton(botonOnlyMyIssues);
-        List<WebElement> elementsRoot = webDriver.findElements(By.xpath("//div[starts-with(@class,'js-issue')]//img[contains(@data-tooltip,'Responsable: ${user}')]"));
+        List<WebElement> elementsRoot = webDriver.findElements(By.xpath("//div[starts-with(@class,'js-issue')]//" +
+                "img[contains(@data-tooltip,'Responsable: ${user}')]"));
         System.out.println("Numero de elementos only my issues: "+elementsRoot.size());
         return elementsRoot.size();
     }

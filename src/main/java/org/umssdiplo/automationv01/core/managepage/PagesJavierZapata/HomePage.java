@@ -9,24 +9,10 @@ import org.umssdiplo.automationv01.core.utils.PropertyAccessor;
 
 public class HomePage extends BasePage {
 
-    //public static final String RUTA_PROYECTO = "//td[contains(@class, 'dFFwSl')]//div[contains(@class, 'hJPhXs')]//a[contains(text(), '%s')]";
-    //@FindBy(xpath = "//a[contains(text(), '%s')]");
 
-
-
-    //    //*[@id="jira-frontend"]/div[1]/div[2]/async-bundle/async-bundle/div/div/div[2]/div/div/table/tbody/tr/td[1]/div/a
     //maso:
     public static final String RUTA_PROYECTO = "//div[contains(@class, 'hJPhXs') or contains(@class, 'jGPTCR') or contains(@class, 'ibQRqA') or contains(@class, 'kRQwNv') or contains(@class, 'duLTLB')]//a[contains(text(), '%s')]";
-    //public static final String RUTA_PROYECTO = "//*[@id=\"jira-frontend\"]/div[1]/div[2]/async-bundle/async-bundle/div/div/div[2]/div/div/table/tbody/tr/td[1]/div/a";
-    //public static final String RUTA_PROYECTO = "//div[@id='jira-frontend']//async-bundle[@data-id='async-projects-directory-page']//a[contains(text(), '%s')]";
 
-    //public static final String RUTA_PROYECTO = "//div[contains(@class, 'ibQRqA') or contains(@class, 'duLTLB') or contains(@class, 'jGPTCR') or contains(text(), '%s')]";
-    //private WebElement nombreProy;  a class  sc-bEufUU ibQRqA
-    //public static final String RUTA_PROYECTO = "//div[@data-test-id='directory-base.content.table.container']//a[.//text()='%s']";
-    //@FindBy(xpath = "//*[@id=\"jira-frontend\"]/div[1]/div[2]/async-bundle/async-bundle/div/div/div[2]/div/div/table")
-    //private WebElement contenido;
-
-    public static final String RUTA_PROYECTO2 = "//a[contains(@href, '/browse/PROYEC') and contains(text(), '%s')]";
 
     public BackLogPage seleccionarProyecto(String nombreProyecto) throws InterruptedException {
         Thread.sleep(5000);

@@ -26,108 +26,109 @@ public class StepsDefinitionJavierZapata {
         jiraLoginPage = LoadPageJavierZapata.homePage();
     }
 
-    @And("^set my credentials on 'JiraLoginPage' page$")
+    @And("^jz set my credentials on 'JiraLoginPage' page$")
     public void setMyCredentialsOnAtlassianPage() {
-        homePage = jiraLoginPage.setCredentials();
+        //homePage = jiraLoginPage.setCredentials();
+        backLogPage = jiraLoginPage.setCredentials();
     }
 
-    @And("^Click \"([^\"]*)\" proyecto on HomePage page$")
+    @And("^jz Click \"([^\"]*)\" proyecto on HomePage page$")
     public void clickProyectoOnHomePagePage(String nombreProyecto) throws Throwable {
         backLogPage = homePage.seleccionarProyecto(nombreProyecto);
     }
 
-    @And("^Click \"([^\"]*)\" boton on BackLog page$")
+    @And("^jz Click \"([^\"]*)\" boton on BackLog page$")
     public void clickBotonOnBackLogPage(String nombreBoton) throws Throwable {
         backLogPage.dialogoCrearTask(nombreBoton);
     }
 
-    @And("^Click OpenCreateDialog boton on BackLog page$")
+    @And("^jz Click OpenCreateDialog boton on BackLog page$")
     public void clickOpenCreateDialogBotonOnBackLogPage() {
         creationTaskDialog = backLogPage.dialogoCrearTask2();
     }
 
-    @And("^Select 'Task' option on CreationTaskDialog dialog$")
+    @And("^jz Select 'Task' option on CreationTaskDialog dialog$")
     public void selectTaskOptionOnCreationTaskDialogDialog() {
         creationTaskDialog.createIssue();
     }
 
-    @And("^Insert \"([^\"]*)\" input on CreationTaskDialog dialog$")
+    @And("^jz Insert \"([^\"]*)\" input on CreationTaskDialog dialog$")
     public void insertInputOnCreationTaskDialogDialog(String titulo){
         creationTaskDialog.insertSummary(titulo);
     }
 
-    @And("^Click 'Create' button on CreationTaskDialog dialog$")
+    @And("^jz Click 'Create' button on CreationTaskDialog dialog$")
     public void clickCreateButtonOnCreationTaskDialogDialog() {
         creationTaskDialog.presionarCreateButton();
     }
 
-    @Then("^Check \"([^\"]*)\" in List on BackLog page$")
+    @Then("^jz Check \"([^\"]*)\" in List on BackLog page$")
     public void checkInListOnBackLogPage(String nombreTask) {
         boolean res = backLogPage.checkExistenciaDeUltimoTask(nombreTask);
         Assert.assertEquals(res,true);
     }
 
-    @And("^Select \"([^\"]*)\" task on BackLog page$")
+    @And("^jz Select \"([^\"]*)\" task on BackLog page$")
     public void selectTaskOnBackLogPage(String tituloTask) {
         panelConfiguracionTask = backLogPage.clickEnUnTask(tituloTask);
     }
 
-    @And("^Select 'InProgress' in status on PanelConfigurationTask page$")
+    @And("^jz Select 'InProgress' in status on PanelConfigurationTask page$")
     public void selectInProgressInStatusOnPanelConfigurationTaskPage() {
         panelConfiguracionTask.setSelectInProgress();
     }
 
-    @And("^Check 'InProgrees' in status on PanelConfigurationTask page$")
+    @And("^jz Check 'InProgrees' in status on PanelConfigurationTask page$")
     public void checkInProgreesInStatusOnPanelConfigurationTaskPage() {
         String status = panelConfiguracionTask.verificandoInProgress();
         Assert.assertEquals(status,"In Progress");
     }
 
-    @And("^Click 'Create sub task' icon on PanelConfigurationTask page$")
+    @And("^jz Click 'Create sub task' icon on PanelConfigurationTask page$")
     public void clickCreateSubTaskIconOnPanelConfigurationTaskPage() {
         panelConfiguracionTask.clickCreacionSubTask();
     }
 
-    @Then("^Check 'Subtareas' label displayed on PanelConfigurationTask page$")
+    @Then("^jz Check 'Subtareas' label displayed on PanelConfigurationTask page$")
     public void checkSubtareasLabelDisplayedOnPanelConfigurationTaskPage() {
         panelConfiguracionTask.checkSubTareasDisplayedFormulario();
     }
 
-    @And("^Insert \"([^\"]*)\" field subTask on PanelConfigurationTask page$")
+    @And("^jz Insert \"([^\"]*)\" field subTask on PanelConfigurationTask page$")
     public void insertFieldSubTaskOnPanelConfigurationTaskPage(String nombreSubTask) {
         panelConfiguracionTask.insertarSubTask(nombreSubTask);
     }
 
-    @And("^Click 'Crear' button on PanelConfigurationTask page$")
+    @And("^jz Click 'Crear' button on PanelConfigurationTask page$")
     public void clickCrearButtonOnPanelConfigurationTaskPage() {
         panelConfiguracionTask.clickBotonCrearSubTask();
     }
 
-    @Then("^Check \"([^\"]*)\" field subTask on PanelConfigurationTask page$")
+    @Then("^jz Check \"([^\"]*)\" field subTask on PanelConfigurationTask page$")
     public void checkFieldSubTaskOnPanelConfigurationTaskPage(String subTask){
         panelConfiguracionTask.checkSubTareaSaved(subTask);
     }
 
-    @Then("^Click 'Close' icon on PanelConfigurationTask page$")
+    @Then("^jz Click 'Close' icon on PanelConfigurationTask page$")
     public void clickCloseIconOnPanelConfigurationTaskPage() {
         panelConfiguracionTask.cerrarPanelConfiguration();
     }
 
 
-    @And("^Click 'Only my issues' button with user \"([^\"]*)\" on BackLog page$")
+    @And("^jz Click 'Only my issues' button with user \"([^\"]*)\" on BackLog page$")
     public void clickOnlyMyIssuesButtonWithUserOnBackLogPage(String user) {
         int numeroEnBackLog = backLogPage.checkIssuesNumberUser(user);  //verifica q issues en backlog de un user sean vistos en Only my issues
         int numeroEnOnlyMyIssues = backLogPage.checkIssuesNumberUserOnlyMyIssues(user);
         Assert.assertEquals(numeroEnBackLog,numeroEnOnlyMyIssues);  //tiene q ser el mismo numero
     }
 
-    @And("^Click \"([^\"]*)\" on comment on PanelConfigurationTask page$")
+    @And("^jz Click \"([^\"]*)\" on comment on PanelConfigurationTask page$")
     public void selectCommentOnPanelConfigurationTaskPage(String comentario) throws Throwable {
         panelConfiguracionTask.borrarComentario(comentario);
     }
 
 
-    @Then("^Add \"([^\"]*)\" in comment on PanelConfigurationTask page$")
+    @Then("^jz Add \"([^\"]*)\" in comment on PanelConfigurationTask page$")
     public void addInCommentOnPanelConfigurationTaskPage(String nuevoComentario) throws Throwable {
         panelConfiguracionTask.anadirNuevoComentario(nuevoComentario);
     }

@@ -113,6 +113,9 @@ public class CommonEvents {
         webElement.sendKeys(Keys.ENTER);
     }
 
+    public static void waitElementVisible(WebElement webElement) {
+        ManageDriver.getInstance().getWebDriverWait().until(ExpectedConditions.visibilityOf(webElement));
+    }
     //  xaby
 
     public static void clickButton(By by) {

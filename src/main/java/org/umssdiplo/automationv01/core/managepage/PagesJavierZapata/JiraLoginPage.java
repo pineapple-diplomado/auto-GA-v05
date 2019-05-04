@@ -16,15 +16,16 @@ public class JiraLoginPage extends BasePage {
     @FindBy(id = "login-submit")
     private WebElement loginBtn;
 
-    public HomePage setCredentials() {
+    //public HomePage setCredentials() {
+    public BackLogPage setCredentials() {
         String username = PropertyAccessor.getInstance().getUser();
         CommonEvents.setInputField(usernameInputField, username);
         clickButton();
         String password = PropertyAccessor.getInstance().getPassword();
         CommonEvents.setInputField(passwordInputField, password);
         clickButton();
-        return new HomePage();
-
+        //return new HomePage();
+        return new BackLogPage();
     }
 
     private void clickButton() {

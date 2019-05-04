@@ -13,10 +13,6 @@ public class MyAccountDialog extends BasePage {
     private WebElement name;
 
 
-//    public MyAccountDialog() {
-//        CommonEvents.waitDilogVisible(container);
-//    }
-
     public String getMail() {
         String mailText = CommonEvents.getTextContent(email);
         return mailText;

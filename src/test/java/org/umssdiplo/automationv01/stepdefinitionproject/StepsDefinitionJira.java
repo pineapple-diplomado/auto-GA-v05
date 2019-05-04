@@ -1,6 +1,5 @@
 package org.umssdiplo.automationv01.stepdefinitionproject;
 
-import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -45,7 +44,7 @@ public class StepsDefinitionJira {
         login.setPasswordCredential();
     }
 
-    @And("^click 'Log in' button in 'Login' page$")
+    @When("^click 'Log in' button in 'Login' page$")
     public void clickLogInButtonInLoginPage() throws InterruptedException {
         login.clickLogin();
     }
@@ -60,16 +59,12 @@ public class StepsDefinitionJira {
     public void verifyThatYouHaveLoggedInWithTheMail(String mailExpected) throws Throwable {
         String mailActual = myAccountDialog.getMail();
         Assert.assertEquals(mailActual, mailExpected);
-
-        //throw new PendingException();
     }
 
     @Then("^verify that you have logged in with the user \"([^\"]*)\"$")
     public void verifyThatYouHaveLoggedInWithTheUser(String userExpected) throws Throwable {
         String userActual = myAccountDialog.getName();
         Assert.assertEquals(userActual, userExpected);
-
-        //throw new PendingException();
     }
 
 
@@ -115,19 +110,19 @@ public class StepsDefinitionJira {
         Assert.assertEquals(textActual, textCantLogInExpected);
     }
 
-    @And("^click on Log in with Google button$")
+    @When("^click on Log in with Google button$")
     public void clickOnLogInWithGoogleButton() {
         login.clickLogInWithGoogleBtn();
     }
 
 
-    @And("^set my credential email on login google page$")
+    @When("^set my credential email on login google page$")
     public void setMyCredentialEmailOnLoginGooglePage() {
         googleLoginForm.setEmailGoogleCredential();
     }
 
 
-    @And("^set my credentials incorrect password on 'Login' page$")
+    @When("^set my credentials incorrect password on 'Login' page$")
     public void setMyCredentialsIncorrectPasswordOnLoginPage() {
         login.setIncorrectPasswordCredential();
     }
@@ -139,17 +134,17 @@ public class StepsDefinitionJira {
     }
 
 
-    @And("^click on the 'Siguiente' button after set email on login google page$")
+    @When("^click on the 'Siguiente' button after set email on login google page$")
     public void clickOnTheSiguienteButtonAfterSetEmailOnLoginGooglePage() {
         googleLoginForm.clickSiguienteEmailBtn();
     }
 
-    @And("^set my credential password on login google page$")
+    @When("^set my credential password on login google page$")
     public void setMyCredentialPasswordOnLoginGooglePage() {
         googleLoginForm.setPassGoogleCredential();
     }
 
-    @And("^click on the 'Siguiente' button after set password on login google page$")
+    @When("^click on the 'Siguiente' button after set password on login google page$")
     public void clickOnTheSiguienteButtonAfterSetPasswordOnLoginGooglePage() {
         googleLoginForm.clickSiguientePassBtn();
     }

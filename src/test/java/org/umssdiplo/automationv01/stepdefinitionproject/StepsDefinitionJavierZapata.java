@@ -21,11 +21,9 @@ public class StepsDefinitionJavierZapata {
     private PanelConfiguracionTask panelConfiguracionTask;
 
 
-
     @Given("^'JiraLoginPage' page is loaded$")
     public void jirapagePageIsLoaded() {
         jiraLoginPage = LoadPageJavierZapata.homePage();
-
     }
 
     @And("^set my credentials on 'JiraLoginPage' page$")
@@ -35,8 +33,6 @@ public class StepsDefinitionJavierZapata {
 
     @And("^Click \"([^\"]*)\" proyecto on HomePage page$")
     public void clickProyectoOnHomePagePage(String nombreProyecto) throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        //throw new PendingException();
         backLogPage = homePage.seleccionarProyecto(nombreProyecto);
     }
 
@@ -69,7 +65,6 @@ public class StepsDefinitionJavierZapata {
     public void checkInListOnBackLogPage(String nombreTask) {
         boolean res = backLogPage.checkExistenciaDeUltimoTask(nombreTask);
         Assert.assertEquals(res,true);
-
     }
 
     @And("^Select \"([^\"]*)\" task on BackLog page$")

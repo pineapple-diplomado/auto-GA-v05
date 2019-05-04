@@ -119,4 +119,9 @@ public class CommonEvents {
         WebElement element = ManageDriver.getInstance().getWebDriver().findElement(by);
         clickButton(element);
     }
+
+    public static void setInputFieldBy(By by, String mensaje) {
+        WebElement element = ManageDriver.getInstance().getWebDriver().findElement(by);
+        setInputField(element, mensaje);
+    }
 }

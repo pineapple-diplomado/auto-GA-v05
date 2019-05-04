@@ -19,8 +19,12 @@ import java.util.List;
 public class PanelConfiguracionTask extends BasePage {
 
 
-    @FindBy(xpath = "//input[@placeholder='Añadir un comentario…']")   //CHANGE Add a comment...
-    private WebElement fieldComentario;
+    //@FindBy(xpath = "//input[contains(@placeholder='Añadir un comentario')]")   //CHANGE Add a comment...
+    //private WebElement fieldComentario;
+    private static final String FIELD_COMENTARIO = "//input[contains(@placeholder,'Añadir un comentario')]";
+    private static final String FIELD_COMENTARIO2 = "//div[contains(@contenteditable,'true')]";
+    private static final String BOTON_SAVE_FIELD_COMENTARIO = "//button[.//span[contains(text(),'Save')]]";
+
 
     //@FindBy(xpath = "//*[@id=\"ghx-detail-view\"]/div/div[2]/div/div/div/div[3]/div/div[1]/div[1]/div/div/div/div/div[3]/div[2]/div/div/div/div[1]/div/div/button")
     @FindBy(xpath = "//*[@id=\"ghx-detail-view\"]/div/div[2]/div/div/div/div[3]/div/div[1]/div[1]/div/div/div/div/" +
@@ -63,6 +67,8 @@ public class PanelConfiguracionTask extends BasePage {
     //*[@id="ghx-detail-view"]/div/div[2]/div/div/div/div[3]/div/div[1]/div[1]/div/div[1]/div/span/span/span/div/div/div[2]/div/div/div/div/div[2]/div[1]/div[2]/div/div[2]/p
     @FindBy(xpath = "//*[@id=\"ghx-detail-view\"]/div/div[2]/div/div/div/div[3]/div/div[1]/div[1]/div/div[1]/div/span/span/span/div/div/div[2]/div/div/div/div/div[2]/div[1]/div[2]/div/div[2]/p")
     private WebElement insertarComentario2;  //Este elemento se activa luego de hacer el primer click.
+
+
 
     public void setSelectInProgress() {
         CommonEvents.clickButton(selectedItems);
@@ -119,10 +125,27 @@ public class PanelConfiguracionTask extends BasePage {
     }
 
     public void anadirNuevoComentario(String nuevoComentario) {
+        /**
         EventFiringWebDriver eventFiringWebDriver = new EventFiringWebDriver(webDriver);
-        //eventFiringWebDriver.executeScript("document.querySelector('#ghx-detail-view').scrollTop = 2500");
         eventFiringWebDriver.executeScript("arguments[0].scrollIntoView()", insertarComentario);
         CommonEvents.clickButton(insertarComentario);
-        CommonEvents.setInputField(insertarComentario2,nuevoComentario);
+         Funciona hasta el CLICK
+         */
+
+        By primerField = By.xpath(FIELD_COMENTARIO);
+        WebElement element = webDriver.findElement(primerField);
+        EventFiringWebDriver eventFiringWebDriver = new EventFiringWebDriver(webDriver);
+        eventFiringWebDriver.executeScript("arguments[0].scrollIntoView()", element);
+        //CommonEvents.clickButton(primerField);
+        CommonEvents.clickButton(element);
+
+        By segundaCampoMostrado = By.xpath(FIELD_COMENTARIO2);
+        CommonEvents.setInputFieldBy(segundaCampoMostrado, nuevoComentario);
+
+        By botonBySaveComentario = By.xpath(BOTON_SAVE_FIELD_COMENTARIO);
+        CommonEvents.clickButton(botonBySaveComentario);
+
+
+
     }
 }

@@ -9,6 +9,13 @@ import org.umssdiplo.automationv01.core.utils.LoadPage;
 public class LanzamientoStepDef {
 
     private Lanzamiento JiraLanzamiento;
+    String firstVersion = "version 2";
+    String firstVersionEdit = "version 2.1";
+
+    String secondVersion = "version-_?";
+    String secondVersionEdit = "version 3.1";
+    String secondVersionComment = "test comment version 3";
+    String secondVersionEditComment = "test comment version 3.1";
 
     @Given("^'Jira' page is loaded$")
     public void jiraPageIsLoaded() throws Throwable {
@@ -33,7 +40,8 @@ public class LanzamientoStepDef {
 
     @And("^submit Form$")
     public void submitForm() throws Throwable {
-        JiraLanzamiento.submitForm();
+
+        JiraLanzamiento.submitForm(firstVersion, null);
     }
 
     @And("^Go to Editar$")
@@ -43,7 +51,7 @@ public class LanzamientoStepDef {
 
     @And("^submit EditForm$")
     public void submitEditForm() throws Throwable {
-        JiraLanzamiento.submitForm2();
+        JiraLanzamiento.submitForm(firstVersionEdit, null);
     }
 
     @And("^Go to Eliminar$")
@@ -79,5 +87,20 @@ public class LanzamientoStepDef {
     @And("^Select Archives$")
     public void selectArchives() throws Throwable {
         JiraLanzamiento.SelectArchives();
+    }
+
+    @And("^submit Form with comment$")
+    public void submitFormWithComment() throws Throwable {
+        JiraLanzamiento.submitForm(firstVersion, secondVersionComment);
+    }
+
+    @And("^submit EditForm with comment$")
+    public void submitEditFormWithComment() throws Throwable {
+        JiraLanzamiento.submitForm(firstVersionEdit, secondVersionEditComment);
+    }
+
+    @And("^submit Form with especial chars in title$")
+    public void submitFormWithEspecialCharsInTitle() throws Throwable {
+        JiraLanzamiento.submitForm(secondVersion, null);
     }
 }

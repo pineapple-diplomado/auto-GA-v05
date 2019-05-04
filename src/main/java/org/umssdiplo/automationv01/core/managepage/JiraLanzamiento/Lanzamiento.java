@@ -29,6 +29,9 @@ public final class Lanzamiento extends BasePage {
     @FindBy(xpath = "//input[@class='sc-tilXH xhjOD']")
     private WebElement releaseTitle;
 
+    @FindBy(xpath = "//input[@class='sc-tilXH xhjOD']")
+    private List<WebElement> releaseComment;
+
     @FindBy(xpath = "//button[@class='sc-EHOje dCmFoj']")
     private List<WebElement> submitReleaseButton;
 
@@ -37,6 +40,9 @@ public final class Lanzamiento extends BasePage {
 
     @FindBy(xpath = "//a[text()='version 2.1']/parent::div/parent::td/parent::tr/td[7]/div/div/div/div/div/div/div/div/button")
     private WebElement iconMenuDelete;
+
+    @FindBy(xpath = "//a[text()='version-_?']/parent::div/parent::td/parent::tr/td[7]/div/div/div/div/div/div/div/div/button")
+    private WebElement iconMenuPublish;
 
     @FindBy(xpath = "//span[text()='Editar']/parent::span/parent::span")
     private WebElement linkEditar;
@@ -74,22 +80,16 @@ public final class Lanzamiento extends BasePage {
 
     public void openNewReleaseForm()
     {
+        CommonEvents.forceWait(10000);
         CommonEvents.clickButton(newReleaseButton);
     }
 
-    public  void submitForm()
+    public  void submitForm(String release, String commentRelease)
     {
-        String title = "version 2";
+        String title = release;
+        String comment = commentRelease == null?"":commentRelease;
         CommonEvents.setInputField(releaseTitle, title);
-        CommonEvents.forceWait(2000);
-        List<WebElement> submitList = webDriver.findElements(By.xpath("//button[@class='sc-EHOje dCmFoj']"));
-        CommonEvents.clickButton(submitList.get(1));
-    }
-
-    public  void submitForm2()
-    {
-        String title = "version 2.1";
-        CommonEvents.setInputField(releaseTitle, title);
+        CommonEvents.setInputField(releaseComment.get(1),comment);
         CommonEvents.forceWait(2000);
         List<WebElement> submitList = webDriver.findElements(By.xpath("//button[@class='sc-EHOje dCmFoj']"));
         CommonEvents.clickButton(submitList.get(1));
@@ -119,7 +119,7 @@ public final class Lanzamiento extends BasePage {
     public void GoToPublish()
     {
         CommonEvents.forceWait(10000);
-        CommonEvents.clickButton(iconMenuDelete);
+        CommonEvents.clickButton(iconMenuPublish);
         CommonEvents.clickButton(linkPublicar);
     }
 

@@ -14,17 +14,26 @@ Feature: Lanzamiento
     And Go to Editar
     And submit EditForm
 
-  #Scenario: Open delete and delete a release
-  #  And Go to Eliminar
+  Scenario: Open delete and delete a release
+    And Go to Eliminar
 
-  #Scenario: Open Archive and archive a release
-  #  And Go to Archive
+  Scenario: Create Version with name and comment
+    And open new Release Form
+    And submit Form with comment
 
-  Scenario: Open Publish and publish a release
+  Scenario: Go to edit form and edit with comments
+    And Go to Editar
+    And submit EditForm with comment
+
+  Scenario: Open Archive and archive a release
+    And Go to Archive
+
+
+  Scenario: Create Version with especial char
+    And open new Release Form
+    And submit Form with especial chars in title
     And Go to Publish
     And Publish
 
-  Scenario: Show Publish and archive releases
-    And Go to Select Filter
-    And Select Publishes
-    #And Select Archives
+
+

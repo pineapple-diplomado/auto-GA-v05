@@ -35,4 +35,49 @@ public class LanzamientoStepDef {
     public void submitForm() throws Throwable {
         JiraLanzamiento.submitForm();
     }
+
+    @And("^Go to Editar$")
+    public void clickThreePointIcon() throws Throwable {
+        JiraLanzamiento.GoToEditar();
+    }
+
+    @And("^submit EditForm$")
+    public void submitEditForm() throws Throwable {
+        JiraLanzamiento.submitForm2();
+    }
+
+    @And("^Go to Eliminar$")
+    public void goToEliminar() throws Throwable {
+        JiraLanzamiento.GoToEliminar();
+    }
+
+    @And("^Go to Archive$")
+    public void goToArchive() throws Throwable {
+        JiraLanzamiento.GoToArchive();
+    }
+
+    @And("^Go to Publish$")
+    public void GoToPublish() throws Throwable {
+        JiraLanzamiento.GoToPublish();
+    }
+
+    @And("^Publish$")
+    public void publish() throws Throwable {
+        JiraLanzamiento.PublishRelease();
+    }
+
+    @And("^Go to Select Filter$")
+    public void goToSelectFilter() throws Throwable {
+        JiraLanzamiento.OpenFilter();
+    }
+
+    @And("^Select Publishes")
+    public void selectPubliches() throws Throwable {
+        JiraLanzamiento.SelectPublishes();
+    }
+
+    @And("^Select Archives$")
+    public void selectArchives() throws Throwable {
+        JiraLanzamiento.SelectArchives();
+    }
 }

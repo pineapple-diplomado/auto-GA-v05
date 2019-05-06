@@ -81,7 +81,7 @@ def generateReport(String pathCucumber, String pathReport){
     configuration.setParallelTesting(parallelTesting)
     configuration.setRunWithJenkins(runWithJenkins)
     configuration.setBuildNumber(buildNumber)
-// addidtional metadata presented on main page
+// addidtional metadata presented on main userstories
     configuration.addClassifications("Platform", "Windows")
     configuration.addClassifications("Browser", "Firefox")
     configuration.addClassifications("Branch", "release/1.0")

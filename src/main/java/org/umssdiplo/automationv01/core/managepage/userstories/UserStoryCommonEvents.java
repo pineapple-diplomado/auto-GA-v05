@@ -1,15 +1,13 @@
-package org.umssdiplo.automationv01.core.utils;
+package org.umssdiplo.automationv01.core.managepage.userstories;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.umssdiplo.automationv01.core.customwebdriver.ManageDriver;
 
 import java.util.List;
 
-public class CommonEvents {
+public class UserStoryCommonEvents {
 
     /**
      * This method set text content to web element.
@@ -99,9 +97,9 @@ public class CommonEvents {
     }
 
     /**
-     * This method get title of current page.
+     * This method get title of current userstories.
      *
-     * @return title of the current page.
+     * @return title of the current userstories.
      */
     public static String getPageTitle() {
         return ManageDriver.getInstance().getWebDriver().getTitle();
@@ -116,4 +114,52 @@ public class CommonEvents {
         webElement.sendKeys(Keys.ENTER);
     }
 
+    public static void waitElementVisible(WebElement webElement) {
+        ManageDriver.getInstance().getWebDriverWait().until(ExpectedConditions.visibilityOf(webElement));
+    }
+
+    public static void waitElementVisible(By webElement) {
+        WebElement element = ManageDriver.getInstance().getWebDriver().findElement(webElement);
+        waitElementVisible(element);
+    }
+
+    public static void clickButton(By by) {
+        WebElement element = ManageDriver.getInstance().getWebDriver().findElement(by);
+        clickButton(element);
+    }
+
+    public static String getTextContent(By by) {
+        WebElement element = ManageDriver.getInstance().getWebDriver().findElement(by);
+        return getTextContent(element);
+    }
+
+    public static void setInputField(By by, String content) {
+        WebElement element = ManageDriver.getInstance().getWebDriver().findElement(by);
+        setInputField(element, content);
+    }
+
+    public static void pressEnterKey(By by) {
+        WebElement element = ManageDriver.getInstance().getWebDriver().findElement(by);
+        pressEnterKey(element);
+    }
+
+    public static String getAttribute(String attribute, By by) {
+        WebElement element = ManageDriver.getInstance().getWebDriver().findElement(by);
+        return getAttribute(attribute, element);
+    }
+
+    public static String getAttribute(String attribute, WebElement webElement) {
+        ManageDriver.getInstance().getWebDriverWait().until(ExpectedConditions.visibilityOf(webElement));
+        return webElement.getAttribute(attribute);
+    }
+
+    public static void hoverOn(WebElement webElement) {
+        Actions action = new Actions(ManageDriver.getInstance().getWebDriver());
+        action.moveToElement(webElement).build().perform();;
+    }
+
+    public static void hoverOn(By by) {
+        WebElement element = ManageDriver.getInstance().getWebDriver().findElement(by);
+        hoverOn(element);
+    }
 }

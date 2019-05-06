@@ -1,16 +1,14 @@
-package org.umssdiplo.automationv01.core.managepage.page;
+package org.umssdiplo.automationv01.core.managepage.userstories;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.umssdiplo.automationv01.core.managepage.BasePage;
-import org.umssdiplo.automationv01.core.utils.CommonEvents;
-import org.umssdiplo.automationv01.core.utils.LoadPage;
 
-public class BrowseProjects extends BasePage {
+public class UserStoryBrowseProjects extends BasePage {
 
     //@FindBy(xpath = "//div[@data-test-id='directory-base.content.table.container']")
-    @FindBy(xpath = "//div[@id='page']")
+    @FindBy(xpath = "//div[@id='userstories']")
     private WebElement container;
 
     private static final String PATH_CREATE_PROJECT_BUTTON = "//button[.//text()='Create project']";
@@ -19,42 +17,42 @@ public class BrowseProjects extends BasePage {
     private static final String PATH_PROJECT_CREATE_BUTTON = "//button[.//span[contains(text(),'Create')]]";
     private static final String PATH_PROJECT_LINK = "//a[.//span[contains(text(),'%s')]]";
 
-    public BrowseProjects() {
-        CommonEvents.waitElementVisible(container);
+    public UserStoryBrowseProjects() {
+        UserStoryCommonEvents.waitElementVisible(container);
     }
 
-    public Backlog openBacklogProject(String projectUrl) {
-        LoadPage.openBacklogProject(projectUrl);
-        return new Backlog();
+    public UserStoryBacklog openBacklogProject(String projectUrl) {
+        UserStoryLoadPage.openBacklogProject();
+        return new UserStoryBacklog();
     }
 
     public void clickCreateProject() {
         By by = By.xpath(PATH_CREATE_PROJECT_BUTTON);
-        CommonEvents.clickButton(by);
+        UserStoryCommonEvents.clickButton(by);
     }
 
     public void selectClassicProject() {
         By by = By.xpath(PATH_CREATE_PROJECT_OPTION);
-        CommonEvents.clickButton(by);
+        UserStoryCommonEvents.clickButton(by);
     }
 
     public void fillProjectName(String projectName) {
         By by = By.xpath(PATH_PROJECT_NAME);
-        CommonEvents.setInputField(by, projectName);
+        UserStoryCommonEvents.setInputField(by, projectName);
     }
 
     public void hoverCreateProjectButton() {
         By by = By.xpath(PATH_PROJECT_CREATE_BUTTON);
-        CommonEvents.hoverOn(by);
+        UserStoryCommonEvents.hoverOn(by);
     }
 
     public void clickCreateProjectButton() {
         By by = By.xpath(PATH_PROJECT_CREATE_BUTTON);
-        CommonEvents.clickButton(by);
+        UserStoryCommonEvents.clickButton(by);
     }
 
     public String getProjectUrl(String projectName) {
         By by = By.xpath(String.format(PATH_PROJECT_LINK, projectName));
-        return CommonEvents.getAttribute("href", by);
+        return UserStoryCommonEvents.getAttribute("href", by);
     }
 }

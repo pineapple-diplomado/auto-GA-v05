@@ -11,6 +11,9 @@ public class PropertyAccessor {
     private static final String PROJECT_URL = "projecturl";
     private static final String JIRA_URL = "basejiraurl";
 
+    private static final String USERNAME = "username";
+    private static final String PASSWORD = "password";
+
     private static PropertyAccessor PropertyAccessor;
     private Properties properties;
 
@@ -66,10 +69,11 @@ public class PropertyAccessor {
     }
 
     public String getUser() {
-        return null;
+        return getDataProperty(USERNAME);
     }
 
-    public String getPassword() {
-        return null;
+    public String getPassword()
+    {
+        return getDataProperty(PASSWORD);
     }
 }

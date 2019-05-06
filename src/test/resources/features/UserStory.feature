@@ -1,22 +1,20 @@
 # Test cases for user stories operations
 
 Feature: UserStory
-  Background: User is logged in
-    Given Main page "https://renecopaga.atlassian.net" is open
-    And Set username "rene.copaga@gmail.com" in 'Login' page
-    And Set password "Control123!" in 'Login' page
-    And rc Open Project page
 
   Scenario Outline: Create user story
+    Given Main page is open
+    And rc Open Project page
     And rc Click on 'Create issue' button in 'Backlog' page
     And rc Fill "<StoryName>" in 'Create' dialog
     And rc Click on 'Create' button in 'Create' dialog
     Then rc Verify "<StoryNameCreated>" is created in 'Backlog' page
     Examples:
       | StoryName | StoryNameCreated |
-      | US3    | US3 |
+      | US02    | US02 |
 
   Scenario Outline: Update status user story
+    And rc Open Project page
     And rc Click on 'Create issue' button in 'Backlog' page
     And rc Fill "<StoryName>" in 'Create' dialog
     And rc Click on 'Create' button in 'Create' dialog
@@ -29,6 +27,7 @@ Feature: UserStory
       | US11      |
 
   Scenario Outline: Add description to user story
+    And rc Open Project page
     And rc Click on 'Create issue' button in 'Backlog' page
     And rc Fill "<StoryName>" in 'Create' dialog
     And rc Click on 'Create' button in 'Create' dialog
@@ -43,6 +42,7 @@ Feature: UserStory
       | US12      | A description   |
 
   Scenario Outline: Add comment to user story
+    And rc Open Project page
     And rc Click on 'Create issue' button in 'Backlog' page
     And rc Fill "<StoryName>" in 'Create' dialog
     And rc Click on 'Create' button in 'Create' dialog
@@ -57,6 +57,7 @@ Feature: UserStory
       | US13      | A comment |
 
   Scenario Outline: Add time logged to user story
+    And rc Open Project page
     And rc Click on 'Create issue' button in 'Backlog' page
     And rc Fill "<StoryName>" in 'Create' dialog
     And rc Click on 'Create' button in 'Create' dialog
@@ -72,6 +73,7 @@ Feature: UserStory
       | US14      | 1h   |
 
   Scenario Outline: Add linked story to user story
+    And rc Open Project page
     And rc Click on 'Create issue' button in 'Backlog' page
     And rc Fill "<StoryName1>" in 'Create' dialog
     And rc Click on 'Create' button in 'Create' dialog
@@ -92,6 +94,7 @@ Feature: UserStory
       | US15      | US16        |
 
   Scenario Outline: Add subtask to user story
+    And rc Open Project page
     And rc Click on 'Create issue' button in 'Backlog' page
     And rc Fill "<StoryName1>" in 'Create' dialog
     And rc Click on 'Create' button in 'Create' dialog

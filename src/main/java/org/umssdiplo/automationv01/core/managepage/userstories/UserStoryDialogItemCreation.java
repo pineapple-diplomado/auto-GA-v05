@@ -1,11 +1,10 @@
-package org.umssdiplo.automationv01.core.managepage.page;
+package org.umssdiplo.automationv01.core.managepage.userstories;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.umssdiplo.automationv01.core.managepage.BasePage;
-import org.umssdiplo.automationv01.core.utils.CommonEvents;
 
-public class DialogItemCreation extends BasePage {
+public class UserStoryDialogItemCreation extends BasePage {
 
     @FindBy(xpath = "//div[@id='create-issue-dialog']")
     private WebElement container;
@@ -16,15 +15,15 @@ public class DialogItemCreation extends BasePage {
     @FindBy(id = "create-issue-submit")
     private WebElement createButton;
 
-    public DialogItemCreation() {
-        CommonEvents.waitElementVisible(container);
+    public UserStoryDialogItemCreation() {
+        UserStoryCommonEvents.waitElementVisible(container);
     }
 
     public void fillText(String summary) {
-        CommonEvents.setInputField(summaryText, summary);
+        UserStoryCommonEvents.setInputField(summaryText, summary);
     }
 
     public void clickCreateDialogButton() {
-        CommonEvents.clickButton(createButton);
+        UserStoryCommonEvents.clickButton(createButton);
     }
 }

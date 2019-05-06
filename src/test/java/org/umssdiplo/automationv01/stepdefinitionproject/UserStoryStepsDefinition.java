@@ -4,84 +4,99 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import org.testng.Assert;
-import org.umssdiplo.automationv01.core.managepage.Login.Login;
-import org.umssdiplo.automationv01.core.managepage.page.*;
-import org.umssdiplo.automationv01.core.utils.LoadPage;
+import org.umssdiplo.automationv01.core.managepage.userstories.UserStoryLogin;
+import org.umssdiplo.automationv01.core.managepage.userstories.*;
+import org.umssdiplo.automationv01.core.managepage.userstories.UserStoryLoadPage;
 
-public class StepsDefinitionUserStory {
-    private Login login;
-    private Backlog backlog;
-    private BrowseProjects browseProjects;
-    private DialogItemCreation dialogItemCreation;
-    private PanelItem panelItem;
-    private String projectUrl = "https://renecopaga.atlassian.net/browse/PRJCT10";
+public class UserStoryStepsDefinition {
+    private UserStoryLogin userStoryLogin;
+    private UserStoryBacklog userStoryBacklog;
+    private UserStoryBrowseProjects userStoryBrowseProjects;
+    private UserStoryDialogItemCreation userStoryDialogItemCreation;
+    private UserStoryPanelItem useStoryPanelItem;
 
-    @Given("^Main page \"([^\"]*)\" is open$")
-    public void mainPageIsOpen(String url) throws Throwable {
-        login = LoadPage.loginPage(url);
-    }
-
-    @And("^Set username \"([^\"]*)\" in 'Login' page$")
-    public void setUsernameInLoginPage(String email) throws Throwable {
+    @Given("^Main page is open$")
+    public void mainPageIsOpen() throws InterruptedException {
+        userStoryLogin = UserStoryLoadPage.loginPage();
+        Thread.sleep(5000);
         try {
-            login.setEmail(email);
+            userStoryLogin.setEmail();
+        }catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
+        Thread.sleep(5000);
+        try {
+            userStoryLogin.setPassword();
         }catch(Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
-    @And("^Set password \"([^\"]*)\" in 'Login' page$")
-    public void setPasswordInLoginPage(String password) throws Throwable {
+    @And("^Set username in 'Login' page$")
+    public void setUsernameInLoginPage() throws InterruptedException {
+        Thread.sleep(5000);
         try {
-            browseProjects = login.setPassword(password);
+            userStoryLogin.setEmail();
         }catch(Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
+    @And("^Set password in 'Login' page$")
+    public void setPasswordInLoginPage() throws InterruptedException {
+        Thread.sleep(5000);
+        try {
+            userStoryLogin.setPassword();
+        }catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+/*
     @And("^Create project \"([^\"]*)\" in 'Browse' page$")
     public void createProjectInBrowsePage(String projectName) throws Throwable {
         Thread.sleep(5000);
-        browseProjects.clickCreateProject();
+        userStoryBrowseProjects.clickCreateProject();
         Thread.sleep(8000);
-        browseProjects.selectClassicProject();
+        userStoryBrowseProjects.selectClassicProject();
         Thread.sleep(8000);
-        browseProjects.fillProjectName(projectName);
+        userStoryBrowseProjects.fillProjectName(projectName);
         Thread.sleep(8000);
-        browseProjects.hoverCreateProjectButton();
+        userStoryBrowseProjects.hoverCreateProjectButton();
         Thread.sleep(5000);
-        browseProjects.clickCreateProjectButton();
+        userStoryBrowseProjects.clickCreateProjectButton();
         Thread.sleep(10000);
-        projectUrl = browseProjects.getProjectUrl(projectName);
+        projectUrl = userStoryBrowseProjects.getProjectUrl(projectName);
         Thread.sleep(5000);
     }
-
+*/
     @And("^rc Open Project page$")
-    public void rcOpenProjectPage() {
-        LoadPage.openBacklogProject(projectUrl);
-        backlog = new Backlog();
+    public void rcOpenProjectPage() throws InterruptedException {
+        Thread.sleep(5000);
+        UserStoryLoadPage.openBacklogProject();
+        userStoryBacklog = new UserStoryBacklog();
     }
 
     @And("^rc Click on 'Create issue' button in 'Backlog' page$")
     public void rcClickOnCreateIssueButtonInBacklogPage() {
-        dialogItemCreation = backlog.clickCreateIssueBtn();
+        userStoryDialogItemCreation = userStoryBacklog.clickCreateIssueBtn();
     }
 
     @And("^rc Fill \"([^\"]*)\" in 'Create' dialog$")
     public void rcFillInCreateDialog(String summary) throws Throwable {
-        dialogItemCreation.fillText(summary);
+        userStoryDialogItemCreation.fillText(summary);
     }
 
     @And("^rc Click on 'Create' button in 'Create' dialog$")
     public void rcClickOnCreateButtonInCreateDialog() throws InterruptedException {
-        dialogItemCreation.clickCreateDialogButton();
+        userStoryDialogItemCreation.clickCreateDialogButton();
         Thread.sleep(5000);
     }
 
     @Then("^rc Verify \"([^\"]*)\" is created in 'Backlog' page$")
     public void verifyIsCreatedInBacklogPage(String expectedStoryName) throws Throwable {
         Thread.sleep(5000);
-        String actualStoryName = backlog.getFirstStory();
+        String actualStoryName = userStoryBacklog.getFirstStory();
 
         Assert.assertEquals(actualStoryName, expectedStoryName);
         Thread.sleep(5000);
@@ -89,176 +104,176 @@ public class StepsDefinitionUserStory {
 
     @And("^rc Click on \"([^\"]*)\" in 'Backlog' page$")
     public void rcClickOnInBacklogPage(String storyName) throws Throwable {
-        panelItem = backlog.clicOnItem(storyName);
+        useStoryPanelItem = userStoryBacklog.clicOnItem(storyName);
         Thread.sleep(5000);
     }
 
     @And("^rc Click in 'Status' in 'Edit' panel$")
     public void rcClickInStatusInEditPanel() throws InterruptedException {
-        panelItem.clickOnStatus();
+        useStoryPanelItem.clickOnStatus();
         Thread.sleep(5000);
     }
 
     @And("^rc Click in 'In Progress' in 'Edit' panel$")
     public void rcClickInInProgressInEditPanel() throws InterruptedException {
-        panelItem.clickOnStatusInProgress();
+        useStoryPanelItem.clickOnStatusInProgress();
         Thread.sleep(5000);
     }
 
     @Then("^rc Verify \"([^\"]*)\" status is set in 'Edit' page$")
     public void rcVerifyStatusIsSetInEditPage(String expectedStatus) throws Throwable {
-        String actualStatus = panelItem.getStatusText();
+        String actualStatus = useStoryPanelItem.getStatusText();
         Assert.assertEquals(actualStatus, expectedStatus);
     }
 
     @And("^rc Click in 'Description' in 'Edit' panel$")
     public void rcClickInDescriptionInEditPanel() throws InterruptedException {
-        panelItem.clickOnDescription();
+        useStoryPanelItem.clickOnDescription();
         Thread.sleep(5000);
     }
 
     @And("^rc Fill \"([^\"]*)\" in description field in 'Edit' panel$")
     public void rcFillInDescriptionFieldInEditPanel(String text) throws Throwable {
-        panelItem.fillOnDescription(text);
+        useStoryPanelItem.fillOnDescription(text);
         Thread.sleep(5000);
     }
 
     @And("^rc Click in 'Save' in 'Edit' panel$")
     public void rcClickInSaveInEditPanel() throws InterruptedException {
-        panelItem.clickOnSaveDescription();
+        useStoryPanelItem.clickOnSaveDescription();
         Thread.sleep(5000);
     }
 
     @Then("^rc Verify \"([^\"]*)\" is set in 'Edit' page$")
     public void rcVerifyIsSetInEditPage(String expectedDescription) throws Throwable {
-        String actualDescription = panelItem.getDescriptionValue(expectedDescription);
+        String actualDescription = useStoryPanelItem.getDescriptionValue(expectedDescription);
         Assert.assertEquals(expectedDescription, actualDescription);
         Thread.sleep(5000);
     }
 
     @And("^rc Click in 'Comment' in 'Edit' panel$")
     public void rcClickInCommentInEditPanel() throws InterruptedException {
-        panelItem.clickOnComment();
+        useStoryPanelItem.clickOnComment();
         Thread.sleep(5000);
     }
 
     @And("^rc Fill \"([^\"]*)\" in comment field in 'Edit' panel$")
     public void rcFillInCommentFieldInEditPanel(String text) throws Throwable {
-        panelItem.fillOnComment(text);
+        useStoryPanelItem.fillOnComment(text);
         Thread.sleep(5000);
     }
 
     @And("^rc Click in comment 'Save' in 'Edit' panel$")
     public void rcClickInCommentSaveInEditPanel() throws InterruptedException {
-        panelItem.clickOnSaveComment();
+        useStoryPanelItem.clickOnSaveComment();
         Thread.sleep(5000);
     }
 
     @Then("^rc Verify \"([^\"]*)\" field is set in 'Edit' page$")
     public void rcVerifyFieldIsSetInEditPage(String expectedComment) throws Throwable {
-        String actualComment = panelItem.getCommentValue(expectedComment);
+        String actualComment = useStoryPanelItem.getCommentValue(expectedComment);
         Assert.assertEquals(expectedComment, actualComment);
         Thread.sleep(5000);
     }
 
     @And("^rc Click in 'Show more' button in 'Edit' panel$")
     public void rcClickInShowMoreButtonInEditPanel() throws InterruptedException {
-        panelItem.clickOnShowMore();
+        useStoryPanelItem.clickOnShowMore();
         Thread.sleep(5000);
-        panelItem.clickOnShowMore();
+        useStoryPanelItem.clickOnShowMore();
         Thread.sleep(5000);
     }
 
     @And("^rc Click in 'Time Tracking' field in 'Edit' panel$")
     public void rcClickInTimeTrackingFieldInEditPanel() throws InterruptedException {
-        panelItem.clickOnTimeLogged();
+        useStoryPanelItem.clickOnTimeLogged();
         Thread.sleep(5000);
     }
 
     @And("^rc Fill \"([^\"]*)\" in time logged field in 'Time Tracking' dialog$")
     public void rcFillInTimeLoggedFieldInTimeTrackingDialog(String text) throws Throwable {
-        panelItem.fillTimeLogged(text);
+        useStoryPanelItem.fillTimeLogged(text);
         Thread.sleep(5000);
     }
 
     @And("^rc Click 'Save' in 'Time Tracking' dialog$")
     public void rcClickSaveInTimeTrackingDialog() throws InterruptedException {
-        panelItem.clickOnSaveTimeLogged();
+        useStoryPanelItem.clickOnSaveTimeLogged();
         Thread.sleep(5000);
     }
 
     @Then("^rc Verify \"([^\"]*)\" Time Tracking field is set in 'Edit' page$")
     public void rcVerifyTimeTrackingFieldIsSetInEditPage(String expectedTime) throws Throwable {
-        String actualTime = panelItem.getTimeLoggedValue(expectedTime);
+        String actualTime = useStoryPanelItem.getTimeLoggedValue(expectedTime);
         Assert.assertEquals(expectedTime, actualTime);
         Thread.sleep(5000);
     }
 
     @And("^rc Click in 'Link' button in 'Edit' panel$")
     public void rcClickInLinkButtonInEditPanel() throws InterruptedException {
-        panelItem.clickOnLinkButton();
+        useStoryPanelItem.clickOnLinkButton();
         Thread.sleep(5000);
     }
 
     @And("^rc Click in 'Search for issues' field in 'Edit' panel$")
     public void rcClickInSearchForIssuesFieldInEditPanel() throws InterruptedException {
-        panelItem.clickOnSearchIssues();
+        useStoryPanelItem.clickOnSearchIssues();
         Thread.sleep(5000);
     }
 
     @And("^rc Click 'Link' button in 'Linked issues' panel$")
     public void rcClickLinkButtonInLinkedIssuesPanel() {
-        panelItem.clickOnSaveLink();
+        useStoryPanelItem.clickOnSaveLink();
     }
 
     @And("^rc Fill item \"([^\"]*)\" in active issues in 'Edit' dialog$")
     public void rcFillItemInActiveIssuesInEditDialog(String item) throws Throwable {
-        String textItem = panelItem.getTextSelectedItem(item);
+        String textItem = useStoryPanelItem.getTextSelectedItem(item);
         Thread.sleep(5000);
-        panelItem.fillLinkItem(textItem);
+        useStoryPanelItem.fillLinkItem(textItem);
         Thread.sleep(5000);
     }
 
     @And("^rc Click enter on item in active issues in 'Edit' dialog$")
     public void rcClickEnterOnItemInActiveIssuesInEditDialog() throws InterruptedException {
-        panelItem.clickEnterLinkItem();
+        useStoryPanelItem.clickEnterLinkItem();
         Thread.sleep(5000);
     }
 
     @Then("^rc Verify \"([^\"]*)\" linked field is set in 'Edit' page$")
     public void rcVerifyLinkedFieldIsSetInEditPage(String expectedLinkedItem) throws Throwable {
-        String actualLinkedItem = panelItem.getLinkedValue(expectedLinkedItem);
+        String actualLinkedItem = useStoryPanelItem.getLinkedValue(expectedLinkedItem);
         Assert.assertEquals(expectedLinkedItem, actualLinkedItem);
         Thread.sleep(5000);
     }
 
     @And("^rc Click in 'Create subtask' button in 'Edit' panel$")
     public void rcClickInCreateSubtaskButtonInEditPanel() throws InterruptedException {
-        panelItem.clickOnCreateSubTask();
+        useStoryPanelItem.clickOnCreateSubTask();
         Thread.sleep(5000);
     }
 
     @And("^rc Click in 'Subtasks' field in 'Edit' panel$")
     public void rcClickInSubtasksFieldInEditPanel() throws InterruptedException {
-        panelItem.clickSubTaskField();
+        useStoryPanelItem.clickSubTaskField();
         Thread.sleep(5000);
     }
 
     @And("^rc Fill item \"([^\"]*)\" in 'Subtasks' field in 'Edit' dialog$")
     public void rcFillItemInSubtasksFieldInEditDialog(String subtask) throws Throwable {
-        panelItem.fillSubTaskField(subtask);
+        useStoryPanelItem.fillSubTaskField(subtask);
         Thread.sleep(5000);
     }
 
     @And("^rc Click in 'Create' button in 'Subtasks' field in 'Edit' dialog$")
     public void rcClickInCreateButtonInSubtasksFieldInEditDialog() throws InterruptedException {
-        panelItem.clickOnCreateSubTaskButton();
+        useStoryPanelItem.clickOnCreateSubTaskButton();
         Thread.sleep(5000);
     }
 
     @Then("^rc Verify \"([^\"]*)\" subtask field is set in 'Edit' page$")
     public void rcVerifySubtaskFieldIsSetInEditPage(String expectedSubtask) throws Throwable {
-        String actualSubtask = panelItem.getSubTaskValue(expectedSubtask);
+        String actualSubtask = useStoryPanelItem.getSubTaskValue(expectedSubtask);
         Assert.assertEquals(expectedSubtask, actualSubtask);
         Thread.sleep(5000);
     }

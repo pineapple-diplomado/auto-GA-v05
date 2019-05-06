@@ -1,12 +1,11 @@
-package org.umssdiplo.automationv01.core.managepage.page;
+package org.umssdiplo.automationv01.core.managepage.userstories;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.umssdiplo.automationv01.core.managepage.BasePage;
-import org.umssdiplo.automationv01.core.utils.CommonEvents;
 
-public class PanelItem extends BasePage {
+public class UserStoryPanelItem extends BasePage {
 
     @FindBy(id = "ghx-detail-view")
     private WebElement container;
@@ -54,88 +53,88 @@ public class PanelItem extends BasePage {
     @FindBy(id = "create-issue-submit")
     private WebElement createButton;
 
-    public PanelItem() {
-        CommonEvents.waitElementVisible(container);
+    public UserStoryPanelItem() {
+        UserStoryCommonEvents.waitElementVisible(container);
     }
 /*
     public void fillText(String summary) {
-        CommonEvents.setInputField(summaryText, summary);
+        UserStoryCommonEvents.setInputField(summaryText, summary);
     }
 
     public void clickCreateDialogButton() {
-        CommonEvents.clickButton(createButton);
+        UserStoryCommonEvents.clickButton(createButton);
     }
 */
 
     public void clickOnTitle(String title, String storyName) {
         By by = By.xpath(String.format(PATH_TITLE, title));
         By by2 = By.xpath(String.format(PATH_TITLE_DIV, title));
-        CommonEvents.clickButton(by);
+        UserStoryCommonEvents.clickButton(by);
 
-        CommonEvents.setInputField(by2, storyName);
+        UserStoryCommonEvents.setInputField(by2, storyName);
 
-        CommonEvents.pressEnterKey(by2);
+        UserStoryCommonEvents.pressEnterKey(by2);
     }
 
     public void clickOnStatus() {
         By by = By.xpath(PATH_STATUS);
-        CommonEvents.clickButton(by);
+        UserStoryCommonEvents.clickButton(by);
     }
 
     public void clickOnStatusInProgress() {
         By by = By.xpath(PATH_STATUS_IN_PROGRESS);
-        CommonEvents.clickButton(by);
+        UserStoryCommonEvents.clickButton(by);
     }
 
     public String getStatusText() {
         By by = By.xpath(PATH_STATUS_IN_PROGRESS_TEXT);
-        return CommonEvents.getTextContent(by);
+        return UserStoryCommonEvents.getTextContent(by);
     }
 
     public void clickOnDescription() {
         By by = By.xpath(PATH_DESCRIPTION);
-        CommonEvents.clickButton(by);
+        UserStoryCommonEvents.clickButton(by);
     }
 
     public void fillOnDescription(String text) {
         By by = By.xpath(PATH_DESCRIPTION_TEXT);
-        CommonEvents.setInputField(by, text);
+        UserStoryCommonEvents.setInputField(by, text);
     }
 
     public void clickOnSaveDescription() {
         By by = By.xpath(PATH_DESCRIPTION_SAVE);
-        CommonEvents.clickButton(by);
+        UserStoryCommonEvents.clickButton(by);
     }
 
     public String getDescriptionValue(String description) {
         By by = By.xpath(String.format(PATH_DESCRIPTION_VALUE, description));
-        return CommonEvents.getTextContent(by);
+        return UserStoryCommonEvents.getTextContent(by);
     }
 
     public void clickOnComment() {
         By by = By.xpath(PATH_COMMENT);
-        CommonEvents.clickButton(by);
+        UserStoryCommonEvents.clickButton(by);
     }
 
     public void fillOnComment(String text) {
         By by = By.xpath(PATH_COMMENT_TEXT);
-        CommonEvents.setInputField(by, text);
+        UserStoryCommonEvents.setInputField(by, text);
     }
 
     public void clickOnSaveComment() {
         By by = By.xpath(PATH_COMMENT_SAVE);
-        CommonEvents.clickButton(by);
+        UserStoryCommonEvents.clickButton(by);
     }
 
     public String getCommentValue(String comment) {
         By by = By.xpath(String.format(PATH_COMMENT_VALUE, comment));
-        return CommonEvents.getTextContent(by);
+        return UserStoryCommonEvents.getTextContent(by);
     }
 
     public void clickOnShowMore() {
         try {
             By by = By.xpath(PATH_SHOW_MORE);
-            CommonEvents.clickButton(by);
+            UserStoryCommonEvents.clickButton(by);
         } catch(Exception e){
             System.out.println(e.getMessage());
         }
@@ -143,81 +142,81 @@ public class PanelItem extends BasePage {
 
     public void clickOnTimeLogged() {
         By by = By.xpath(PATH_TIME_LOGGED);
-        CommonEvents.clickButton(by);
+        UserStoryCommonEvents.clickButton(by);
     }
 
     public void fillTimeLogged(String text) {
         By by = By.xpath(PATH_TIME_LOGGED_TEXT);
-        CommonEvents.setInputField(by, text);
+        UserStoryCommonEvents.setInputField(by, text);
     }
 
     public void clickOnSaveTimeLogged() {
         By by = By.xpath(PATH_TIME_LOGGED_SAVE);
-        CommonEvents.clickButton(by);
+        UserStoryCommonEvents.clickButton(by);
     }
 
     public String getTimeLoggedValue(String timeLogged) {
         By by = By.xpath(String.format(PATH_TIME_LOGGED_VALUE, timeLogged));
-        return CommonEvents.getTextContent(by);
+        return UserStoryCommonEvents.getTextContent(by);
     }
 
     public void clickOnLinkButton() {
         By by = By.xpath(PATH_LINK_BUTTON);
-        CommonEvents.clickButton(by);
+        UserStoryCommonEvents.clickButton(by);
     }
 
     public void clickOnSearchIssues() {
         By by = By.xpath(PATH_LINK_FIELD);
-        CommonEvents.clickButton(by);
+        UserStoryCommonEvents.clickButton(by);
     }
 
     public String getTextSelectedItem(String item) {
         By by = By.xpath(String.format(PATH_LINK_ITEM, item));
-        return CommonEvents.getTextContent(by);
+        return UserStoryCommonEvents.getTextContent(by);
     }
 
     public void clickOnSaveLink() {
         By by = By.xpath(PATH_LINK_SAVE);
-        CommonEvents.clickButton(by);
+        UserStoryCommonEvents.clickButton(by);
     }
 
     public void fillLinkItem(String textItem) {
         By by = By.xpath(String.format(PATH_LINK_TEXT));
-        CommonEvents.setInputField(by, textItem.trim());
+        UserStoryCommonEvents.setInputField(by, textItem.trim());
     }
 
     public void clickEnterLinkItem() {
         By by = By.xpath(String.format(PATH_LINK_TEXT));
-        CommonEvents.pressEnterKey(by);
+        UserStoryCommonEvents.pressEnterKey(by);
     }
 
     public String getLinkedValue(String linkedItem) {
         By by = By.xpath(String.format(PATH_LINK_VALUE, linkedItem));
-        return CommonEvents.getTextContent(by);
+        return UserStoryCommonEvents.getTextContent(by);
     }
 
     public void clickOnCreateSubTask() {
         By by = By.xpath(PATH_SUBTASK_BUTTON);
-        CommonEvents.clickButton(by);
+        UserStoryCommonEvents.clickButton(by);
     }
 
     public void clickSubTaskField() {
         By by = By.xpath(PATH_SUBTASK_FIELD);
-        CommonEvents.clickButton(by);
+        UserStoryCommonEvents.clickButton(by);
     }
 
     public void fillSubTaskField(String text) {
         By by = By.xpath(PATH_SUBTASK_FIELD);
-        CommonEvents.setInputField(by, text);
+        UserStoryCommonEvents.setInputField(by, text);
     }
 
     public void clickOnCreateSubTaskButton() {
         By by = By.xpath(PATH_SUBTASK_CREATE);
-        CommonEvents.clickButton(by);
+        UserStoryCommonEvents.clickButton(by);
     }
 
     public String getSubTaskValue(String subtask) {
         By by = By.xpath(String.format(PATH_SUBTASK_VALUE, subtask));
-        return CommonEvents.getTextContent(by);
+        return UserStoryCommonEvents.getTextContent(by);
     }
 }

@@ -19,7 +19,7 @@ public final class LoadPage {
 
     public static Backlog openBacklogProject(String projectUrl) {
         ManageDriver.getInstance().getWebDriver()
-                .navigate().to(PropertyAccessor.getInstance().getBaseUrl() + projectUrl);
+                .navigate().to(projectUrl);
         return new Backlog();
     }
 }

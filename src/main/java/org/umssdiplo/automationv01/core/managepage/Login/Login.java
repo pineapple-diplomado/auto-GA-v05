@@ -1,5 +1,6 @@
 package org.umssdiplo.automationv01.core.managepage.Login;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.umssdiplo.automationv01.core.managepage.BasePage;
@@ -16,15 +17,22 @@ public class Login extends BasePage {
     @FindBy(id = "login-submit")
     private WebElement continueBtn;
 
+    private static final String PATH_USERNAME = "//input[@id='username']";
+    private static final String PATH_PASSWORD = "//input[@id='password']";
+    private static final String PATH_SUBMIT = "//button[@id='login-submit']";
 
     public void setEmail(String email) {
-        CommonEvents.setInputField(emailInputField, email);
-        CommonEvents.clickButton(continueBtn);
+        By byUsername = By.xpath(PATH_USERNAME);
+        CommonEvents.setInputField(byUsername, email);
+        By byContinue = By.xpath(PATH_SUBMIT);
+        CommonEvents.clickButton(byContinue);
     }
 
     public BrowseProjects setPassword(String password) {
-        CommonEvents.setInputField(passwordInputField, password);
-        CommonEvents.clickButton(continueBtn);
+        By byPasword = By.xpath(PATH_PASSWORD);
+        CommonEvents.setInputField(byPasword, password);
+        By byContinue = By.xpath(PATH_SUBMIT);
+        CommonEvents.clickButton(byContinue);
         return new BrowseProjects();
     }
 }

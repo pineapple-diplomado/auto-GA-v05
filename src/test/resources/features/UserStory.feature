@@ -14,7 +14,7 @@ Feature: UserStory
     Then rc Verify "<StoryNameCreated>" is created in 'Backlog' page
     Examples:
       | StoryName | StoryNameCreated |
-      | US10    | US10 |
+      | US3    | US3 |
 
   Scenario Outline: Update status user story
     And rc Click on 'Create issue' button in 'Backlog' page

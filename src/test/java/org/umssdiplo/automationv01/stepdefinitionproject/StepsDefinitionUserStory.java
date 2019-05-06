@@ -12,9 +12,9 @@ public class StepsDefinitionUserStory {
     private Login login;
     private Backlog backlog;
     private BrowseProjects browseProjects;
-    DialogItemCreation dialogItemCreation;
-    PanelItem panelItem;
-    String projectUrl = "https://renecopaga.atlassian.net/browse/PRJCT10";
+    private DialogItemCreation dialogItemCreation;
+    private PanelItem panelItem;
+    private String projectUrl = "https://renecopaga.atlassian.net/browse/PRJCT10";
 
     @Given("^Main page \"([^\"]*)\" is open$")
     public void mainPageIsOpen(String url) throws Throwable {
@@ -23,12 +23,20 @@ public class StepsDefinitionUserStory {
 
     @And("^Set username \"([^\"]*)\" in 'Login' page$")
     public void setUsernameInLoginPage(String email) throws Throwable {
-        login.setEmail(email);
+        try {
+            login.setEmail(email);
+        }catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @And("^Set password \"([^\"]*)\" in 'Login' page$")
     public void setPasswordInLoginPage(String password) throws Throwable {
-        browseProjects = login.setPassword(password);
+        try {
+            browseProjects = login.setPassword(password);
+        }catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @And("^Create project \"([^\"]*)\" in 'Browse' page$")
@@ -50,7 +58,8 @@ public class StepsDefinitionUserStory {
 
     @And("^rc Open Project page$")
     public void rcOpenProjectPage() {
-        backlog = browseProjects.openBacklogProject(projectUrl);
+        LoadPage.openBacklogProject(projectUrl);
+        backlog = new Backlog();
     }
 
     @And("^rc Click on 'Create issue' button in 'Backlog' page$")
@@ -75,6 +84,7 @@ public class StepsDefinitionUserStory {
         String actualStoryName = backlog.getFirstStory();
 
         Assert.assertEquals(actualStoryName, expectedStoryName);
+        Thread.sleep(5000);
     }
 
     @And("^rc Click on \"([^\"]*)\" in 'Backlog' page$")
@@ -123,6 +133,7 @@ public class StepsDefinitionUserStory {
     public void rcVerifyIsSetInEditPage(String expectedDescription) throws Throwable {
         String actualDescription = panelItem.getDescriptionValue(expectedDescription);
         Assert.assertEquals(expectedDescription, actualDescription);
+        Thread.sleep(5000);
     }
 
     @And("^rc Click in 'Comment' in 'Edit' panel$")
@@ -147,6 +158,7 @@ public class StepsDefinitionUserStory {
     public void rcVerifyFieldIsSetInEditPage(String expectedComment) throws Throwable {
         String actualComment = panelItem.getCommentValue(expectedComment);
         Assert.assertEquals(expectedComment, actualComment);
+        Thread.sleep(5000);
     }
 
     @And("^rc Click in 'Show more' button in 'Edit' panel$")
@@ -179,6 +191,7 @@ public class StepsDefinitionUserStory {
     public void rcVerifyTimeTrackingFieldIsSetInEditPage(String expectedTime) throws Throwable {
         String actualTime = panelItem.getTimeLoggedValue(expectedTime);
         Assert.assertEquals(expectedTime, actualTime);
+        Thread.sleep(5000);
     }
 
     @And("^rc Click in 'Link' button in 'Edit' panel$")
@@ -216,6 +229,7 @@ public class StepsDefinitionUserStory {
     public void rcVerifyLinkedFieldIsSetInEditPage(String expectedLinkedItem) throws Throwable {
         String actualLinkedItem = panelItem.getLinkedValue(expectedLinkedItem);
         Assert.assertEquals(expectedLinkedItem, actualLinkedItem);
+        Thread.sleep(5000);
     }
 
     @And("^rc Click in 'Create subtask' button in 'Edit' panel$")
@@ -246,5 +260,6 @@ public class StepsDefinitionUserStory {
     public void rcVerifySubtaskFieldIsSetInEditPage(String expectedSubtask) throws Throwable {
         String actualSubtask = panelItem.getSubTaskValue(expectedSubtask);
         Assert.assertEquals(expectedSubtask, actualSubtask);
+        Thread.sleep(5000);
     }
 }

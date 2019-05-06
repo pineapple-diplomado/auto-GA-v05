@@ -34,17 +34,20 @@ public class CreationTaskDialog extends BasePage {
     }
 
     public void createIssue() {
+        CommonEvents.forceWait(5000);
         CommonEvents.clickButton(dialogCreationIssue);
         CommonEvents.clickButton(selectedTaskItem);
     }
 
 
     public void insertSummary(String titulo) {
+        CommonEvents.forceWait(5000);
         CommonEvents.isVisible(contenido);
         CommonEvents.setInputField(summary,titulo);
     }
 
     public void presionarCreateButton() {
+        CommonEvents.forceWait(5000);
         CommonEvents.clickButton(butonCrear);
     }
 }

@@ -132,4 +132,9 @@ public class StepsDefinitionJavierZapata {
     public void addInCommentOnPanelConfigurationTaskPage(String nuevoComentario) throws Throwable {
         panelConfiguracionTask.anadirNuevoComentario(nuevoComentario);
     }
+
+    @And("^jz 'Backlog' page is loaded$")
+    public void jzBacklogPageIsLoaded() {
+        backLogPage = LoadPageJavierZapata.loadBackLog();
+    }
 }

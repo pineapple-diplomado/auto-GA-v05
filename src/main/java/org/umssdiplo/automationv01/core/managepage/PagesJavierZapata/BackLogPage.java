@@ -34,23 +34,27 @@ public class BackLogPage extends BasePage {
     private WebElement botonOnlyMyIssues;
 
     public BackLogPage(){
+        CommonEvents.forceWait(5000);
         CommonEvents.waitElementVisible(contenedor);
         createIssueButton = "//button[contains(text(), '%s')]";
         //iconBotonDialogIssue = "button[@title='Abrir el diálogo Crear']";  //Open create dialog
     }
 
     public void dialogoCrearTask(String nombreBoton) throws InterruptedException {
+        CommonEvents.forceWait(5000);
         By issueBy = By.xpath(String.format(createIssueButton, nombreBoton));
         CommonEvents.clickButton(issueBy);
     }
 
     public CreationTaskDialog dialogoCrearTask2() {
+        CommonEvents.forceWait(5000);
         CommonEvents.clickButton(botonTresPuntos);
         return new CreationTaskDialog();
     }
 
 
     public boolean checkExistenciaDeUltimoTask(String nombreTask) {
+        CommonEvents.forceWait(5000);
         String elemento = gettingKeyProyecto.getText();
         String[] parts = elemento.split(" ");
         String key = parts[0];
@@ -88,13 +92,15 @@ public class BackLogPage extends BasePage {
     }
 
     public PanelConfiguracionTask clickEnUnTask(String tituloTask) {
+        CommonEvents.forceWait(5000);
         By clickNuevoTask = By.xpath(String.format(NUEVO_TASK, tituloTask));
         CommonEvents.clickButton(clickNuevoTask);
         return new PanelConfiguracionTask();
     }
 
     public int checkIssuesNumberUser(String user) {
-        CommonEvents.isVisible(contenidoListas);
+        CommonEvents.forceWait(5000);
+        //CommonEvents.isVisible(contenidoListas);
         List<WebElement> elementsRoot = webDriver.findElements(By.xpath("//div[starts-with(@class,'js-issue')]//" +
                 "img[contains(@data-tooltip,'Responsable: ${user}')]"));
         System.out.println("Numero de elementos backlog: "+elementsRoot.size());
@@ -103,7 +109,8 @@ public class BackLogPage extends BasePage {
 
 
     public int checkIssuesNumberUserOnlyMyIssues(String user) {
-        CommonEvents.isVisible(contenidoListas);
+        CommonEvents.forceWait(5000);
+        //CommonEvents.isVisible(contenidoListas);
         //CommonEvents.isPresent(botonOnlyMyIssues);
         CommonEvents.clickButton(botonOnlyMyIssues);
         List<WebElement> elementsRoot = webDriver.findElements(By.xpath("//div[starts-with(@class,'js-issue')]//" +

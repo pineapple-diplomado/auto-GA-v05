@@ -127,4 +127,12 @@ public class CommonEvents {
         WebElement element = ManageDriver.getInstance().getWebDriver().findElement(by);
         setInputField(element, mensaje);
     }
+
+    public static void forceWait(int milliseconds) {
+        try{
+            Thread.sleep(milliseconds);
+        }catch (Exception e){
+            e.fillInStackTrace();
+        }
+    }
 }

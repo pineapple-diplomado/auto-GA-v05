@@ -1,10 +1,8 @@
-package org.umssdiplo.automationv01.core.managepage.components;
+package org.umssdiplo.automationv01.core.Components;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.umssdiplo.automationv01.core.managepage.BasePage;
-import org.umssdiplo.automationv01.core.managepage.dialog.CreateComponentDialog;
-import org.umssdiplo.automationv01.core.managepage.dialog.EditComponentDialog;
 import org.umssdiplo.automationv01.core.utils.CommonEvents;
 
 import java.util.List;
@@ -59,18 +57,13 @@ public class Components extends BasePage {
     }
 
     public Components deleteComponent() {
+        CommonEvents.forceWait(4000);
         CommonEvents.setSelectValueComponentsForm(selectComponentElement, "Delete");
         return this;
     }
 
     public boolean verifyDeletedComponent(String componentName) {
         return CommonEvents.findWebElement(createdComponentsList, componentName) != null ? true : false;
-//        {
-//            return true;
-//        }
-//        else {
-//            return false;
-//        }
     }
 
     public EditComponentDialog openEditComponentDialog() {

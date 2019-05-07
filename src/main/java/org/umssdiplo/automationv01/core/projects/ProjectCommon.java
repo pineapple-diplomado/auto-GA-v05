@@ -1,4 +1,4 @@
-package org.umssdiplo.automationv01.core.utils;
+package org.umssdiplo.automationv01.core.projects;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -7,7 +7,7 @@ import org.umssdiplo.automationv01.core.customwebdriver.ManageDriver;
 
 import java.util.List;
 
-public class CommonEvents {
+public class ProjectCommon {
 
     /**
      * This method set text content to web element.
@@ -21,6 +21,48 @@ public class CommonEvents {
         webElement.sendKeys(content);
     }
 
+    public static void selectValue(WebElement webElement, String content) {
+        WebDriverWait waitDriver = ManageDriver.getInstance().getWebDriverWait();
+        WebDriver webDriver = ManageDriver.getInstance().getWebDriver();
+
+        waitDriver.until(ExpectedConditions.visibilityOf(webElement));
+        webElement.click();
+
+        WebElement selectItem = webDriver.findElement(By.xpath(
+               "//span[@class='mat-option-text'] [contains(text(),'" + content +"')]"));
+        waitDriver.until(ExpectedConditions.visibilityOf(selectItem));
+        selectItem.click();
+    }
+
+    public static void clickElement(By by) {
+        WebDriver webDriver = ManageDriver.getInstance().getWebDriver();
+        WebDriverWait waitDriver = ManageDriver.getInstance().getWebDriverWait();
+
+        WebElement element =  webDriver.findElement(by);
+        waitDriver.until(ExpectedConditions.elementToBeClickable(by));
+        element.click();
+    }
+
+    public static WebElement getElement(By by){
+        WebDriver webDriver = ManageDriver.getInstance().getWebDriver();
+        WebDriverWait waitDriver = ManageDriver.getInstance().getWebDriverWait();
+
+        WebElement element = webDriver.findElement(by);
+        return element;
+    }
+
+    public static void isVisible(By by) {
+        ManageDriver.getInstance().getWebDriverWait().until(ExpectedConditions.visibilityOfElementLocated(by));
+    }
+
+    public static void elementTobeClickable(By by) {
+        ManageDriver.getInstance().getWebDriverWait().until(ExpectedConditions.elementToBeClickable(by));
+    }
+
+    public static void isNotVisible(By by) {
+        ManageDriver.getInstance().getWebDriverWait().until(ExpectedConditions.invisibilityOfElementLocated(by));
+    }
+
     /**
      * This method perform a click action in a web element.
      *
@@ -29,6 +71,22 @@ public class CommonEvents {
     public static void clickButton(WebElement webElement) {
         ManageDriver.getInstance().getWebDriverWait().until(ExpectedConditions.elementToBeClickable(webElement));
         webElement.click();
+    }
+
+    public static void waitFor(long timeout) {
+        try
+        {
+            Thread.sleep(1000);
+        }
+        catch(InterruptedException ex)
+        {
+        }
+    }
+
+    public static void clickButton(By by) {
+        ManageDriver.getInstance().getWebDriverWait().until(ExpectedConditions.elementToBeClickable(by));
+        WebElement element = getElement(by);
+        element.click();
     }
 
     /**
@@ -96,6 +154,11 @@ public class CommonEvents {
         return webElement.getText();
     }
 
+    public static String getTextContent(By by) {
+        WebElement element = getElement(by);
+        return element.getText();
+    }
+
     /**
      * This method get title of current page.
      *
@@ -114,28 +177,4 @@ public class CommonEvents {
         webElement.sendKeys(Keys.ENTER);
     }
 
-    public static void waitElementVisible(WebElement webElement) {
-        ManageDriver.getInstance().getWebDriverWait().until(ExpectedConditions.visibilityOf(webElement));
-    }
-
-    public static void forceWait(int milliseconds){
-        try{
-            Thread.sleep(milliseconds);
-        }catch (Exception e){
-            e.fillInStackTrace();
-        }
-    }
-
-    public static void setSelectValueComponentsForm(WebElement webElement, String content) {
-        WebDriverWait waitDriver = ManageDriver.getInstance().getWebDriverWait();
-        WebDriver webDriver = ManageDriver.getInstance().getWebDriver();
-
-        waitDriver.until(ExpectedConditions.visibilityOf(webElement));
-        webElement.click();
-
-        WebElement selectItem = webDriver.findElement(By.xpath(
-                "//span[contains(text(),'" + content +"')]"));
-        waitDriver.until(ExpectedConditions.visibilityOf(selectItem));
-        selectItem.click();
-    }
 }

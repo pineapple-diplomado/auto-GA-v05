@@ -1,13 +1,13 @@
-package org.umssdiplo.automationv01.core.utils;
+package org.umssdiplo.automationv01.core.managepage.userstories;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.umssdiplo.automationv01.core.customwebdriver.ManageDriver;
 
 import java.util.List;
 
-public class CommonEvents {
+public class UserStoryCommonEvents {
 
     /**
      * This method set text content to web element.
@@ -97,9 +97,9 @@ public class CommonEvents {
     }
 
     /**
-     * This method get title of current page.
+     * This method get title of current userstories.
      *
-     * @return title of the current page.
+     * @return title of the current userstories.
      */
     public static String getPageTitle() {
         return ManageDriver.getInstance().getWebDriver().getTitle();
@@ -118,24 +118,48 @@ public class CommonEvents {
         ManageDriver.getInstance().getWebDriverWait().until(ExpectedConditions.visibilityOf(webElement));
     }
 
-    public static void forceWait(int milliseconds){
-        try{
-            Thread.sleep(milliseconds);
-        }catch (Exception e){
-            e.fillInStackTrace();
-        }
+    public static void waitElementVisible(By webElement) {
+        WebElement element = ManageDriver.getInstance().getWebDriver().findElement(webElement);
+        waitElementVisible(element);
     }
 
-    public static void setSelectValueComponentsForm(WebElement webElement, String content) {
-        WebDriverWait waitDriver = ManageDriver.getInstance().getWebDriverWait();
-        WebDriver webDriver = ManageDriver.getInstance().getWebDriver();
+    public static void clickButton(By by) {
+        WebElement element = ManageDriver.getInstance().getWebDriver().findElement(by);
+        clickButton(element);
+    }
 
-        waitDriver.until(ExpectedConditions.visibilityOf(webElement));
-        webElement.click();
+    public static String getTextContent(By by) {
+        WebElement element = ManageDriver.getInstance().getWebDriver().findElement(by);
+        return getTextContent(element);
+    }
 
-        WebElement selectItem = webDriver.findElement(By.xpath(
-                "//span[contains(text(),'" + content +"')]"));
-        waitDriver.until(ExpectedConditions.visibilityOf(selectItem));
-        selectItem.click();
+    public static void setInputField(By by, String content) {
+        WebElement element = ManageDriver.getInstance().getWebDriver().findElement(by);
+        setInputField(element, content);
+    }
+
+    public static void pressEnterKey(By by) {
+        WebElement element = ManageDriver.getInstance().getWebDriver().findElement(by);
+        pressEnterKey(element);
+    }
+
+    public static String getAttribute(String attribute, By by) {
+        WebElement element = ManageDriver.getInstance().getWebDriver().findElement(by);
+        return getAttribute(attribute, element);
+    }
+
+    public static String getAttribute(String attribute, WebElement webElement) {
+        ManageDriver.getInstance().getWebDriverWait().until(ExpectedConditions.visibilityOf(webElement));
+        return webElement.getAttribute(attribute);
+    }
+
+    public static void hoverOn(WebElement webElement) {
+        Actions action = new Actions(ManageDriver.getInstance().getWebDriver());
+        action.moveToElement(webElement).build().perform();;
+    }
+
+    public static void hoverOn(By by) {
+        WebElement element = ManageDriver.getInstance().getWebDriver().findElement(by);
+        hoverOn(element);
     }
 }

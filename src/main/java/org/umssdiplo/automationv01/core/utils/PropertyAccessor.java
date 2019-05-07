@@ -8,9 +8,14 @@ import java.util.Properties;
 public class PropertyAccessor {
     private static final String BROWSER = "browser";
     private static final String BASE_URL = "baseurl";
-    private static final String USERNAME = "username";
-    private static final String PASSWORD = "password";
+    private static final String BASE_JIRA_URL = "baseurljira";
+   private static final String PASSWORD = "password";
 
+    private static final String PROJECT_URL = "projecturl";
+    private static final String JIRA_URL = "basejiraurl";
+
+    private static final String USERNAME = "username";
+    private static final String USERNAME_RELEASE = "userRelease";
     private static PropertyAccessor PropertyAccessor;
     private Properties properties;
 
@@ -57,8 +62,24 @@ public class PropertyAccessor {
         return getDataProperty(BASE_URL);
     }
 
+    public String getBaseJiraUrl() {
+        return getDataProperty(BASE_JIRA_URL);
+    }
+
+    public String getUserRelease() {
+        return getDataProperty(USERNAME_RELEASE);
+    }
+
     public String getUser() {
+        return getDataProperty(USERNAME_RELEASE);
+    }
+
+    public String getJiraUrl() {
         return getDataProperty(USERNAME);
+    }
+
+    public String getProjectUrl() {
+        return getDataProperty(PROJECT_URL);
     }
 
     public String getPassword() {

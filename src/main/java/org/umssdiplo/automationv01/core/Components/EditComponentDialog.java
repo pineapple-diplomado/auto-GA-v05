@@ -1,9 +1,9 @@
-package org.umssdiplo.automationv01.core.managepage.dialog;
+package org.umssdiplo.automationv01.core.Components;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.umssdiplo.automationv01.core.managepage.BasePage;
-import org.umssdiplo.automationv01.core.managepage.components.Components;
+import org.umssdiplo.automationv01.core.Components.Components;
 import org.umssdiplo.automationv01.core.utils.CommonEvents;
 
 import java.util.List;
@@ -38,6 +38,7 @@ public class EditComponentDialog extends BasePage {
     }
 
     public Components updateComponent() {
+        CommonEvents.forceWait(4000);
         CommonEvents.clickButton(saveButtonElement);
         return new Components();
     }

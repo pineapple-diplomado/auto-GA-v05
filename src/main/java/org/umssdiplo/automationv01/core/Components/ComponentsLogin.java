@@ -1,13 +1,11 @@
-package org.umssdiplo.automationv01.core.managepage.Login;
+package org.umssdiplo.automationv01.core.Components;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.umssdiplo.automationv01.core.Components.Components;
 import org.umssdiplo.automationv01.core.managepage.BasePage;
 import org.umssdiplo.automationv01.core.utils.CommonEvents;
-import org.umssdiplo.automationv01.core.utils.PropertyAccessor;
 
-public class Login extends BasePage {
+public class ComponentsLogin extends BasePage {
     @FindBy(name = "email")
     private WebElement usernameInputField;
 
@@ -16,9 +14,6 @@ public class Login extends BasePage {
 
     @FindBy(css = ".btn-primary.btn-block")
     private WebElement loginBtn;
-
-//    @FindBy(xpath = "//input[@placeholder='Enter email']")
-//    private WebElement emailInputField;
 
     @FindBy(id = "username")
     private WebElement emailInputField;
@@ -30,10 +25,8 @@ public class Login extends BasePage {
     private WebElement passwordJiraInputField;
 
     public void setCredentials() {
-        String username = PropertyAccessor.getInstance().getUser();
-        String password = PropertyAccessor.getInstance().getPassword();
-        CommonEvents.setInputField(usernameInputField, username);
-        CommonEvents.setInputField(passwordInputField, password);
+        CommonEvents.setInputField(usernameInputField,"sosiego14@outlook.com" );
+        CommonEvents.setInputField(passwordInputField, "emerger14");
         CommonEvents.clickButton(loginBtn);
     }
 
@@ -55,6 +48,14 @@ public class Login extends BasePage {
     public Components login() throws InterruptedException {
         CommonEvents.clickButton(continueBtn);
         CommonEvents.forceWait(1000);
+        return new Components();
+    }
+
+    public Components setAllCredentials() throws InterruptedException {
+        CommonEvents.setInputField(emailInputField, "pineapple.automation2@gmail.com");
+        this.clickContinueButton();
+        CommonEvents.setInputField(passwordJiraInputField, "Control123!");
+        CommonEvents.clickButton(continueBtn);
         return new Components();
     }
 }

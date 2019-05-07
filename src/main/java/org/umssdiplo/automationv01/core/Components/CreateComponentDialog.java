@@ -1,4 +1,4 @@
-package org.umssdiplo.automationv01.core.managepage.dialog;
+package org.umssdiplo.automationv01.core.Components;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -25,12 +25,13 @@ public class CreateComponentDialog extends BasePage {
     private WebElement backgroundElement;
 
     public CreateComponentDialog setComponentName(String componentName) {
-        CommonEvents.setInputField(inputElements.get(1), componentName);
+        CommonEvents.setInputField(inputElements.get(0), componentName);
         return this;
     }
 
     public void setComponentDescription(String componentDescription) {
-        CommonEvents.setInputField(inputElements.get(2), componentDescription);
+        CommonEvents.forceWait(4000);
+        CommonEvents.setInputField(inputElements.get(1), componentDescription);
     }
 
     public void setComponentLead(String componentLead) {

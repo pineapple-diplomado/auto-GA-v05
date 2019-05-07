@@ -5,7 +5,7 @@ import org.openqa.selenium.support.FindBy;
 import org.umssdiplo.automationv01.core.managepage.BasePage;
 import org.umssdiplo.automationv01.core.utils.PropertyAccessor;
 
-public class Login extends BasePage {
+public class LoginLogin extends BasePage {
 
     @FindBy(id = "gray_link")
     private WebElement loginBtnMainPage;

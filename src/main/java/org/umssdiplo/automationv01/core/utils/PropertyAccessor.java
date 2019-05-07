@@ -7,7 +7,7 @@ import java.util.Properties;
 
 public class PropertyAccessor {
     private static final String BROWSER = "browser";
-    private static final String BASE_URL = "baseurl";
+    private static final String BASE_URL = "baseurlogin";
     private static final String USER_NAME = "username";
     private static final String PASSWORD = "password";
 

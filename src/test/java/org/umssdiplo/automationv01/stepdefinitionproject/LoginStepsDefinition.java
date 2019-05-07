@@ -4,14 +4,14 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.testng.Assert;
-import org.umssdiplo.automationv01.core.Login.Login;
 import org.umssdiplo.automationv01.core.Login.LoginGoogleForm;
+import org.umssdiplo.automationv01.core.Login.LoginLogin;
 import org.umssdiplo.automationv01.core.Login.LoginMyAccountDialog;
 import org.umssdiplo.automationv01.core.Login.LoginRegisterForm;
-import org.umssdiplo.automationv01.core.utils.LoadPage;
+import org.umssdiplo.automationv01.core.utils.LoginLoadPage;
 
 public class LoginStepsDefinition {
-    private Login login;
+    private LoginLogin loginLogin;
 
     private LoginMyAccountDialog loginMyAccountDialog = new LoginMyAccountDialog();
 
@@ -21,37 +21,37 @@ public class LoginStepsDefinition {
 
     @Given("^IZ 'Jira' main page is loaded$")
     public void jiraPageIsLoadedInLoginForm() throws Throwable {
-        login = LoadPage.loginPage();
+        loginLogin = LoginLoadPage.loginPage();
     }
 
     @Given("^IZ click on the 'Login' button on the main page$")
     public void clickOnTheLoginButtonOnTheMainPage() throws InterruptedException {
-        login.clickLoginBtnMainPage();
+        loginLogin.clickLoginBtnMainPage();
     }
 
     @When("^IZ set my credentials mail on 'Login' page$")
     public void setMyCredentialsMailOnLoginPage() throws Throwable {
-        login.setEmailCredential();
+        loginLogin.setEmailCredential();
     }
 
     @When("^IZ click 'Continue' button in 'Login' page$")
     public void clickContinueButtonInLoginPage() throws InterruptedException {
-        login.clickContinue();
+        loginLogin.clickContinue();
     }
 
     @When("^IZ set my credentials password on 'Login' page$")
     public void setMyCredentialsPasswordOnLoginPage() {
-        login.setPasswordCredential();
+        loginLogin.setPasswordCredential();
     }
 
     @When("^IZ click 'Log in' button in 'Login' page$")
     public void clickLogInButtonInLoginPage() throws InterruptedException {
-        login.clickLogin();
+        loginLogin.clickLogin();
     }
 
     @When("^IZ click on the icon edit button of the email field$")
     public void clickOnTheIconEditButtonOfTheEmailField() throws InterruptedException {
-        login.clickEditIconBtn();
+        loginLogin.clickEditIconBtn();
     }
 
 
@@ -70,7 +70,7 @@ public class LoginStepsDefinition {
 
     @When("^IZ set mail: dsds@xyz.com$")
     public void setMailDsdsXyzCom() {
-        login.setEmailCredentialNotExist();
+        loginLogin.setEmailCredentialNotExist();
     }
 
     @Then("^IZ Verify that the name of the page should be \"([^\"]*)\"$")
@@ -81,12 +81,12 @@ public class LoginStepsDefinition {
 
     @Then("^IZ Validate the field is displayed$")
     public void validateInputField() throws Throwable {
-        Assert.assertTrue(login.validateInputIsDisplayed(), "fail");
+        Assert.assertTrue(loginLogin.validateInputIsDisplayed(), "fail");
     }
 
     @Then("^IZ Validate the mail is displayed as span$")
     public void validateTheMailIsDisplayedAsSpan() {
-        Assert.assertTrue(login.validateSpanIsDisplayed());
+        Assert.assertTrue(loginLogin.validateSpanIsDisplayed());
 
     }
 
@@ -96,23 +96,23 @@ public class LoginStepsDefinition {
 
     @Then("^IZ Validate the span icon is displayed in email field$")
     public void validateTheSpanIconIsDisplayed() throws InterruptedException {
-        Assert.assertTrue(login.validateSpanIconIsDisplayed());
+        Assert.assertTrue(loginLogin.validateSpanIconIsDisplayed());
     }
 
     @When("^IZ click Can't log in link in Login page")
     public void clickCanTLogInLinkInLoginPage() {
-        login.clickCantLogIn();
+        loginLogin.clickCantLogIn();
     }
 
     @Then("^IZ Verify that the title of the Can't log in page is \"([^\"]*)\"$")
     public void verifyThatTheTitleOfTheCanTLogInPageIs(String textCantLogInExpected) throws Throwable {
-        String textActual = login.getTittleCantLogIn();
+        String textActual = loginLogin.getTittleCantLogIn();
         Assert.assertEquals(textActual, textCantLogInExpected);
     }
 
     @When("^IZ click on Log in with Google button$")
     public void clickOnLogInWithGoogleButton() {
-        login.clickLogInWithGoogleBtn();
+        loginLogin.clickLogInWithGoogleBtn();
     }
 
 
@@ -124,12 +124,12 @@ public class LoginStepsDefinition {
 
     @When("^IZ set my credentials incorrect password on 'Login' page$")
     public void setMyCredentialsIncorrectPasswordOnLoginPage() {
-        login.setIncorrectPasswordCredential();
+        loginLogin.setIncorrectPasswordCredential();
     }
 
     @Then("^IZ verify that the error message that is displayed is \"([^\"]*)\"$")
     public void verifyThatTheErrorMessageThatIsDisplayedIs(String textExpected) throws Throwable {
-        String textActual = login.getMsgPassError();
+        String textActual = loginLogin.getMsgPassError();
         Assert.assertEquals(textActual, textExpected);
     }
 

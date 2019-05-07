@@ -44,22 +44,22 @@ public final class Lanzamiento extends BasePage {
     @FindBy(xpath = "//a[text()='version-_?']/parent::div/parent::td/parent::tr/td[7]/div/div/div/div/div/div/div/div/button")
     private WebElement iconMenuPublish;
 
-    @FindBy(xpath = "//span[text()='Editar']/parent::span/parent::span")
+    @FindBy(xpath = "//span[text()='Edit']/parent::span/parent::span")
     private WebElement linkEditar;
 
-    @FindBy(xpath = "//span[text()='Eliminar']/parent::span/parent::span")
+    @FindBy(xpath = "//span[text()='Delete']/parent::span/parent::span")
     private WebElement linkEliminar;
 
-    @FindBy(xpath = "//span[text()='Archivar']/parent::span/parent::span")
+    @FindBy(xpath = "//span[text()='Archive']/parent::span/parent::span")
     private WebElement linkArchivar;
 
-    @FindBy(xpath = "//span[text()='Publicar']/parent::span/parent::span")
+    @FindBy(xpath = "//span[text()='Release']/parent::span/parent::span")
     private WebElement linkPublicar;
 
-    @FindBy(xpath = "//span[text()='Publicar']/parent::span/parent::span")
+    @FindBy(xpath = "//span[text()='Release']/parent::span/parent::span")
     private WebElement publishButton;
 
-    @FindBy(xpath = "//span[text()='Sin publicar']/parent::span/parent::button")
+    @FindBy(xpath = "//span[text()='Not Released']/parent::span/parent::button")
     private WebElement SelectFilter;
 
     public void Authentication()
@@ -126,7 +126,7 @@ public final class Lanzamiento extends BasePage {
     public void PublishRelease()
     {
         CommonEvents.forceWait(10000);
-        publishButton = webDriver.findElement(By.xpath("//span[text()='Publicar']/parent::span/parent::button"));
+        publishButton = webDriver.findElement(By.xpath("//span[text()='Release']/parent::span/parent::button"));
         CommonEvents.clickButton(publishButton);
     }
 
@@ -139,14 +139,14 @@ public final class Lanzamiento extends BasePage {
     public void SelectPublishes()
     {
         CommonEvents.forceWait(10000);
-        WebElement publishButtonSelect = webDriver.findElement(By.xpath("//span[text()='Publicada']/parent::span/parent::span"));
+        WebElement publishButtonSelect = webDriver.findElement(By.xpath("//span[text()='Released']/parent::span/parent::span"));
         CommonEvents.clickButton(publishButtonSelect);
     }
 
     public void SelectArchives()
     {
         CommonEvents.forceWait(10000);
-        WebElement archiveButtonSelect = webDriver.findElement(By.xpath("//span[text()='Archivada']/parent::span/parent::span"));
+        WebElement archiveButtonSelect = webDriver.findElement(By.xpath("//span[text()='Archived']/parent::span/parent::span"));
         CommonEvents.clickButton(archiveButtonSelect);
     }
 }

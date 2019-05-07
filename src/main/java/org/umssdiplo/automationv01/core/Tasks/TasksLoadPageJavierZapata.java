@@ -18,9 +18,16 @@ public final class TasksLoadPageJavierZapata {
         return new TasksJiraLoginPage();
     }
 
+    public static TasksBackLogPage homePage2() {
+        ManageDriver.getInstance().getWebDriver()
+                .navigate().to("https://pineappleautomation.atlassian.net/secure/RapidBoard.jspa?rapidView=11&" +
+                "projectKey=TAS&view=planning.nodetail&selectedIssue=TAS-1");
+        return new TasksBackLogPage();
+    }
+
     public static TasksBackLogPage loadBackLog() {
         ManageDriver.getInstance().getWebDriver()
-                .navigate().to("https://pineappleautomation.atlassian.net/secure/RapidBoard.jspa?rapidView=4&" +
+                .navigate().to("https://pineappleautomation.atlassian.net/secure/RapidBoard.jspa?rapidView=11&" +
                 "projectKey=TAS&view=planning.nodetail&selectedIssue=TAS-1");
         return new TasksBackLogPage();
     }

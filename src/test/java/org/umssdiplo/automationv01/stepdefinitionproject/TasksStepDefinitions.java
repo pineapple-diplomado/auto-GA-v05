@@ -19,7 +19,8 @@ public class TasksStepDefinitions {
 
     @Given("^'JiraLoginPage' page is loaded$")
     public void jirapagePageIsLoaded() {
-        tasksJiraLoginPage = TasksLoadPageJavierZapata.homePage();
+        //tasksJiraLoginPage = TasksLoadPageJavierZapata.homePage();
+        tasksBackLogPage = TasksLoadPageJavierZapata.homePage2();
     }
 
     @And("^jz set my credentials on 'JiraLoginPage' page$")

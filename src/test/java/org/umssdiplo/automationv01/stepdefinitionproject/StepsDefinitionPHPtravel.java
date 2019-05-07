@@ -1,10 +1,9 @@
 package org.umssdiplo.automationv01.stepdefinitionproject;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import org.umssdiplo.automationv01.core.managepage.Login.Login;
-import org.umssdiplo.automationv01.core.managepage.components.Components;
+import org.umssdiplo.automationv01.core.Components.Components;
 import org.umssdiplo.automationv01.core.utils.LoadPage;
 
 public class StepsDefinitionPHPtravel {

@@ -1,12 +1,11 @@
-package org.umssdiplo.automationv01.core.managepage.PagesJavierZapata;
+package org.umssdiplo.automationv01.core.Tasks;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.umssdiplo.automationv01.core.managepage.BasePage;
-import org.umssdiplo.automationv01.core.utils.CommonEvents;
 import org.umssdiplo.automationv01.core.utils.PropertyAccessor;
 
-public class JiraLoginPage extends BasePage {
+public class TasksJiraLoginPage extends BasePage {
     @FindBy(id = "username")
     private WebElement usernameInputField;
 
@@ -16,20 +15,20 @@ public class JiraLoginPage extends BasePage {
     @FindBy(id = "login-submit")
     private WebElement loginBtn;
 
-    //public HomePage setCredentials() {
-    public BackLogPage setCredentials() {
+    //public TasksHomePage setCredentials() {
+    public TasksBackLogPage setCredentials() {
         String username = PropertyAccessor.getInstance().getUser();
-        CommonEvents.setInputField(usernameInputField, username);
+        TasksCommonEvents.setInputField(usernameInputField, username);
         clickButton();
         String password = PropertyAccessor.getInstance().getPassword();
-        CommonEvents.setInputField(passwordInputField, password);
+        TasksCommonEvents.setInputField(passwordInputField, password);
         clickButton();
-        //return new HomePage();
-        return new BackLogPage();
+        //return new TasksHomePage();
+        return new TasksBackLogPage();
     }
 
     private void clickButton() {
-        CommonEvents.clickButton(loginBtn);
+        TasksCommonEvents.clickButton(loginBtn);
     }
 
 }

@@ -1,14 +1,13 @@
-package org.umssdiplo.automationv01.core.managepage.PagesJavierZapata;
+package org.umssdiplo.automationv01.core.Tasks;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.umssdiplo.automationv01.core.managepage.BasePage;
-import org.umssdiplo.automationv01.core.utils.CommonEvents;
 
 import java.util.List;
 
-public class BackLogPage extends BasePage {
+public class TasksBackLogPage extends BasePage {
 
     public String createIssueButton;
     //public String iconBotonDialogIssue; //ICONO TRES PUNTOS
@@ -19,7 +18,7 @@ public class BackLogPage extends BasePage {
     @FindBy(xpath = "//*[@id=\"breadcrumbs-container\"]/div/div/div[3]/a/span/span")
     private WebElement gettingKeyProyecto;
 
-    @FindBy(xpath = "//button[@original-title='Abrir el diálogo Crear']")
+    @FindBy(xpath = "//button[@original-title='Open create dialog']")
     private WebElement botonTresPuntos;
 
     @FindBy(xpath = "/html/body/div[4]/div/div[2]/div[2]/div[2]/div[2]/" +
@@ -33,34 +32,34 @@ public class BackLogPage extends BasePage {
     @FindBy(xpath = "//*[@id=\"ghx-quick-filters\"]/ul/li[3]/ul/li[1]/button")
     private WebElement botonOnlyMyIssues;
 
-    public BackLogPage(){
-        CommonEvents.forceWait(5000);
-        CommonEvents.waitElementVisible(contenedor);
+    public TasksBackLogPage(){
+        TasksCommonEvents.forceWait(5000);
+        TasksCommonEvents.waitElementVisible(contenedor);
         createIssueButton = "//button[contains(text(), '%s')]";
         //iconBotonDialogIssue = "button[@title='Abrir el diálogo Crear']";  //Open create dialog
     }
 
     public void dialogoCrearTask(String nombreBoton) throws InterruptedException {
-        CommonEvents.forceWait(5000);
+        TasksCommonEvents.forceWait(5000);
         By issueBy = By.xpath(String.format(createIssueButton, nombreBoton));
-        CommonEvents.clickButton(issueBy);
+        TasksCommonEvents.clickButton(issueBy);
     }
 
-    public CreationTaskDialog dialogoCrearTask2() {
-        CommonEvents.forceWait(5000);
-        CommonEvents.clickButton(botonTresPuntos);
-        return new CreationTaskDialog();
+    public TasksCreationTaskDialog dialogoCrearTask2() {
+        TasksCommonEvents.forceWait(5000);
+        TasksCommonEvents.clickButton(botonTresPuntos);
+        return new TasksCreationTaskDialog();
     }
 
 
     public boolean checkExistenciaDeUltimoTask(String nombreTask) {
-        CommonEvents.forceWait(5000);
+        TasksCommonEvents.forceWait(5000);
         String elemento = gettingKeyProyecto.getText();
         String[] parts = elemento.split(" ");
         String key = parts[0];
         key = key.trim();
         System.out.println("key: "+key);
-        CommonEvents.isVisible(contenidoListas);
+        TasksCommonEvents.isVisible(contenidoListas);
         int maximo = 0; int auxiliar = 0;
         List<WebElement> elementsRoot = webDriver.findElements(By.xpath("//div[starts-with(@class,'js-issue')]//" +
                 "a[contains(text(), '"+key+"')]"));
@@ -91,30 +90,30 @@ public class BackLogPage extends BasePage {
         return auxiliar;
     }
 
-    public PanelConfiguracionTask clickEnUnTask(String tituloTask) {
-        CommonEvents.forceWait(5000);
+    public TasksPanelConfiguracionTask clickEnUnTask(String tituloTask) {
+        TasksCommonEvents.forceWait(5000);
         By clickNuevoTask = By.xpath(String.format(NUEVO_TASK, tituloTask));
-        CommonEvents.clickButton(clickNuevoTask);
-        return new PanelConfiguracionTask();
+        TasksCommonEvents.clickButton(clickNuevoTask);
+        return new TasksPanelConfiguracionTask();
     }
 
     public int checkIssuesNumberUser(String user) {
-        CommonEvents.forceWait(5000);
-        //CommonEvents.isVisible(contenidoListas);
+        TasksCommonEvents.forceWait(5000);
+        //TasksCommonEvents.isVisible(contenidoListas);
         List<WebElement> elementsRoot = webDriver.findElements(By.xpath("//div[starts-with(@class,'js-issue')]//" +
-                "img[contains(@data-tooltip,'Responsable: ${user}')]"));
+                "img[contains(@data-tooltip,'Assignee: ${user}')]"));
         System.out.println("Numero de elementos backlog: "+elementsRoot.size());
         return elementsRoot.size();
     }
 
 
     public int checkIssuesNumberUserOnlyMyIssues(String user) {
-        CommonEvents.forceWait(5000);
-        //CommonEvents.isVisible(contenidoListas);
-        //CommonEvents.isPresent(botonOnlyMyIssues);
-        CommonEvents.clickButton(botonOnlyMyIssues);
+        TasksCommonEvents.forceWait(5000);
+        //TasksCommonEvents.isVisible(contenidoListas);
+        //TasksCommonEvents.isPresent(botonOnlyMyIssues);
+        TasksCommonEvents.clickButton(botonOnlyMyIssues);
         List<WebElement> elementsRoot = webDriver.findElements(By.xpath("//div[starts-with(@class,'js-issue')]//" +
-                "img[contains(@data-tooltip,'Responsable: ${user}')]"));
+                "img[contains(@data-tooltip,'Assignee: ${user}')]"));
         System.out.println("Numero de elementos only my issues: "+elementsRoot.size());
         return elementsRoot.size();
     }

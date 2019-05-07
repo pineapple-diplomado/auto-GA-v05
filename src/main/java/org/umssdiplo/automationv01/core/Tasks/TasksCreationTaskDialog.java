@@ -1,21 +1,19 @@
-package org.umssdiplo.automationv01.core.managepage.PagesJavierZapata;
+package org.umssdiplo.automationv01.core.Tasks;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.umssdiplo.automationv01.core.managepage.BasePage;
-import org.umssdiplo.automationv01.core.utils.CommonEvents;
 
-public class CreationTaskDialog extends BasePage {
+public class TasksCreationTaskDialog extends BasePage {
 
     public String createIssueButton;
     //public String iconBotonDialogIssue; //ICONO TRES PUNTOS
-    public CreationTaskDialog dialogoCreacionTask;
+    public TasksCreationTaskDialog dialogoCreacionTask;
 
     @FindBy(xpath = "//div[@id='issuetype-single-select']//input[@id='issuetype-field']")
     private WebElement dialogCreationIssue;
 
-    @FindBy(xpath = "//a[@role='presentation' and contains(text(),'Tarea')]")   //CHANGE->Task
+    @FindBy(xpath = "//a[@role='presentation' and contains(text(),'Task')]")   //CHANGE->Task
     private WebElement selectedTaskItem;
 
     @FindBy(id = "summary")
@@ -28,26 +26,26 @@ public class CreationTaskDialog extends BasePage {
     @FindBy(id = "create-issue-submit")
     private  WebElement butonCrear;
 
-    public CreationTaskDialog(){
+    public TasksCreationTaskDialog(){
         createIssueButton = "//button[contains(text(), '%s')]";
         //iconBotonDialogIssue = "button[@title='Abrir el diálogo Crear']";  //CHANGE->Open create dialog
     }
 
     public void createIssue() {
-        CommonEvents.forceWait(5000);
-        CommonEvents.clickButton(dialogCreationIssue);
-        CommonEvents.clickButton(selectedTaskItem);
+        TasksCommonEvents.forceWait(5000);
+        TasksCommonEvents.clickButton(dialogCreationIssue);
+        TasksCommonEvents.clickButton(selectedTaskItem);
     }
 
 
     public void insertSummary(String titulo) {
-        CommonEvents.forceWait(5000);
-        CommonEvents.isVisible(contenido);
-        CommonEvents.setInputField(summary,titulo);
+        TasksCommonEvents.forceWait(5000);
+        TasksCommonEvents.isVisible(contenido);
+        TasksCommonEvents.setInputField(summary,titulo);
     }
 
     public void presionarCreateButton() {
-        CommonEvents.forceWait(5000);
-        CommonEvents.clickButton(butonCrear);
+        TasksCommonEvents.forceWait(5000);
+        TasksCommonEvents.clickButton(butonCrear);
     }
 }

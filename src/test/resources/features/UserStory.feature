@@ -3,7 +3,6 @@
 Feature: UserStory
 
   Scenario Outline: Create user story
-    Given Main page is open
     And rc Open Project page
     And rc Click on 'Create issue' button in 'Backlog' page
     And rc Fill "<StoryName>" in 'Create' dialog

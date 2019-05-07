@@ -71,11 +71,11 @@ public class PropertyAccessor {
     }
 
     public String getUser() {
-        return getDataProperty(USERNAME_RELEASE);
+        return getDataProperty(USERNAME);
     }
 
     public String getJiraUrl() {
-        return getDataProperty(USERNAME);
+        return getDataProperty(JIRA_URL);
     }
 
     public String getProjectUrl() {

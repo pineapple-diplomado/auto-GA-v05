@@ -6,7 +6,6 @@ Feature: Lanzamiento
     Given er 'Jira' lanzamiento page is loaded
 
   Scenario: Lanzamiento page is displayed after load main page of Jira
-    And er start login by email
     And er go to lanzamiento
     And er open new Release Form
     And er submit Form

@@ -4,7 +4,7 @@ Feature: Projects
     Given PRJ Jira page is loaded
 
   Scenario: PROJ1: Verificar que el sistema permite la creacion de proyectos Scrum clasicos
-    Given PRJ User is logged in
+    Given PRJ Click en el link "Projects" del menu lateral izquierdo
     And PRJ Click en dropdown "Create project" localizado el la parte de arriba a la derecha de la pagina
     And PRJ Seleccionar el drop down item "Classic project"
     And PRJ Click en el boton "Change template"
@@ -14,7 +14,8 @@ Feature: Projects
     Then PRJ Se muestra la pagina del proyecto con el nombre "PROJ:ProyectoClassicScrum1" seleccionado en el menu lateral izquierdo
 
   Scenario: PROJ2: Verificar que el sistema permite la creacion de proyectos Kanban clasicos
-    Given PRJ Click en dropdown "Create project" localizado el la parte de arriba a la derecha de la pagina
+    Given PRJ Click en el link "Projects" del menu lateral izquierdo
+    And PRJ Click en dropdown "Create project" localizado el la parte de arriba a la derecha de la pagina
     And PRJ Seleccionar el drop down item "Classic project"
     And PRJ Click en el boton "Change template"
     And PRJ Click en el boton "Select" de la tarjeta con el nombre "Kanban"

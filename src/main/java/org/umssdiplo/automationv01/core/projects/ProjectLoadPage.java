@@ -7,7 +7,7 @@ import org.umssdiplo.automationv01.core.utils.PropertyAccessor;
 public final class ProjectLoadPage {
     public static ProjectLogin loginPage() {
         WebDriver webDriver = ManageDriver.getInstance().getWebDriver();
-        webDriver.navigate().to(PropertyAccessor.getInstance().getBaseUrl());
+        webDriver.navigate().to("https://pineappleautomation.atlassian.net");
         return new ProjectLogin();
     }
 }

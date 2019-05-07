@@ -5,7 +5,6 @@ Feature: Verifications in Task
 #testcase2
     Scenario: Verification of a created task displayed on BackLog page
       Given 'JiraLoginPage' page is loaded
-      And jz set my credentials on 'JiraLoginPage' page
       And jz Click "Create issue" boton on BackLog page
       And jz Click OpenCreateDialog boton on BackLog page
       And jz Select 'Task' option on CreationTaskDialog dialog

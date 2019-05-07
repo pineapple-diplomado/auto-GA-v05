@@ -17,7 +17,7 @@ public class ProjectLogin extends BasePage {
     private WebElement loginButton;
 
     public ProjectManagement login() {
-        String username = PropertyAccessor.getInstance().getUser();
+        String username = PropertyAccessor.getInstance().getUserRelease();
         String password = PropertyAccessor.getInstance().getPassword();
         CommonEvents.setInputField(userNameField, username);
         CommonEvents.clickButton(this.loginButton);

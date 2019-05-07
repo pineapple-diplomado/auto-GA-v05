@@ -19,72 +19,72 @@ public class LoginStepsDefinition {
 
     private LoginGoogleForm loginGoogleForm = new LoginGoogleForm();
 
-    @Given("^'Jira' main page is loaded$")
+    @Given("^IZ 'Jira' main page is loaded$")
     public void jiraPageIsLoadedInLoginForm() throws Throwable {
         login = LoadPage.loginPage();
     }
 
-    @Given("^click on the 'Login' button on the main page$")
+    @Given("^IZ click on the 'Login' button on the main page$")
     public void clickOnTheLoginButtonOnTheMainPage() throws InterruptedException {
         login.clickLoginBtnMainPage();
     }
 
-    @When("^set my credentials mail on 'Login' page$")
+    @When("^IZ set my credentials mail on 'Login' page$")
     public void setMyCredentialsMailOnLoginPage() throws Throwable {
         login.setEmailCredential();
     }
 
-    @When("^click 'Continue' button in 'Login' page$")
+    @When("^IZ click 'Continue' button in 'Login' page$")
     public void clickContinueButtonInLoginPage() throws InterruptedException {
         login.clickContinue();
     }
 
-    @When("^set my credentials password on 'Login' page$")
+    @When("^IZ set my credentials password on 'Login' page$")
     public void setMyCredentialsPasswordOnLoginPage() {
         login.setPasswordCredential();
     }
 
-    @When("^click 'Log in' button in 'Login' page$")
+    @When("^IZ click 'Log in' button in 'Login' page$")
     public void clickLogInButtonInLoginPage() throws InterruptedException {
         login.clickLogin();
     }
 
-    @When("^click on the icon edit button of the email field$")
+    @When("^IZ click on the icon edit button of the email field$")
     public void clickOnTheIconEditButtonOfTheEmailField() throws InterruptedException {
         login.clickEditIconBtn();
     }
 
 
-    @Then("^verify that you have logged in with the mail \"([^\"]*)\"$")
+    @Then("^IZ verify that you have logged in with the mail \"([^\"]*)\"$")
     public void verifyThatYouHaveLoggedInWithTheMail(String mailExpected) throws Throwable {
         String mailActual = loginMyAccountDialog.getMail();
         Assert.assertEquals(mailActual, mailExpected);
     }
 
-    @Then("^verify that you have logged in with the user \"([^\"]*)\"$")
+    @Then("^IZ verify that you have logged in with the user \"([^\"]*)\"$")
     public void verifyThatYouHaveLoggedInWithTheUser(String userExpected) throws Throwable {
         String userActual = loginMyAccountDialog.getName();
         Assert.assertEquals(userActual, userExpected);
     }
 
 
-    @When("^set mail: dsds@xyz.com$")
+    @When("^IZ set mail: dsds@xyz.com$")
     public void setMailDsdsXyzCom() {
         login.setEmailCredentialNotExist();
     }
 
-    @Then("^Verify that the name of the page should be \"([^\"]*)\"$")
+    @Then("^IZ Verify that the name of the page should be \"([^\"]*)\"$")
     public void verifyThatTheNameOfThePageShouldBe(String textExpected) throws Throwable {
         String textActual = loginRegisterForm.getTittleNewAccount();
         Assert.assertEquals(textActual, textExpected);
     }
 
-    @Then("^Validate the field is displayed$")
+    @Then("^IZ Validate the field is displayed$")
     public void validateInputField() throws Throwable {
         Assert.assertTrue(login.validateInputIsDisplayed(), "fail");
     }
 
-    @Then("^Validate the mail is displayed as span$")
+    @Then("^IZ Validate the mail is displayed as span$")
     public void validateTheMailIsDisplayedAsSpan() {
         Assert.assertTrue(login.validateSpanIsDisplayed());
 
@@ -94,62 +94,62 @@ public class LoginStepsDefinition {
         Segunda parte
      */
 
-    @Then("^Validate the span icon is displayed in email field$")
+    @Then("^IZ Validate the span icon is displayed in email field$")
     public void validateTheSpanIconIsDisplayed() throws InterruptedException {
         Assert.assertTrue(login.validateSpanIconIsDisplayed());
     }
 
-    @When("click Can't log in link in Login page")
+    @When("^IZ click Can't log in link in Login page")
     public void clickCanTLogInLinkInLoginPage() {
         login.clickCantLogIn();
     }
 
-    @Then("^Verify that the title of the Can't log in page is \"([^\"]*)\"$")
+    @Then("^IZ Verify that the title of the Can't log in page is \"([^\"]*)\"$")
     public void verifyThatTheTitleOfTheCanTLogInPageIs(String textCantLogInExpected) throws Throwable {
         String textActual = login.getTittleCantLogIn();
         Assert.assertEquals(textActual, textCantLogInExpected);
     }
 
-    @When("^click on Log in with Google button$")
+    @When("^IZ click on Log in with Google button$")
     public void clickOnLogInWithGoogleButton() {
         login.clickLogInWithGoogleBtn();
     }
 
 
-    @When("^set my credential email on login google page$")
+    @When("^IZ set my credential email on login google page$")
     public void setMyCredentialEmailOnLoginGooglePage() {
         loginGoogleForm.setEmailGoogleCredential();
     }
 
 
-    @When("^set my credentials incorrect password on 'Login' page$")
+    @When("^IZ set my credentials incorrect password on 'Login' page$")
     public void setMyCredentialsIncorrectPasswordOnLoginPage() {
         login.setIncorrectPasswordCredential();
     }
 
-    @Then("^verify that the error message that is displayed is \"([^\"]*)\"$")
+    @Then("^IZ verify that the error message that is displayed is \"([^\"]*)\"$")
     public void verifyThatTheErrorMessageThatIsDisplayedIs(String textExpected) throws Throwable {
         String textActual = login.getMsgPassError();
         Assert.assertEquals(textActual, textExpected);
     }
 
 
-    @When("^click on the 'Siguiente' button after set email on login google page$")
+    @When("^IZ click on the 'Siguiente' button after set email on login google page$")
     public void clickOnTheSiguienteButtonAfterSetEmailOnLoginGooglePage() {
         loginGoogleForm.clickSiguienteEmailBtn();
     }
 
-    @When("^set my credential password on login google page$")
+    @When("^IZ set my credential password on login google page$")
     public void setMyCredentialPasswordOnLoginGooglePage() {
         loginGoogleForm.setPassGoogleCredential();
     }
 
-    @When("^click on the 'Siguiente' button after set password on login google page$")
+    @When("^IZ click on the 'Siguiente' button after set password on login google page$")
     public void clickOnTheSiguienteButtonAfterSetPasswordOnLoginGooglePage() {
         loginGoogleForm.clickSiguientePassBtn();
     }
 
-    @Then("^verify that you can logout$")
+    @Then("^IZ verify that you can logout$")
     public void verifyThatYouCanLogout() {
         loginMyAccountDialog.logoutBtn();
     }

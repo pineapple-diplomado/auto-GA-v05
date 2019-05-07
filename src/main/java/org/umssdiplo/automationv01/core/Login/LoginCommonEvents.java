@@ -1,4 +1,4 @@
-package org.umssdiplo.automationv01.core.utils;
+package org.umssdiplo.automationv01.core.Login;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -9,7 +9,7 @@ import org.umssdiplo.automationv01.core.customwebdriver.ManageDriver;
 
 import java.util.List;
 
-public class CommonEvents {
+public class LoginCommonEvents {
 
     /**
      * This method set text content to web element.
@@ -30,8 +30,16 @@ public class CommonEvents {
      */
     public static void clickButton(WebElement webElement) {
         ManageDriver.getInstance().getWebDriverWait().until(ExpectedConditions.elementToBeClickable(webElement));
+        //Thread.sleep(10000);
         webElement.click();
     }
+
+    public static void clickClikable(WebElement webElement) throws InterruptedException {
+        ManageDriver.getInstance().getWebDriverWait().until(ExpectedConditions.elementToBeClickable(webElement));
+        Thread.sleep(5000);
+        webElement.click();
+    }
+
 
     /**
      * This method perform a click in a non visible element in the UI.
@@ -116,4 +124,8 @@ public class CommonEvents {
         webElement.sendKeys(Keys.ENTER);
     }
 
+    public static void waitDilogVisible(WebElement dialogElement) throws InterruptedException {
+        ManageDriver.getInstance().getWebDriverWait().until(ExpectedConditions.visibilityOf(dialogElement));
+        //Thread.sleep(5000);
+    }
 }

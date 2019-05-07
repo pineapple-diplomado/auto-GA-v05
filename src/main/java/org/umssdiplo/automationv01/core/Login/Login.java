@@ -1,9 +1,8 @@
-package org.umssdiplo.automationv01.core.managepage.Login;
+package org.umssdiplo.automationv01.core.Login;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.umssdiplo.automationv01.core.managepage.BasePage;
-import org.umssdiplo.automationv01.core.utils.CommonEvents;
 import org.umssdiplo.automationv01.core.utils.PropertyAccessor;
 
 public class Login extends BasePage {
@@ -55,46 +54,46 @@ public class Login extends BasePage {
 
 
     public void clickLoginBtnMainPage() {
-        CommonEvents.clickButton(loginBtnMainPage);
+        LoginCommonEvents.clickButton(loginBtnMainPage);
     }
 
     public void setEmailCredential() {
         String username = PropertyAccessor.getInstance().getUser();
-        CommonEvents.setInputField(usernameInputField, username);
+        LoginCommonEvents.setInputField(usernameInputField, username);
     }
 
     public void clickContinue() {
-        CommonEvents.clickButton(continueBtn);
+        LoginCommonEvents.clickButton(continueBtn);
     }
 
     public void setPasswordCredential() {
         String password = PropertyAccessor.getInstance().getPassword();
-        CommonEvents.setInputField(passwordInputField, password);
+        LoginCommonEvents.setInputField(passwordInputField, password);
 
     }
 
     public void clickLogin() {
-        CommonEvents.clickButton(loginBtn);
+        LoginCommonEvents.clickButton(loginBtn);
     }
 
     public void clickEditIconBtn() throws InterruptedException {
 //        String usernameedit = PropertyAccessor.getInstance().getUserEdit();
-        CommonEvents.clickClikable(editIconBtn);
+        LoginCommonEvents.clickClikable(editIconBtn);
 //        CommonEvents.setInputField(usernameInputField, usernameedit);
     }
 
     public boolean validateInputIsDisplayed() throws InterruptedException {
-        return CommonEvents.isVisible(usernameInputField);
+        return LoginCommonEvents.isVisible(usernameInputField);
 //        CommonEvents.setInputField(usernameInputField, usernameedit);
     }
 
     public void setEmailCredentialNotExist() {
         String usernamenotexist = PropertyAccessor.getInstance().getUserNotExist();
-        CommonEvents.setInputField(usernameInputField, usernamenotexist);
+        LoginCommonEvents.setInputField(usernameInputField, usernamenotexist);
     }
 
     public boolean validateSpanIsDisplayed() {
-        return CommonEvents.isVisible(spanElement);
+        return LoginCommonEvents.isVisible(spanElement);
     }
 
     /*
@@ -103,30 +102,30 @@ public class Login extends BasePage {
 
 
     public boolean validateSpanIconIsDisplayed() throws InterruptedException {
-        return CommonEvents.isVisible(spanIconElement);
+        return LoginCommonEvents.isVisible(spanIconElement);
     }
 
 
     public void clickCantLogIn() {
-        CommonEvents.clickButton(cantLogInLink);
+        LoginCommonEvents.clickButton(cantLogInLink);
     }
 
     public String getTittleCantLogIn() {
-        return CommonEvents.getTextContent(cantLogInTitle);
+        return LoginCommonEvents.getTextContent(cantLogInTitle);
     }
 
     public void clickLogInWithGoogleBtn() {
-        CommonEvents.clickButton(logInWithGoogleBtn);
+        LoginCommonEvents.clickButton(logInWithGoogleBtn);
     }
 
 
     public void setIncorrectPasswordCredential() {
         String incorrectPassword = PropertyAccessor.getInstance().getIncorrectPassword();
-        CommonEvents.setInputField(passwordInputField, incorrectPassword);
+        LoginCommonEvents.setInputField(passwordInputField, incorrectPassword);
     }
 
     public String getMsgPassError() {
-        String msgError = (CommonEvents.getTextContent(msgPassError)).substring(0, 42);
+        String msgError = (LoginCommonEvents.getTextContent(msgPassError)).substring(0, 42);
 //        msgError.substring(0,10);
         System.out.print("MENSAJE ERROR: " + msgError);
         return msgError;

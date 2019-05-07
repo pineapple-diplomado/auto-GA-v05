@@ -4,20 +4,20 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.testng.Assert;
-import org.umssdiplo.automationv01.core.managepage.Login.Login;
-import org.umssdiplo.automationv01.core.managepage.Pages.GoogleLoginForm;
-import org.umssdiplo.automationv01.core.managepage.Pages.MyAccountDialog;
-import org.umssdiplo.automationv01.core.managepage.Pages.RegisterForm;
+import org.umssdiplo.automationv01.core.Login.Login;
+import org.umssdiplo.automationv01.core.Login.LoginGoogleForm;
+import org.umssdiplo.automationv01.core.Login.LoginMyAccountDialog;
+import org.umssdiplo.automationv01.core.Login.LoginRegisterForm;
 import org.umssdiplo.automationv01.core.utils.LoadPage;
 
-public class StepsDefinitionJira {
+public class LoginStepsDefinition {
     private Login login;
 
-    private MyAccountDialog myAccountDialog = new MyAccountDialog();
+    private LoginMyAccountDialog loginMyAccountDialog = new LoginMyAccountDialog();
 
-    private RegisterForm registerForm = new RegisterForm();
+    private LoginRegisterForm loginRegisterForm = new LoginRegisterForm();
 
-    private GoogleLoginForm googleLoginForm = new GoogleLoginForm();
+    private LoginGoogleForm loginGoogleForm = new LoginGoogleForm();
 
     @Given("^'Jira' main page is loaded$")
     public void jiraPageIsLoadedInLoginForm() throws Throwable {
@@ -57,13 +57,13 @@ public class StepsDefinitionJira {
 
     @Then("^verify that you have logged in with the mail \"([^\"]*)\"$")
     public void verifyThatYouHaveLoggedInWithTheMail(String mailExpected) throws Throwable {
-        String mailActual = myAccountDialog.getMail();
+        String mailActual = loginMyAccountDialog.getMail();
         Assert.assertEquals(mailActual, mailExpected);
     }
 
     @Then("^verify that you have logged in with the user \"([^\"]*)\"$")
     public void verifyThatYouHaveLoggedInWithTheUser(String userExpected) throws Throwable {
-        String userActual = myAccountDialog.getName();
+        String userActual = loginMyAccountDialog.getName();
         Assert.assertEquals(userActual, userExpected);
     }
 
@@ -75,7 +75,7 @@ public class StepsDefinitionJira {
 
     @Then("^Verify that the name of the page should be \"([^\"]*)\"$")
     public void verifyThatTheNameOfThePageShouldBe(String textExpected) throws Throwable {
-        String textActual = registerForm.getTittleNewAccount();
+        String textActual = loginRegisterForm.getTittleNewAccount();
         Assert.assertEquals(textActual, textExpected);
     }
 
@@ -118,7 +118,7 @@ public class StepsDefinitionJira {
 
     @When("^set my credential email on login google page$")
     public void setMyCredentialEmailOnLoginGooglePage() {
-        googleLoginForm.setEmailGoogleCredential();
+        loginGoogleForm.setEmailGoogleCredential();
     }
 
 
@@ -136,16 +136,21 @@ public class StepsDefinitionJira {
 
     @When("^click on the 'Siguiente' button after set email on login google page$")
     public void clickOnTheSiguienteButtonAfterSetEmailOnLoginGooglePage() {
-        googleLoginForm.clickSiguienteEmailBtn();
+        loginGoogleForm.clickSiguienteEmailBtn();
     }
 
     @When("^set my credential password on login google page$")
     public void setMyCredentialPasswordOnLoginGooglePage() {
-        googleLoginForm.setPassGoogleCredential();
+        loginGoogleForm.setPassGoogleCredential();
     }
 
     @When("^click on the 'Siguiente' button after set password on login google page$")
     public void clickOnTheSiguienteButtonAfterSetPasswordOnLoginGooglePage() {
-        googleLoginForm.clickSiguientePassBtn();
+        loginGoogleForm.clickSiguientePassBtn();
+    }
+
+    @Then("^verify that you can logout$")
+    public void verifyThatYouCanLogout() {
+        loginMyAccountDialog.logoutBtn();
     }
 }

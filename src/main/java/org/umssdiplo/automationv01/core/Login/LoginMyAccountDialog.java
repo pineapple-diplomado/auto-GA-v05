@@ -1,11 +1,10 @@
-package org.umssdiplo.automationv01.core.managepage.Pages;
+package org.umssdiplo.automationv01.core.Login;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.umssdiplo.automationv01.core.managepage.BasePage;
-import org.umssdiplo.automationv01.core.utils.CommonEvents;
 
-public class MyAccountDialog extends BasePage {
+public class LoginMyAccountDialog extends BasePage {
     @FindBy(xpath = "//div[@class='sc-jKJlTe ffxovy']")
     private WebElement email;
 
@@ -13,13 +12,22 @@ public class MyAccountDialog extends BasePage {
     private WebElement name;
 
 
+    @FindBy(xpath = "//div/button[@class=\"sc-kgoBCf bPIvkK\"][3]")
+    private WebElement logoutBtn;
+
+
     public String getMail() {
-        String mailText = CommonEvents.getTextContent(email);
+        String mailText = LoginCommonEvents.getTextContent(email);
         return mailText;
     }
 
     public String getName() {
-        String nameText = CommonEvents.getTextContent(name);
+        String nameText = LoginCommonEvents.getTextContent(name);
         return nameText;
+    }
+
+
+    public void logoutBtn() {
+        LoginCommonEvents.clickButton(logoutBtn);
     }
 }

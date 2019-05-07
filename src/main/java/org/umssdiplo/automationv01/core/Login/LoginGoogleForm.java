@@ -1,12 +1,11 @@
-package org.umssdiplo.automationv01.core.managepage.Pages;
+package org.umssdiplo.automationv01.core.Login;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.umssdiplo.automationv01.core.managepage.BasePage;
-import org.umssdiplo.automationv01.core.utils.CommonEvents;
 import org.umssdiplo.automationv01.core.utils.PropertyAccessor;
 
-public class GoogleLoginForm extends BasePage {
+public class LoginGoogleForm extends BasePage {
 
     @FindBy(xpath = "//input[@id=\'identifierId\']")
     private WebElement emailGoogleInputField;
@@ -23,20 +22,20 @@ public class GoogleLoginForm extends BasePage {
 
     public void setEmailGoogleCredential() {
         String googleUsername = PropertyAccessor.getInstance().getUserGoogle();
-        CommonEvents.setInputField(emailGoogleInputField, googleUsername);
+        LoginCommonEvents.setInputField(emailGoogleInputField, googleUsername);
     }
 
 
     public void clickSiguienteEmailBtn() {
-        CommonEvents.clickButton(siguienteEmailBtn);
+        LoginCommonEvents.clickButton(siguienteEmailBtn);
     }
 
     public void setPassGoogleCredential() {
         String googlePass = PropertyAccessor.getInstance().getPassGoogle();
-        CommonEvents.setInputField(passGoogleInputField, googlePass);
+        LoginCommonEvents.setInputField(passGoogleInputField, googlePass);
     }
 
     public void clickSiguientePassBtn() {
-        CommonEvents.clickButton(siguientePassBtn);
+        LoginCommonEvents.clickButton(siguientePassBtn);
     }
 }

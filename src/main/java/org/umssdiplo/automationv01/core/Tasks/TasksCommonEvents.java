@@ -1,13 +1,12 @@
-package org.umssdiplo.automationv01.core.utils;
+package org.umssdiplo.automationv01.core.Tasks;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.umssdiplo.automationv01.core.customwebdriver.ManageDriver;
 
 import java.util.List;
 
-public class CommonEvents {
+public class TasksCommonEvents {
 
     /**
      * This method set text content to web element.
@@ -117,25 +116,23 @@ public class CommonEvents {
     public static void waitElementVisible(WebElement webElement) {
         ManageDriver.getInstance().getWebDriverWait().until(ExpectedConditions.visibilityOf(webElement));
     }
+    //  xaby
 
-    public static void forceWait(int milliseconds){
+    public static void clickButton(By by) {
+        WebElement element = ManageDriver.getInstance().getWebDriver().findElement(by);
+        clickButton(element);
+    }
+
+    public static void setInputFieldBy(By by, String mensaje) {
+        WebElement element = ManageDriver.getInstance().getWebDriver().findElement(by);
+        setInputField(element, mensaje);
+    }
+
+    public static void forceWait(int milliseconds) {
         try{
             Thread.sleep(milliseconds);
         }catch (Exception e){
             e.fillInStackTrace();
         }
-    }
-
-    public static void setSelectValueComponentsForm(WebElement webElement, String content) {
-        WebDriverWait waitDriver = ManageDriver.getInstance().getWebDriverWait();
-        WebDriver webDriver = ManageDriver.getInstance().getWebDriver();
-
-        waitDriver.until(ExpectedConditions.visibilityOf(webElement));
-        webElement.click();
-
-        WebElement selectItem = webDriver.findElement(By.xpath(
-                "//span[contains(text(),'" + content +"')]"));
-        waitDriver.until(ExpectedConditions.visibilityOf(selectItem));
-        selectItem.click();
     }
 }

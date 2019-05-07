@@ -32,11 +32,11 @@ public class Login extends BasePage {
     private WebElement passwordJiraInputField;
 
     public void setCredentials() {
-        String username = PropertyAccessor.getInstance().getUser();
-        String password = PropertyAccessor.getInstance().getPassword();
-        CommonEvents.setInputField(usernameInputField, username);
-        CommonEvents.setInputField(passwordInputField, password);
-        CommonEvents.clickButton(loginBtn);
+//        String username = PropertyAccessor.getInstance().getUser();
+//        String password = PropertyAccessor.getInstance().getPassword();
+//        TasksCommonEvents.setInputField(usernameInputField, username);
+//        TasksCommonEvents.setInputField(passwordInputField, password);
+//        TasksCommonEvents.clickButton(loginBtn);
     }
 
     public void setPassword(String password) {

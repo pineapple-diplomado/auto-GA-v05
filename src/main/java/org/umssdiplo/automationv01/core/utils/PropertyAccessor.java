@@ -70,10 +70,13 @@ public class PropertyAccessor {
     }
 
     public String getUser() {
+        //return null;
         return getDataProperty(USERNAME);
     }
 
     public String getPassword() {
+
+        //return null;
         return getDataProperty(PASSWORD);
     }
 }

@@ -13,15 +13,15 @@ public final class TasksLoadPageJavierZapata {
 
     public static TasksJiraLoginPage homePage() {
         ManageDriver.getInstance().getWebDriver()
-                .navigate().to("https://javierzapata2.atlassian.net/secure/RapidBoard.jspa?rapidView=3&" +
-                "projectKey=PRC&view=planning.nodetail&selectedIssue=PRC-1");
+                .navigate().to("https://pineappleautomation.atlassian.net/secure/RapidBoard.jspa?rapidView=4&" +
+                "projectKey=TAS&view=planning.nodetail&selectedIssue=TAS-1");
         return new TasksJiraLoginPage();
     }
 
     public static TasksBackLogPage loadBackLog() {
         ManageDriver.getInstance().getWebDriver()
-                .navigate().to("https://javierzapata2.atlassian.net/secure/RapidBoard.jspa?rapidView=3&" +
-                "projectKey=PRC&view=planning.nodetail&selectedIssue=PRC-1");
+                .navigate().to("https://pineappleautomation.atlassian.net/secure/RapidBoard.jspa?rapidView=4&" +
+                "projectKey=TAS&view=planning.nodetail&selectedIssue=TAS-1");
         return new TasksBackLogPage();
     }
 }

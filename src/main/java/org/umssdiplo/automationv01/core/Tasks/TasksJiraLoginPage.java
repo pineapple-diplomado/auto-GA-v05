@@ -18,10 +18,10 @@ public class TasksJiraLoginPage extends BasePage {
     //public TasksHomePage setCredentials() {
     public TasksBackLogPage setCredentials() {
         String username = PropertyAccessor.getInstance().getUser();
-        TasksCommonEvents.setInputField(usernameInputField, username);
+        TasksCommonEvents.setInputField(usernameInputField, "pineapple.automation2@gmail.com");
         clickButton();
         String password = PropertyAccessor.getInstance().getPassword();
-        TasksCommonEvents.setInputField(passwordInputField, password);
+        TasksCommonEvents.setInputField(passwordInputField, "Control123!");
         clickButton();
         //return new TasksHomePage();
         return new TasksBackLogPage();

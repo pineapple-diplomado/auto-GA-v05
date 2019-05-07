@@ -3,7 +3,7 @@
 Feature: Lanzamiento
 
   Background: Load page
-    Given 'Jira' page is loaded
+    Given 'Jira' lanzamiento page is loaded
 
   Scenario: Lanzamiento page is displayed after load main page of Jira
     And start login by email

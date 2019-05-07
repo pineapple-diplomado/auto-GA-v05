@@ -17,7 +17,7 @@ public class LanzamientoStepDef {
     String secondVersionComment = "test comment version 3";
     String secondVersionEditComment = "test comment version 3.1";
 
-    @Given("^'Jira' page is loaded$")
+    @Given("^'Jira' lanzamiento page is loaded$")
     public void jiraPageIsLoaded() throws Throwable {
         JiraLanzamiento = LoadPage.jiraPage();
     }

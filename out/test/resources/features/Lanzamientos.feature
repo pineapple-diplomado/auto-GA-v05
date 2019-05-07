@@ -1,8 +1,9 @@
 # Jira Lanzamiento/Release feature
+# TEST CASES WORKED TC-ER-1 TC-ER-2 TC-ER-3 TC-ER-6 TC-ER-9 TC-ER-10 TC-ER-15 TC-ER-16 TC-ER-17
 Feature: Lanzamiento
 
   Background: Load page
-    Given 'Jira' page is loaded
+    Given 'Jira' lanzamiento page is loaded
 
   Scenario: Lanzamiento page is displayed after load main page of Jira
     And start login by email

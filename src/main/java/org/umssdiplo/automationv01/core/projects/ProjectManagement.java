@@ -7,14 +7,15 @@ import org.openqa.selenium.support.FindBy;
 import org.umssdiplo.automationv01.core.managepage.BasePage;
 import org.umssdiplo.automationv01.core.utils.CommonEvents;
 
-public class ProjectManagement extends BasePage {
-    @FindBy(xpath = "//*[@class=\"sc-EHOje dCmFoj\"]")
-    private WebElement createProject;
+import javax.xml.xpath.XPath;
 
+public class ProjectManagement extends BasePage {
     public ProjectManagement() {
     }
 
-    public void clickCreateProject() {
-        CommonEvents.clickButton(this.createProject);
+    public void clickCreateProject(String createProjectButton) {
+        ProjectCommon.waitFor(3000);
+        By by = By.xpath("//button[./span/span[.='" + createProjectButton + "']]");
+        ProjectCommon.clickButton(by);
     }
 }

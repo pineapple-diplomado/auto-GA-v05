@@ -71,6 +71,12 @@ public class CommonEvents {
         webElement.click();
     }
 
+    public static void clickButton(By by) {
+        ManageDriver.getInstance().getWebDriverWait().until(ExpectedConditions.elementToBeClickable(by));
+        WebElement button = getElement(by);
+        button.click();
+    }
+
     /**
      * This method perform a click in a non visible element in the UI.
      *

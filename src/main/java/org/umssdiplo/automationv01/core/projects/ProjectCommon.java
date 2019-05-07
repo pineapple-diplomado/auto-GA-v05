@@ -48,12 +48,15 @@ public class ProjectCommon {
         WebDriverWait waitDriver = ManageDriver.getInstance().getWebDriverWait();
 
         WebElement element = webDriver.findElement(by);
-        //return waitDriver.until(ExpectedConditions.elementToBeClickable(by));
         return element;
     }
 
     public static void isVisible(By by) {
         ManageDriver.getInstance().getWebDriverWait().until(ExpectedConditions.visibilityOfElementLocated(by));
+    }
+
+    public static void elementTobeClickable(By by) {
+        ManageDriver.getInstance().getWebDriverWait().until(ExpectedConditions.elementToBeClickable(by));
     }
 
     public static void isNotVisible(By by) {
@@ -68,6 +71,16 @@ public class ProjectCommon {
     public static void clickButton(WebElement webElement) {
         ManageDriver.getInstance().getWebDriverWait().until(ExpectedConditions.elementToBeClickable(webElement));
         webElement.click();
+    }
+
+    public static void waitFor(long timeout) {
+        try
+        {
+            Thread.sleep(1000);
+        }
+        catch(InterruptedException ex)
+        {
+        }
     }
 
     public static void clickButton(By by) {
@@ -139,6 +152,11 @@ public class ProjectCommon {
     public static String getTextContent(WebElement webElement) {
         ManageDriver.getInstance().getWebDriverWait().until(ExpectedConditions.visibilityOf(webElement));
         return webElement.getText();
+    }
+
+    public static String getTextContent(By by) {
+        WebElement element = getElement(by);
+        return element.getText();
     }
 
     /**

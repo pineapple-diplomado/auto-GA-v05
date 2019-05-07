@@ -4,10 +4,12 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import org.umssdiplo.automationv01.core.managepage.Login.Login;
 import org.umssdiplo.automationv01.core.Components.Components;
+import org.umssdiplo.automationv01.core.managepage.JiraLanzamiento.Lanzamiento;
 import org.umssdiplo.automationv01.core.utils.LoadPage;
 
 public class StepsDefinitionPHPtravel {
     private Login login;
+    private Lanzamiento JiraLanzamiento;
     private Components components;
 
     @Given("^'PHP travel' page is loaded$")
@@ -20,6 +22,11 @@ public class StepsDefinitionPHPtravel {
         login.setCredentials();
     }
 
+    @Given("^'Jira' page is loaded$")
+    public void jiraPageIsLoaded() throws Throwable {
+        JiraLanzamiento = LoadPage.jiraPage();
+    }
+
     @And("^set \"([^\"]*)\" email field on 'Login' page$")
     public void setEmailFieldOnLoginPage(String email) throws Throwable {
         login.setEmail(email);
@@ -28,11 +35,6 @@ public class StepsDefinitionPHPtravel {
     @And("^set \"([^\"]*)\" password field on 'Login' page$")
     public void setPasswordFieldOnLoginPage(String password) throws Throwable {
         login.setPassword(password);
-    }
-
-    @Given("^'Jira' page is loaded$")
-    public void jiraPageIsLoaded() throws Throwable{
-        login = LoadPage.loginPage();
     }
 
     @And("^set \"([^\"]*)\" in email field on 'Login' page$")
